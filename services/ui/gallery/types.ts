@@ -1,0 +1,8 @@
+import { Product } from "@/services/admin/product";
+import { BaseProps } from "@/utils/types";
+
+export interface Gallery extends BaseProps {
+  product: Product;
+}
+
+export interface GalleryResponse extends Array<Gallery> {}
