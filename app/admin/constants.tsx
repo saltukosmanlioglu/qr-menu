@@ -3,6 +3,8 @@ import ImageIcon from "@atlaskit/icon/glyph/image";
 import TableIcon from "@atlaskit/icon/glyph/table";
 import WorldIcon from "@atlaskit/icon/glyph/world";
 
+import { FrequentlyUsedButtonProps } from "@/components/admin/frequently-used-button";
+
 export const menuItems = [
   {
     icon: <BulletListIcon label="" size="medium" />,
@@ -59,5 +61,36 @@ export const menuItems = [
       },
     ],
     title: "Masa",
+  },
+];
+
+export const frequentlyUsedButtons: Array<
+  Omit<FrequentlyUsedButtonProps, "onClick"> & { href: string }
+> = [
+  {
+    description: "Kategori oluşturup yeni ürünlerinizi ekleyebilirsiniz.",
+    href: "/admin/category/create",
+    icon: <BulletListIcon label="" size="xlarge" />,
+    title: "Kategori oluştur",
+  },
+  {
+    description:
+      "Öne çıkan içerik oluşturup önemli ürünlerinizi müşterilerinize sunabilirsiniz.",
+    href: "/admin/gallery/create",
+    icon: <ImageIcon label="" size="xlarge" />,
+    title: "Öne çıkan içerik oluştur",
+  },
+  {
+    description:
+      "Dil desteği ekleyip ürünlerinizi yabancı müşterilerinize tanıtabilirsiniz.",
+    href: "/admin/language/create",
+    icon: <WorldIcon label="" size="xlarge" />,
+    title: "Dil desteği ekle",
+  },
+  {
+    description: "Masa oluşturup QR Kodunuzu kullanabilirsiniz.",
+    href: "/admin/table/create",
+    icon: <TableIcon label="" size="xlarge" />,
+    title: "Masa oluştur",
   },
 ];

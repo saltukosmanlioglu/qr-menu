@@ -11,18 +11,20 @@ const PageInformation: React.FunctionComponent<PageInformationProps> = ({
   description,
   title,
 }) => {
-  const breadcrumbs = (
-    <Breadcrumbs>
-      <BreadcrumbsItem href="/admin" text="Anasayfa" />
-      {breadcrumbItems?.map((item, index) => (
-        <BreadcrumbsItem key={index} href={item.href} text={item.text} />
-      ))}
-    </Breadcrumbs>
-  );
+  const BreadcrumbItems = () => {
+    return (
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/admin" text="Anasayfa" />
+        {breadcrumbItems?.map((item, index) => (
+          <BreadcrumbsItem key={index} href={item.href} text={item.text} />
+        ))}
+      </Breadcrumbs>
+    );
+  };
 
   return (
     <div>
-      <PageHeader actions={actions} breadcrumbs={breadcrumbs}>
+      <PageHeader actions={actions} breadcrumbs={<BreadcrumbItems />}>
         {title}
       </PageHeader>
       <p className="text-sm">{description}</p>
