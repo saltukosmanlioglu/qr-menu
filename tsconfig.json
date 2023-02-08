@@ -24,6 +24,7 @@
       "@/atlaskit/*": ["@atlaskit/*"],
       "@/components/*": ["components/*"],
       "@/services/*": ["services/*"],
+      "@/styles/*": ["styles/*"],
       "@/utils/*": ["utils/*"],
       "@/widgets/*": ["widgets/*"],
     }

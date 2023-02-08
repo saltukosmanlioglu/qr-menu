@@ -3,11 +3,12 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
-        source: "/(ui)/home",
-        destination: "/",
+        source: "/",
+        destination: "/home",
+        permanent: true,
       },
     ];
   },

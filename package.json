@@ -9,6 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@atlaskit/atlassian-navigation": "^2.3.4",
+    "@atlaskit/breadcrumbs": "^11.7.10",
+    "@atlaskit/menu": "^1.4.8",
+    "@atlaskit/page-header": "^10.3.2",
+    "@atlaskit/page-layout": "^1.3.8",
+    "@atlaskit/side-navigation": "^1.5.2",
     "@next/font": "13.1.6",
     "axios": "^1.3.2",
     "eslint": "8.33.0",
