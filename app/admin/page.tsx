@@ -14,10 +14,10 @@ export default function Admin() {
     <main>
       <PageInformation
         description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque molestias sequi, est delectus distinctio molestiae nam debitis doloribus, iusto odit amet obcaecati assumenda, fuga ad culpa maiores labore dicta officia! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque molestias sequi, est delectus distinctio molestiae nam debitis doloribus, iusto odit amet obcaecati assumenda, fuga ad culpa maiores labore dicta officia!"
-        title="Admin"
+        title="QR Menü Yönetim Paneline Hoşgeldiniz."
       />
       <div className="mt-12">
-        <h1 className="font-semibold text-2xl mb-4">SIK KULLANILAN İŞLEMLER</h1>
+        <h1 className="font-semibold text-2xl mb-4">Sık kullanılan işlemler</h1>
         <div className="flex flex-wrap gap-4">
           {frequentlyUsedButtons.map((item, index) => (
             <div key={index} style={{ width: "calc((100% / 3) - 16px)" }}>

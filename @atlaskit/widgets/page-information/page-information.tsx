@@ -24,10 +24,12 @@ const PageInformation: React.FunctionComponent<PageInformationProps> = ({
 
   return (
     <div>
-      <PageHeader actions={actions} breadcrumbs={<BreadcrumbItems />}>
-        {title}
-      </PageHeader>
-      <p className="text-sm">{description}</p>
+      <PageHeader
+        actions={actions}
+        breadcrumbs={<BreadcrumbItems />}
+        children={title}
+      />
+      {description && <p className="text-sm">{description}</p>}
     </div>
   );
 };

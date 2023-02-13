@@ -1,4 +1,4 @@
-import { BaseProps } from "@/utils/types";
+import { BaseProps } from "@/utils/ui/types";
 
 export interface Language extends BaseProps {
   languageCode: string;

@@ -1,4 +1,4 @@
-import { BaseProps } from "@/utils/types";
+import { BaseProps } from "@/utils/ui/types";
 
 export interface Table extends Omit<BaseProps, "order"> {
   qrId: string;

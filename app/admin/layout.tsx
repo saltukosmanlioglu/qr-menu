@@ -1,15 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import "@/styles/globals.css";
 
+import DropdownMenu, {
+  DropdownItem,
+  DropdownItemGroup,
+} from "@atlaskit/dropdown-menu";
 import {
   AtlassianNavigation,
-  Help,
   ProductHome,
 } from "@atlaskit/atlassian-navigation";
 import { ConfluenceIcon, ConfluenceLogo } from "@atlaskit/logo";
-import { ButtonItem, LinkItem, MenuGroup, Section } from "@atlaskit/menu";
-import Popup from "@atlaskit/popup";
+import { LinkItem, Section } from "@atlaskit/menu";
 import {
   Header,
   NavigationHeader,
@@ -43,7 +45,15 @@ export default function RootLayout({
             id="confluence-navigation"
             skipLinkTitle="Confluence Navigation"
           >
-            <TopNavigationContents />
+            <AtlassianNavigation
+              label="site"
+              moreLabel="More"
+              primaryItems={[]}
+              renderProductHome={() => (
+                <ProductHome icon={ConfluenceIcon} logo={ConfluenceLogo} />
+              )}
+              renderProfile={RenderProfile}
+            />
           </TopNavigation>
           <Content testId="content">
             <LeftSidebar
@@ -61,20 +71,6 @@ export default function RootLayout({
         </PageLayout>
       </body>
     </html>
-  );
-}
-
-function TopNavigationContents() {
-  return (
-    <AtlassianNavigation
-      label="site"
-      moreLabel="More"
-      primaryItems={[]}
-      renderProductHome={() => (
-        <ProductHome icon={ConfluenceIcon} logo={ConfluenceLogo} />
-      )}
-      renderHelp={HelpPopup}
-    />
   );
 }
 
@@ -106,46 +102,14 @@ const SideNavigationContent = () => {
   );
 };
 
-export const HelpPopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const onClose = () => {
-    setIsOpen(false);
-  };
-
+const RenderProfile = () => {
   return (
-    <Popup
-      placement="bottom-start"
-      content={HelpPopupContent}
-      isOpen={isOpen}
-      onClose={onClose}
-      trigger={(triggerProps) => (
-        <Help
-          isSelected={isOpen}
-          onClick={onClick}
-          tooltip="Help"
-          {...triggerProps}
-        />
-      )}
-    />
+    <div>
+      <DropdownMenu trigger="Orient" zIndex={1000000}>
+        <DropdownItemGroup>
+          <DropdownItem>Çıkış yap</DropdownItem>
+        </DropdownItemGroup>
+      </DropdownMenu>
+    </div>
   );
 };
-
-const HelpPopupContent = () => (
-  <MenuGroup>
-    <Section title={"Menu Heading"}>
-      <ButtonItem>Item 1</ButtonItem>
-      <ButtonItem>Item 2</ButtonItem>
-      <ButtonItem>Item 3</ButtonItem>
-      <ButtonItem>Item 4</ButtonItem>
-    </Section>
-    <Section title="Menu Heading with separator" hasSeparator>
-      <ButtonItem>Item 5</ButtonItem>
-      <ButtonItem>Item 6</ButtonItem>
-    </Section>
-  </MenuGroup>
-);

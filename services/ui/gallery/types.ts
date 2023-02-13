@@ -1,5 +1,5 @@
 import { Product } from "@/services/admin/product";
-import { BaseProps } from "@/utils/types";
+import { BaseProps } from "@/utils/ui/types";
 
 export interface Gallery extends BaseProps {
   product: Product;

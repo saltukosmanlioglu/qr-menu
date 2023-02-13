@@ -1,1 +1,1 @@
-export type { Gallery, GalleryRequest, GalleryResponse } from "./types";
+export type { Gallery, GalleryResponse } from "./types";
