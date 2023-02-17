@@ -6,6 +6,7 @@ export interface Table extends Omit<BaseProps, "order"> {
 }
 
 export interface TableRequest {
+  qrId: string;
   title: string;
 }
 

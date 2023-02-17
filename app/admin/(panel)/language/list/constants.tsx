@@ -17,7 +17,7 @@ export const breadcrumbItemList: Array<BreadcrumbsItemProps> = [
 export const head = {
   cells: [
     {
-      key: "languageCode",
+      key: "code",
       content: "Dil kodu",
     },
     {
@@ -37,11 +37,11 @@ export const rows = (
   moveUp: () => void
 ) =>
   data?.map((language: Language, index: number) => ({
-    key: `row-${index}-${language.languageCode}`,
+    key: `row-${index}-${language.code}`,
     cells: [
       {
         key: language.id,
-        content: language.languageCode,
+        content: language.code,
       },
       {
         key: language.id,

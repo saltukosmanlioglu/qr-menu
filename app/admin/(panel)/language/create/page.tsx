@@ -1,36 +1,43 @@
 "use client";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
-import TextField from "@/atlaskit/components/text-field";
-import Form from "@/widgets/admin/form";
+import service, { LanguageRequest } from "@/services/admin/language";
 
 import { breadcrumbItemList } from "./constants";
+import Form from "../form";
 
 export default function CreateLanguage() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  const onCreate = (values: LanguageRequest) => {
+    setIsLoading(true);
+    
+    service
+      .create(values)
+      .then((res) => router.back())
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <main>
-      <PageInformation
-        breadcrumbItems={breadcrumbItemList}
-        title="Dil desteği ekle"
-      />
-      <Form<{ languageCode: string }>
-        title="Dil oluştur"
-        description="Aşağıdaki alanları doldurarak yeni bir dil oluşturabilirsiniz."
+      <PageInformation breadcrumbItems={breadcrumbItemList} />
+      <Form<LanguageRequest>
         operation="create"
-        onSubmit={(e) => {}}
-        initialValues={{
-          languageCode: "",
+        props={{
+          buttonText: "Create language",
+          description:
+            "You can create a language by filling in the fields below",
+          isLoading,
+          onSubmit: onCreate,
+          operation: "create",
+          title: "Create a language",
         }}
-      >
-        <TextField
-          isRequired
-          label="Dil kodu"
-          name="languageCode"
-          onChange={(e) => console.log(e)}
-          value={""}
-        />
-      </Form>
+      />
     </main>
   );
 }

@@ -12,7 +12,9 @@ import { useGet } from "@/utils/admin/hooks/service";
 import { breadcrumbItemList, head, rows } from "./constants";
 
 export default function LanguageList() {
-  const { data, isLoading } = useGet<LanguageResponse>(languageService);
+  const { data, isLoading } = useGet<LanguageResponse>({
+    service: languageService.get(),
+  });
 
   const moveDown = () => {};
   const moveUp = () => {};

@@ -5,5 +5,5 @@ export interface PageInformationProps {
   actions?: ReactElement;
   breadcrumbItems?: Array<BreadcrumbsItemProps>;
   description?: string;
-  title: string;
+  title?: string;
 }

@@ -1,11 +1,11 @@
 import { BaseProps } from "@/utils/ui/types";
 
 export interface Language extends BaseProps {
-  languageCode: string;
+  code: string;
 }
 
 export interface LanguageRequest {
-  languageCode: string;
+  code: string;
 }
 
 export interface LanguageResponse extends Array<Language> {}

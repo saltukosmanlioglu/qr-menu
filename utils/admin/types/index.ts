@@ -1,3 +1,3 @@
 export type { Fake as IFake } from "./interfaces";
 
-export type { Fake } from "./types";
+export type { FormProps, OperationType } from "./types";
