@@ -15,7 +15,7 @@ export default function CreateLanguage() {
 
   const onCreate = (values: LanguageRequest) => {
     setIsLoading(true);
-    
+
     service
       .create(values)
       .then((res) => router.back())
@@ -26,18 +26,20 @@ export default function CreateLanguage() {
   return (
     <main>
       <PageInformation breadcrumbItems={breadcrumbItemList} />
-      <Form<LanguageRequest>
-        operation="create"
-        props={{
-          buttonText: "Create language",
-          description:
-            "You can create a language by filling in the fields below",
-          isLoading,
-          onSubmit: onCreate,
-          operation: "create",
-          title: "Create a language",
-        }}
-      />
+      <div style={{ padding: "0 12.5%" }}>
+        <Form
+          operation="create"
+          props={{
+            buttonText: "Create language",
+            description:
+              "You can create a language by filling in the fields below",
+            isLoading,
+            onSubmit: onCreate,
+            operation: "create",
+            title: "Create a language",
+          }}
+        />
+      </div>
     </main>
   );
 }

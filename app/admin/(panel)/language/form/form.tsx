@@ -7,17 +7,14 @@ import useForm from "@/utils/admin/hooks/form";
 import { FormProps } from "@/utils/admin/types";
 import FormPage from "@/widgets/admin/form-page";
 
-const Form = <T extends LanguageRequest>({
-  props,
-  initialValues,
-}: FormProps<T>) => {
-  const form = useForm<T>({
-    initialValues: { ...initialValues } as T,
+const Form = ({ props, initialValues }: FormProps<LanguageRequest>) => {
+  const form = useForm<LanguageRequest>({
+    initialValues: { ...initialValues } as LanguageRequest,
     onSubmit: props.onSubmit,
   });
 
   return (
-    <FormPage<T> {...props}>
+    <FormPage<LanguageRequest> {...props}>
       <Gutter>
         <TextField
           errorMessage="You must enter a language code"
