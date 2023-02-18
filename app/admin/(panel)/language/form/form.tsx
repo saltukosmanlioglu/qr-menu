@@ -17,6 +17,7 @@ const Form = ({ props, initialValues }: FormProps<LanguageRequest>) => {
     <FormPage<LanguageRequest> {...props}>
       <Gutter>
         <TextField
+          autoFocus
           errorMessage="You must enter a language code"
           label="Language code"
           name="code"

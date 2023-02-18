@@ -11,6 +11,7 @@ export interface ModalDialogProps {
   appearance: Appearance;
   buttonText: string | React.ReactNode;
   body: any;
+  icon?: any;
   onClick: () => void;
   title: string;
   width?: ModalWith;

@@ -21,6 +21,7 @@ type HTMLInputTypeAttribute =
   | "time";
 
 export interface TextFieldProps {
+  autoFocus?: boolean;
   errorMessage?: string;
   label: string;
   name: string;

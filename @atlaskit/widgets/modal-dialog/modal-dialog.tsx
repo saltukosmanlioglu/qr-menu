@@ -17,6 +17,7 @@ const ModalDialog: React.FunctionComponent<ModalDialogProps> = ({
   appearance,
   buttonText,
   body,
+  icon,
   onClick,
   title,
   width,
@@ -37,6 +38,7 @@ const ModalDialog: React.FunctionComponent<ModalDialogProps> = ({
       <Button
         appearance={appearance}
         children={buttonText}
+        iconAfter={icon}
         onClick={openModal}
       />
       <ModalTransition>

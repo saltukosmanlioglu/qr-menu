@@ -6,6 +6,7 @@ import AtlaskitTextField from "@atlaskit/textfield";
 import { TextFieldProps } from "./types";
 
 const TextField: React.FunctionComponent<TextFieldProps> = ({
+  autoFocus,
   errorMessage,
   label,
   name,
@@ -27,6 +28,7 @@ const TextField: React.FunctionComponent<TextFieldProps> = ({
         {({ fieldProps, error }) => (
           <React.Fragment>
             <AtlaskitTextField
+              autoFocus
               placeholder={placeholder}
               type={type}
               {...fieldProps}
