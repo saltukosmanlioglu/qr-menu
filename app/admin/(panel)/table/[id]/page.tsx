@@ -8,20 +8,26 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import service, { Table, TableRequest } from "@/services/admin/table";
-import { useDelete } from "@/utils/admin/hooks/service";
 
 import { breadcrumbItemList } from "./constants";
 import Form from "../form";
 
-export default function UpdateLanguage({ params }: { params: { id: string } }) {
+export default function UpdateTable({ params }: { params: { id: string } }) {
   const [data, setData] = useState<Table>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const canvasRef: any = useRef();
   const canvasHiddenRef: any = useRef();
+
   const router = useRouter();
 
-  const { onRemove } = useDelete();
+  const onRemove = () => {
+    service
+      .remove(Number(params.id))
+      .then(() => router.back())
+      .catch((err) => console.log(err))
+      .finally(() => {});
+  };
 
   const handleDownloadQr = () => {
     var link = document.createElement("a");
@@ -70,13 +76,7 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
             buttonText="Delete table"
             body="If you delete a table, all dependencies related to the table are destroyed. Are you sure you want to delete ?"
             icon={<TrashIcon label="" size="small" />}
-            onClick={() =>
-              onRemove({
-                service: service
-                  .remove(Number(params.id))
-                  .then(() => router.back()),
-              })
-            }
+            onClick={onRemove}
             title="Table is going to delete !"
             width="medium"
           />

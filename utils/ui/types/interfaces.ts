@@ -1,5 +1,6 @@
 export interface BaseProps {
-  id: string;
+  id: number;
   createdDate: string;
   order: number;
+  updatedDate: string;
 }

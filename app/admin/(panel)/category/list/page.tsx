@@ -6,18 +6,18 @@ import AddIcon from "@atlaskit/icon/glyph/add";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Table from "@/atlaskit/widgets/table";
-import languageService, { LanguageResponse } from "@/services/admin/language";
+import categoryService, { CategoryResponse } from "@/services/admin/category";
 
 import { breadcrumbItemList, head, rows } from "./constants";
 
-export default function LanguageList() {
-  const [data, setData] = useState<LanguageResponse>();
+export default function CategoryList() {
+  const [data, setData] = useState<CategoryResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
 
-    languageService
+    categoryService
       .get()
       .then((res) => setData(res.data))
       .catch((err) => console.log(err))
@@ -31,23 +31,23 @@ export default function LanguageList() {
     <main>
       <PageInformation
         actions={
-          <Link href="/admin/language/create">
+          <Link href="/admin/category/create">
             <Button
               appearance="primary"
-              children="Dil desteği ekle"
+              children="Kategori oluştur"
               iconAfter={<AddIcon label="" size="small" />}
             />
           </Link>
         }
         breadcrumbItems={breadcrumbItemList}
-        description="Dilleri görüntüleyebilir, sırasını değiştirebilir ve yeni bir dil oluşturabilirsiniz."
-        title="Dil Listesi"
+        description="Kategorileri görüntüleyebilir, sırasını değiştirebilir ve yeni bir kategori."
+        title="Kategori Listesi"
       />
       <Table
         tableProps={{
           isLoading: isLoading,
           head: head,
-          rows: rows(data as LanguageResponse, moveDown, moveUp),
+          rows: rows(data as CategoryResponse, moveDown, moveUp),
         }}
       />
     </main>

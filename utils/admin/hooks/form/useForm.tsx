@@ -14,7 +14,14 @@ const useForm = <T extends Record<string, any>>({
     []
   );
 
-  return { values, handleChange };
+  const handleFieldChange = useCallback(
+    (key: string, value: { label?: string; value?: string | number }) => {
+      setValues((_values) => ({ ..._values, [key]: value.value }));
+    },
+    []
+  );
+
+  return { handleChange, handleFieldChange, values };
 };
 
 export default useForm;

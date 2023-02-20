@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import service, { Language, LanguageRequest } from "@/services/admin/language";
-import { useDelete } from "@/utils/admin/hooks/service";
 
 import { breadcrumbItemList } from "./constants";
 import Form from "../form";
@@ -16,13 +15,19 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
 
   const router = useRouter();
 
-  const { onRemove } = useDelete();
+  const onRemove = () => {
+    service
+      .remove(Number(params.id))
+      .then(() => router.back())
+      .catch((err) => console.log(err))
+      .finally(() => {});
+  };
 
   const onUpdate = (values: LanguageRequest) => {
     setIsLoading(true);
     service
       .update(Number(params.id), values)
-      .then((res) => router.back())
+      .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };
@@ -43,13 +48,7 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
             appearance="danger"
             buttonText="Delete language"
             body="If you delete a language, all dependencies related to the language are destroyed. Are you sure you want to delete ?"
-            onClick={() =>
-              onRemove({
-                service: service
-                  .remove(Number(params.id))
-                  .then(() => router.back()),
-              })
-            }
+            onClick={onRemove}
             title="Language is going to delete !"
             width="medium"
           />

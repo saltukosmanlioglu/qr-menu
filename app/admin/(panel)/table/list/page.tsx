@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Button from "@atlaskit/button";
 import AddIcon from "@atlaskit/icon/glyph/add";
@@ -7,14 +7,22 @@ import AddIcon from "@atlaskit/icon/glyph/add";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Table from "@/atlaskit/widgets/table";
 import tableService, { TableResponse } from "@/services/admin/table";
-import { useGet } from "@/utils/admin/hooks/service";
 
 import { breadcrumbItemList, head, rows } from "./constants";
 
 export default function TableList() {
-  const { data, isLoading } = useGet<TableResponse>({
-    service: tableService.get(),
-  });
+  const [data, setData] = useState<TableResponse>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    tableService
+      .get()
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  }, []);
 
   const moveDown = () => {};
   const moveUp = () => {};
