@@ -3,7 +3,7 @@ import React from "react";
 const LanguageSupport: React.FunctionComponent = () => {
   return (
     <div>
-      <div></div>
+      <div>Language Support</div>
     </div>
   );
 };

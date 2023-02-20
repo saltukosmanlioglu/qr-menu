@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import "@/styles/globals.css";
+import Link from "next/link";
 
 import DropdownMenu, {
   DropdownItem,
@@ -19,7 +19,6 @@ import {
   NestingItem,
   SideNavigation,
 } from "@atlaskit/side-navigation";
-
 import {
   Content,
   LeftSidebar,
@@ -27,6 +26,8 @@ import {
   PageLayout,
   TopNavigation,
 } from "@atlaskit/page-layout";
+
+import "@/styles/globals.css";
 
 import { menuItems } from "./constants";
 
@@ -90,9 +91,9 @@ const SideNavigationContent = () => {
               title={item.title}
             >
               {item.subItems.map((subItem, subIndex) => (
-                <LinkItem key={subIndex} href={subItem.href}>
-                  {subItem.text}
-                </LinkItem>
+                <Link key={subIndex} href={subItem.href}>
+                  <LinkItem>{subItem.text}</LinkItem>
+                </Link>
               ))}
             </NestingItem>
           ))}

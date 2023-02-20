@@ -2,11 +2,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import QRCode from "qrcode";
+
 import DownloadIcon from "@atlaskit/icon/glyph/download";
 import TrashIcon from "@atlaskit/icon/glyph/trash";
 
-import PageInformation from "@/atlaskit/widgets/page-information";
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
+import PageInformation from "@/atlaskit/widgets/page-information";
 import service, { Table, TableRequest } from "@/services/admin/table";
 
 import { breadcrumbItemList } from "./constants";

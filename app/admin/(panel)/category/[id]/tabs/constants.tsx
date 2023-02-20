@@ -1,24 +1,21 @@
 import Link from "next/link";
-import { BreadcrumbsItemProps } from "@atlaskit/breadcrumbs/dist/types/types";
 import Button, { ButtonGroup } from "@atlaskit/button";
 
 import ArrowUpIcon from "@atlaskit/icon/glyph/arrow-up";
 import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
-import { Language, LanguageResponse } from "@/services/admin/language";
-
-export const breadcrumbItemList: Array<BreadcrumbsItemProps> = [
-  {
-    text: "Dil listesi",
-  },
-];
+import { Category, CategoryResponse } from "@/services/admin/category";
 
 export const head = {
   cells: [
     {
-      key: "code",
-      content: "Dil kodu",
+      key: "title",
+      content: "Kategori adı",
+    },
+    {
+      key: "color",
+      content: "Kategori rengi",
     },
     {
       key: "createdDate",
@@ -32,26 +29,34 @@ export const head = {
 };
 
 export const rows = (
-  data: LanguageResponse,
+  data: CategoryResponse,
   moveDown: () => void,
   moveUp: () => void
 ) =>
-  data?.map((language: Language, index: number) => ({
-    key: `row-${index}-${language.code}`,
+  data?.map((category: Category, index: number) => ({
+    key: `row-${index}-${category.id}`,
     cells: [
       {
-        key: language.id,
-        content: language.code,
+        key: category.id,
+        content: (
+          <span style={{ color: category.color }}>{category.title}</span>
+        ),
       },
       {
-        key: language.id,
-        content: new Date(language.createdDate).toLocaleString(),
+        key: category.id,
+        content: (
+          <span style={{ color: category.color }}>{category.color}</span>
+        ),
       },
       {
-        key: language.id,
+        key: category.id,
+        content: new Date(category.createdDate).toLocaleString(),
+      },
+      {
+        key: category.id,
         content: (
           <ButtonGroup>
-            <Link href={`/admin/language/${language.id}`}>
+            <Link href={`/admin/category/${category.id}`}>
               <Button
                 appearance="default"
                 children="Güncelle"

@@ -1,6 +1,5 @@
 "use client";
 import React, { useCallback, useState } from "react";
-
 import Button from "@atlaskit/button";
 import AtlaskitModalDialog, {
   ModalBody,

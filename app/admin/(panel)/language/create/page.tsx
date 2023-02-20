@@ -18,7 +18,7 @@ export default function CreateLanguage() {
 
     service
       .create(values)
-      .then((res) => router.back())
+      .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };

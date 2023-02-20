@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+
 import Button from "@atlaskit/button";
 import AddIcon from "@atlaskit/icon/glyph/add";
 
@@ -43,13 +44,15 @@ export default function CategoryList() {
         description="Kategorileri görüntüleyebilir, sırasını değiştirebilir ve yeni bir kategori."
         title="Kategori Listesi"
       />
-      <Table
-        tableProps={{
-          isLoading: isLoading,
-          head: head,
-          rows: rows(data as CategoryResponse, moveDown, moveUp),
-        }}
-      />
+      <div className="mt-20">
+        <Table
+          tableProps={{
+            isLoading: isLoading,
+            head: head,
+            rows: rows(data as CategoryResponse, moveDown, moveUp),
+          }}
+        />
+      </div>
     </main>
   );
 }

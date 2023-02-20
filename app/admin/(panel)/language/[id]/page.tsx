@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import PageInformation from "@/atlaskit/widgets/page-information";
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
+import PageInformation from "@/atlaskit/widgets/page-information";
 import service, { Language, LanguageRequest } from "@/services/admin/language";
 
 import { breadcrumbItemList } from "./constants";

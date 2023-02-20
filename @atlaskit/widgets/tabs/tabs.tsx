@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import AtlassianTabs, { Tab, TabList, TabPanel } from "@atlaskit/tabs";
 
 import { TabsProps } from "./types";
@@ -13,7 +12,12 @@ const Tabs: React.FunctionComponent<TabsProps> = ({ childrens, tabs }) => {
     >
       <TabList>
         {tabs.map((tab, index) => (
-          <Tab key={index}>{tab.title}</Tab>
+          <Tab key={index}>
+            <div className="flex items-center">
+              {tab.icon}
+              <p className="ml-1">{tab.title}</p>
+            </div>
+          </Tab>
         ))}
       </TabList>
       {childrens.map((children, index) => (

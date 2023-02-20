@@ -1,11 +1,10 @@
 import React from "react";
-
-import AddIcon from "@atlaskit/icon/glyph/add";
-import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
-
 import { FormFooter } from "@atlaskit/form";
 import Button, { ButtonGroup } from "@atlaskit/button";
 import LoadingButton from "@atlaskit/button/loading-button";
+
+import AddIcon from "@atlaskit/icon/glyph/add";
+import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import { ActionsProps } from "./types";
 

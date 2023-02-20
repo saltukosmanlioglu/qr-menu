@@ -43,13 +43,15 @@ export default function LanguageList() {
         description="Dilleri görüntüleyebilir, sırasını değiştirebilir ve yeni bir dil oluşturabilirsiniz."
         title="Dil Listesi"
       />
-      <Table
-        tableProps={{
-          isLoading: isLoading,
-          head: head,
-          rows: rows(data as LanguageResponse, moveDown, moveUp),
-        }}
-      />
+      <div className="mt-20">
+        <Table
+          tableProps={{
+            isLoading: isLoading,
+            head: head,
+            rows: rows(data as LanguageResponse, moveDown, moveUp),
+          }}
+        />
+      </div>
     </main>
   );
 }

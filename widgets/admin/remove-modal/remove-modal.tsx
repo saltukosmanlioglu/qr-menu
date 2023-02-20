@@ -10,9 +10,7 @@ import ModalDialog, {
   ModalTransition,
 } from "@atlaskit/modal-dialog";
 
-import { RemoveModalProps } from "./types";
-
-const RemoveModal: React.FunctionComponent<RemoveModalProps> = () => {
+const RemoveModal: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const openModal = useCallback(() => setIsOpen(true), []);

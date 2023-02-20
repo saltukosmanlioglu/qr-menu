@@ -5,8 +5,9 @@ import React, { useState } from "react";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import service from "@/services/admin/category";
 
-import { breadcrumbItemList } from "./constants";
 import Form from "../form";
+
+import { breadcrumbItemList } from "./constants";
 
 export default function CreateCategory() {
   const [isLoading, setIsLoading] = useState<boolean>(false);

@@ -43,13 +43,15 @@ export default function TableList() {
         description="Masaları görüntüleyebilir, ve yeni bir masa oluşturabilirsiniz."
         title="Masa Listesi"
       />
-      <Table
-        tableProps={{
-          isLoading: isLoading,
-          head: head,
-          rows: rows(data as TableResponse, moveDown, moveUp),
-        }}
-      />
+      <div className="mt-20">
+        <Table
+          tableProps={{
+            isLoading: isLoading,
+            head: head,
+            rows: rows(data as TableResponse, moveDown, moveUp),
+          }}
+        />
+      </div>
     </main>
   );
 }
