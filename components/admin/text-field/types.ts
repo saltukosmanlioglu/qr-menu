@@ -30,5 +30,5 @@ export interface TextFieldProps {
   required?: boolean;
   style?: React.CSSProperties;
   type?: HTMLInputTypeAttribute;
-  value: string | number;
+  value: string | number | undefined;
 }

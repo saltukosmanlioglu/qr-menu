@@ -21,7 +21,7 @@ const Update: React.FunctionComponent<UpdateTabProps> = ({
         ...values,
         parentId: values.parentId.value,
       })
-      .then((res) => router.back())
+      .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };

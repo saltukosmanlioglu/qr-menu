@@ -1,25 +1,26 @@
+"use client";
 import Link from "next/link";
 import Button, { ButtonGroup } from "@atlaskit/button";
+import DropdownMenu, { DropdownItem } from "@atlaskit/dropdown-menu";
 
 import ArrowUpIcon from "@atlaskit/icon/glyph/arrow-up";
 import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
+import TrashIcon from "@atlaskit/icon/glyph/trash";
 
+import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import { Category, CategoryResponse } from "@/services/admin/category";
+import { LanguageResponse } from "@/services/admin/language";
 
 export const head = {
   cells: [
     {
       key: "title",
-      content: "Kategori adı",
+      content: "Ürün adı",
     },
     {
       key: "color",
-      content: "Kategori rengi",
-    },
-    {
-      key: "createdDate",
-      content: "Oluşturulma tarihi",
+      content: "Fiyatı",
     },
     {
       key: "operation",
@@ -30,47 +31,55 @@ export const head = {
 
 export const rows = (
   data: CategoryResponse,
+  onRemove: (id: number) => void,
   moveDown: () => void,
-  moveUp: () => void
+  moveUp: () => void,
+  langauges: LanguageResponse
 ) =>
-  data?.map((category: Category, index: number) => ({
-    key: `row-${index}-${category.id}`,
+  data?.map((product: Category, index: number) => ({
+    key: `row-${index}-${product.id}`,
     cells: [
       {
-        key: category.id,
-        content: (
-          <span style={{ color: category.color }}>{category.title}</span>
-        ),
+        key: product.id,
+        content: product.title,
       },
       {
-        key: category.id,
-        content: (
-          <span style={{ color: category.color }}>{category.color}</span>
-        ),
+        key: product.id,
+        content: product.title,
       },
       {
-        key: category.id,
-        content: new Date(category.createdDate).toLocaleString(),
-      },
-      {
-        key: category.id,
+        key: product.id,
         content: (
           <ButtonGroup>
-            <Link href={`/admin/category/${category.id}`}>
+            <Link href={`/admin/product/${product.id}`}>
               <Button
                 appearance="default"
                 children="Güncelle"
                 iconAfter={<EditFilledIcon label="" size="small" />}
               />
             </Link>
+            <ModalDialog
+              appearance="danger"
+              buttonText="Sil"
+              body="If you delete a product, all dependencies related to the product are destroyed. Are you sure you want to delete ?"
+              icon={<TrashIcon label="" size="small" />}
+              onClick={() => onRemove(product.id)}
+              title="Product is going to delete !"
+              width="medium"
+            />
+            <DropdownMenu trigger="Dil desteği">
+              {langauges.map((langauge, index) => (
+                <DropdownItem key={index}>{langauge.code}</DropdownItem>
+              ))}
+            </DropdownMenu>
             <Button
-              appearance="default"
+              appearance="subtle"
               isDisabled={data.length === 0}
               iconBefore={<ArrowUpIcon label="" size="medium" />}
               onClick={() => moveDown()}
             />
             <Button
-              appearance="default"
+              appearance="subtle"
               isDisabled={data.length === data.length - 1}
               iconBefore={<ArrowDownIcon label="" size="medium" />}
               onClick={() => moveUp()}

@@ -8,5 +8,5 @@ export interface TextAreaProps {
   placeholder: string;
   required?: boolean;
   style?: React.CSSProperties;
-  value: string;
+  value: string | number | undefined;
 }

@@ -66,7 +66,7 @@ export const rows = (
             <Link href={`/admin/category/${category.id}`}>
               <Button
                 appearance="default"
-                children="Güncelle"
+                children="Düzenle"
                 iconAfter={<EditFilledIcon label="" size="small" />}
               />
             </Link>

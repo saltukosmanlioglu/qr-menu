@@ -54,7 +54,7 @@ export const rows = (
             <Link href={`/admin/table/${table.id}`}>
               <Button
                 appearance="default"
-                children="Güncelle"
+                children="Düzenle"
                 iconAfter={<EditFilledIcon label="" size="small" />}
               />
             </Link>

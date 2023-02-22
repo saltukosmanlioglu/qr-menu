@@ -14,7 +14,6 @@ const Table: React.FunctionComponent<TableProps> = ({ tableProps }) => {
         </div>
       }
       loadingSpinnerSize="large"
-      isFixedSize
       {...tableProps}
     />
   );

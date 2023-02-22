@@ -11,10 +11,13 @@ export interface Product extends BaseProps {
 }
 
 export interface ProductRequest {
-  allergens?: string;
-  categoryId: string;
+  specifications?: {
+    allergens: string;
+    subProducts: Array<{}>;
+  };
+  category: Category;
   description?: string;
-  image: string;
+  image?: string;
   price: string;
   title: string;
 }
