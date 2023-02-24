@@ -9,7 +9,7 @@ import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 import TrashIcon from "@atlaskit/icon/glyph/trash";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
-import { Category, CategoryResponse } from "@/services/admin/category";
+import { Product, ProductResponse } from "@/services/admin/product";
 import { LanguageResponse } from "@/services/admin/language";
 
 export const head = {
@@ -30,13 +30,13 @@ export const head = {
 };
 
 export const rows = (
-  data: CategoryResponse,
+  data: ProductResponse,
   onRemove: (id: number) => void,
   moveDown: () => void,
   moveUp: () => void,
   languages: LanguageResponse
 ) =>
-  data?.map((product: Category, index: number) => ({
+  data?.map((product: Product, index: number) => ({
     key: `row-${index}-${product.id}`,
     cells: [
       {
@@ -45,7 +45,7 @@ export const rows = (
       },
       {
         key: product.id,
-        content: product.title,
+        content: product.price,
       },
       {
         key: product.id,
@@ -54,7 +54,7 @@ export const rows = (
             <Link href={`/admin/product/${product.id}`}>
               <Button
                 appearance="default"
-                children="Güncelle"
+                children="Düzenle"
                 iconAfter={<EditFilledIcon label="" size="small" />}
               />
             </Link>

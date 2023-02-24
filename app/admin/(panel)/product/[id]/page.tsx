@@ -8,7 +8,7 @@ import PageInformation from "@/atlaskit/widgets/page-information";
 import Table from "@/atlaskit/widgets/table";
 import service, { Product, ProductRequest } from "@/services/admin/product";
 
-import { breadcrumbItemList, head, rows } from "./constants";
+import { breadcrumbItemList, head, productsData, rows } from "./constants";
 import Form from "../form";
 
 export default function UpdateProduct({ params }: { params: { id: string } }) {
@@ -38,10 +38,12 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    service
-      .getById(Number(params.id))
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err));
+    // service
+    //   .getById(Number(params.id))
+    //   .then((res) => setData(res.data))
+    //   .catch((err) => console.log(err));
+
+    productsData.find((p) => p.id === Number(params.id) && setData(p));
   }, [params.id]);
 
   return (
@@ -70,34 +72,36 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
         breadcrumbItems={breadcrumbItemList}
         title="Dil desteğini Güncelle"
       />
-      <div style={{ padding: "0 12.5%" }}>
-        <Form
-          initialValues={data}
-          operation="update"
-          props={{
-            buttonText: "Update product",
-            description:
-              "You can update this product by filling in the fields below",
-            isLoading,
-            onSubmit: onUpdate,
-            operation: "update",
-            title: `Update product: ${data?.title}`,
-          }}
-        />
-        <div className="mt-20">
-          <Table
-            tableProps={{
-              isLoading: isLoading,
-              head: head,
-              rows: rows(
-                data?.specifications?.subProducts as any,
-                moveDown,
-                moveUp
-              ),
+      {data && (
+        <div style={{ padding: "0 12.5%" }}>
+          <Form
+            initialValues={data}
+            operation="update"
+            props={{
+              buttonText: "Update product",
+              description:
+                "You can update this product by filling in the fields below",
+              isLoading,
+              onSubmit: onUpdate,
+              operation: "update",
+              title: `Update product: ${data?.title}`,
             }}
           />
+          <div className="mt-20">
+            <Table
+              tableProps={{
+                isLoading: isLoading,
+                head: head,
+                rows: rows(
+                  data?.specifications?.subProducts as any,
+                  moveDown,
+                  moveUp
+                ),
+              }}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }

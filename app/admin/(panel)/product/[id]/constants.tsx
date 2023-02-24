@@ -8,6 +8,93 @@ import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import { Category, CategoryResponse } from "@/services/admin/category";
 
+export const productsData = [
+  {
+    id: 1,
+    categoryId: 28,
+    createdDate: "",
+    description: "Ürün 1 açıklama",
+    image: "",
+    order: 0,
+    price: "20,00",
+    specifications: {
+      allergens: "Ürün 1 alerjeni",
+    },
+    title: "Ürün 1",
+    updatedDate: "",
+  },
+  {
+    id: 2,
+    categoryId: 29,
+    createdDate: "",
+    description: "Ürün 2 açıklama",
+    image: "",
+    order: 0,
+    price: "20,00",
+    specifications: {
+      allergens: "Ürün 2 alerjeni",
+    },
+    title: "Ürün 2",
+    updatedDate: "",
+  },
+  {
+    id: 3,
+    categoryId: 30,
+    createdDate: "",
+    description: "Ürün 3 açıklama",
+    image: "",
+    order: 0,
+    price: "20,00",
+    specifications: {
+      allergens: "Ürün 3 alerjeni",
+    },
+    title: "Ürün 3",
+    updatedDate: "",
+  },
+  {
+    id: 4,
+    categoryId: 31,
+    createdDate: "",
+    description: "Ürün 4 açıklama",
+    image: "",
+    order: 0,
+    price: "20,00",
+    specifications: {
+      allergens: "Ürün 4 alerjeni",
+    },
+    title: "Ürün 4",
+    updatedDate: "",
+  },
+  {
+    id: 5,
+    categoryId: 32,
+    createdDate: "",
+    description: "Ürün 5 açıklama",
+    image: "",
+    order: 0,
+    price: "20,00",
+    specifications: {
+      allergens: "Ürün 5 alerjeni",
+    },
+    title: "Ürün 5",
+    updatedDate: "",
+  },
+  {
+    id: 6,
+    categoryId: 33,
+    createdDate: "",
+    description: "Ürün 6 açıklama",
+    image: "",
+    order: 0,
+    price: "20,00",
+    specifications: {
+      allergens: "Ürün 6 alerjeni",
+    },
+    title: "Ürün 6",
+    updatedDate: "",
+  },
+];
+
 export const breadcrumbItemList: Array<BreadcrumbsItemProps> = [
   {
     href: "/admin/category/list",

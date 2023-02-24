@@ -10,7 +10,11 @@ import useForm from "@/utils/admin/hooks/form";
 import { FormProps } from "@/utils/admin/types";
 import FormPage from "@/widgets/admin/form-page";
 
-const Form = ({ props, initialValues }: FormProps<ProductRequest>) => {
+const Form = ({
+  categoryId,
+  initialValues,
+  props,
+}: FormProps<ProductRequest> & { categoryId?: string }) => {
   const [data, setData] = useState<CategoryResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -54,6 +58,7 @@ const Form = ({ props, initialValues }: FormProps<ProductRequest>) => {
         />
         <Select
           isLoading={isLoading}
+          isRequired
           label="Category name"
           name="categoryId"
           onChange={(e) => form.handleFieldChange("categoryId", { ...e })}
@@ -65,13 +70,26 @@ const Form = ({ props, initialValues }: FormProps<ProductRequest>) => {
           }
           placeholder="Choose a top category"
           value={{
-            label: data?.find(
-              (category) => category.id === form.values.categoryId
+            label: data?.find((category) =>
+              form.values.categoryId
+                ? category.id === form.values.categoryId
+                : category.id === Number(categoryId)
             )?.title,
-            value: data?.find(
-              (category) => category.id === form.values.categoryId
+            value: data?.find((category) =>
+              form.values.categoryId
+                ? category.id === form.values.categoryId
+                : category.id === Number(categoryId)
             )?.id,
           }}
+        />
+        <TextField
+          autoFocus
+          label="Image"
+          name="image"
+          onChange={form.handleChange}
+          placeholder="Choose an image"
+          type="file"
+          value={form.values.image}
         />
         <TextArea
           errorMessage="Enter a description"

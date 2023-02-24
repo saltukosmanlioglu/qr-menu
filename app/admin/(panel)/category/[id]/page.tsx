@@ -43,7 +43,7 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
       <PageInformation
         actions={
           <ButtonGroup>
-            <Link href="/admin/product/create">
+            <Link href={`/admin/product/create?categoryId=${params.id}`}>
               <Button
                 appearance="primary"
                 children="Add product"
@@ -65,17 +65,6 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
         title="Kategoriyi Güncelle"
       />
       <Tabs
-        tabs={[
-          {
-            icon: <RetryIcon label="" size="medium" />,
-            title: "Update category",
-          },
-          { icon: <BacklogIcon label="" size="medium" />, title: "Products" },
-          {
-            icon: <WorldIcon label="" size="medium" />,
-            title: "Language support",
-          },
-        ]}
         childrens={[
           {
             component: <Update data={data} params={params} router={router} />,
@@ -85,6 +74,18 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
           },
           {
             component: <LanguageSupport />,
+          },
+        ]}
+        storageName="activeTabIndex"
+        tabs={[
+          {
+            icon: <RetryIcon label="" size="medium" />,
+            title: "Update category",
+          },
+          { icon: <BacklogIcon label="" size="medium" />, title: "Products" },
+          {
+            icon: <WorldIcon label="" size="medium" />,
+            title: "Language support",
           },
         ]}
       />

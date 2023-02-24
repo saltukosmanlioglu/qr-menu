@@ -1,3 +1,4 @@
+import BacklogIcon from "@atlaskit/icon/glyph/backlog";
 import BulletListIcon from "@atlaskit/icon/glyph/bullet-list";
 import ImageIcon from "@atlaskit/icon/glyph/image";
 import TableIcon from "@atlaskit/icon/glyph/table";
@@ -19,6 +20,20 @@ export const menuItems = [
       },
     ],
     title: "Kategoriler",
+  },
+  {
+    icon: <BacklogIcon label="" size="medium" />,
+    subItems: [
+      {
+        href: "/admin/product/create",
+        text: "Ürün oluştur",
+      },
+      {
+        href: "/admin/product/list",
+        text: "Ürünler",
+      },
+    ],
+    title: "Ürünler",
   },
   {
     icon: <ImageIcon label="" size="medium" />,
@@ -72,6 +87,12 @@ export const frequentlyUsedButtons: Array<
     href: "/admin/category/create",
     icon: <BulletListIcon label="" size="xlarge" />,
     title: "Kategori oluştur",
+  },
+  {
+    description: "Ürün oluşturup ürünlerinizi müşterilerinize sunabilirsiniz.",
+    href: "/admin/product/create",
+    icon: <BacklogIcon label="" size="xlarge" />,
+    title: "Ürün oluştur",
   },
   {
     description:

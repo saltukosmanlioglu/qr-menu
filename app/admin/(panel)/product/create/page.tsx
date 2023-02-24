@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
@@ -12,12 +12,15 @@ export default function CreateProduct() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const onCreate = (values: ProductRequest) => {
+  const categoryId = searchParams.get("categoryId");
+
+  const onCreate = (values: any) => {
     setIsLoading(true);
 
     service
-      .create(values)
+      .create({ ...values, categoryId: values.categoryId.value })
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -28,6 +31,7 @@ export default function CreateProduct() {
       <PageInformation breadcrumbItems={breadcrumbItemList} />
       <div style={{ padding: "0 12.5%" }}>
         <Form
+          categoryId={categoryId || ""}
           operation="create"
           props={{
             buttonText: "Create product",
