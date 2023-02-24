@@ -28,7 +28,6 @@ export interface TextFieldProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   required?: boolean;
-  style?: React.CSSProperties;
   type?: HTMLInputTypeAttribute;
   value: string | number | undefined;
 }

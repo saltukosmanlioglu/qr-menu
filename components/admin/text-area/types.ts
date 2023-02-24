@@ -7,6 +7,5 @@ export interface TextAreaProps {
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
   required?: boolean;
-  style?: React.CSSProperties;
   value: string | number | undefined;
 }

@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Button, { ButtonGroup } from "@atlaskit/button";
 
@@ -42,11 +43,13 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
       <PageInformation
         actions={
           <ButtonGroup>
-            <Button
-              appearance="primary"
-              children="Add product"
-              iconAfter={<AddIcon label="" size="small" />}
-            />
+            <Link href="/admin/product/create">
+              <Button
+                appearance="primary"
+                children="Add product"
+                iconAfter={<AddIcon label="" size="small" />}
+              />
+            </Link>
             <ModalDialog
               appearance="danger"
               buttonText="Delete category"

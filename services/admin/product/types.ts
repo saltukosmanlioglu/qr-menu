@@ -1,24 +1,31 @@
-import { Category } from "@/services/admin/category";
 import { BaseProps } from "@/utils/ui/types";
 
+export interface SubProduct {
+  title: string;
+  price: string;
+}
+
 export interface Product extends BaseProps {
-  allergens?: string;
-  category: Category;
+  categoryId: number;
   description?: string;
   image: string;
   price: string;
   title: string;
+  specifications?: {
+    allergens?: string;
+    subProducts?: Array<SubProduct>;
+  };
 }
 
 export interface ProductRequest {
-  specifications?: {
-    allergens: string;
-    subProducts: Array<{}>;
-  };
-  category: Category;
+  categoryId: number;
   description?: string;
   image?: string;
   price: string;
+  specifications?: {
+    allergens?: string;
+    subProducts?: Array<SubProduct>;
+  };
   title: string;
 }
 

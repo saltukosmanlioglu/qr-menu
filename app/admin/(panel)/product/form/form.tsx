@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Gutter from "@/components/admin/gutter";
+import Select from "@/atlaskit/components/select";
 import TextField from "@/components/admin/text-field";
 import TextArea from "@/components/admin/text-area";
+import categoryService, { CategoryResponse } from "@/services/admin/category";
 import { ProductRequest } from "@/services/admin/product";
 import useForm from "@/utils/admin/hooks/form";
 import { FormProps } from "@/utils/admin/types";
 import FormPage from "@/widgets/admin/form-page";
 
 const Form = ({ props, initialValues }: FormProps<ProductRequest>) => {
+  const [data, setData] = useState<CategoryResponse>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const form = useForm<ProductRequest>({
     initialValues: { ...initialValues } as ProductRequest,
     onSubmit: props.onSubmit,
   });
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    categoryService
+      .get()
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  }, []);
 
   return (
     <FormPage<ProductRequest> {...props}>
@@ -20,21 +35,59 @@ const Form = ({ props, initialValues }: FormProps<ProductRequest>) => {
         <TextField
           autoFocus
           errorMessage="You must enter a title"
-          label="title"
-          name="code"
+          label="Title"
+          name="title"
           onChange={form.handleChange}
           placeholder="Enter a title"
           required
           value={form.values.title}
         />
-        <TextArea
-          errorMessage="You must enter a title"
-          label="title"
-          name="title"
+        <TextField
+          autoFocus
+          errorMessage="You must enter a price"
+          label="Price"
+          name="price"
           onChange={form.handleChange}
-          placeholder="Enter a title"
+          placeholder="Enter a price"
           required
+          value={form.values.price}
+        />
+        <Select
+          isLoading={isLoading}
+          label="Category name"
+          name="categoryId"
+          onChange={(e) => form.handleFieldChange("categoryId", { ...e })}
+          options={
+            data?.map((category) => ({
+              label: category.title,
+              value: category.id,
+            })) || []
+          }
+          placeholder="Choose a top category"
+          value={{
+            label: data?.find(
+              (category) => category.id === form.values.categoryId
+            )?.title,
+            value: data?.find(
+              (category) => category.id === form.values.categoryId
+            )?.id,
+          }}
+        />
+        <TextArea
+          errorMessage="Enter a description"
+          label="Description"
+          name="description"
+          onChange={form.handleChange}
+          placeholder="Enter a description"
           value={form.values.description}
+        />
+        <TextArea
+          errorMessage="Enter allergens"
+          label="Allergens"
+          name="specifications.allergens"
+          onChange={form.handleChange}
+          placeholder="Enter allergens"
+          value={form.values.specifications?.allergens}
         />
       </Gutter>
     </FormPage>

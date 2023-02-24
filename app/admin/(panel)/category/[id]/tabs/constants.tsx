@@ -34,7 +34,7 @@ export const rows = (
   onRemove: (id: number) => void,
   moveDown: () => void,
   moveUp: () => void,
-  langauges: LanguageResponse
+  languages: LanguageResponse
 ) =>
   data?.map((product: Category, index: number) => ({
     key: `row-${index}-${product.id}`,
@@ -68,7 +68,7 @@ export const rows = (
               width="medium"
             />
             <DropdownMenu trigger="Dil desteği">
-              {langauges.map((langauge, index) => (
+              {languages?.map((langauge, index) => (
                 <DropdownItem key={index}>{langauge.code}</DropdownItem>
               ))}
             </DropdownMenu>

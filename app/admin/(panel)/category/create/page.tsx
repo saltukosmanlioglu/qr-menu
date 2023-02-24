@@ -17,6 +17,8 @@ export default function CreateCategory() {
   const onCreate = (values: any) => {
     setIsLoading(true);
 
+    console.log(values);
+
     service
       .create({ ...values, parentId: values.parentId.value })
       .then(() => router.back())

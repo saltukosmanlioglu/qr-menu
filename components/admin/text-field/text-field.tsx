@@ -12,12 +12,11 @@ const TextField: React.FunctionComponent<TextFieldProps> = ({
   name,
   placeholder,
   required,
-  style,
   type,
   value,
 }) => {
   return (
-    <div style={style}>
+    <div>
       <Field
         aria-required={required}
         defaultValue={value}
@@ -28,7 +27,7 @@ const TextField: React.FunctionComponent<TextFieldProps> = ({
         {({ fieldProps, error }) => (
           <React.Fragment>
             <AtlaskitTextField
-              autoFocus
+              autoFocus={autoFocus}
               placeholder={placeholder}
               type={type}
               {...fieldProps}
