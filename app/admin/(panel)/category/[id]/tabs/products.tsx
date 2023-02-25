@@ -103,10 +103,6 @@ const Products: React.FunctionComponent = () => {
 
   return (
     <div>
-      <p className="mb-8">
-        Kategoriye ait yeni ürün oluşturabilir, var olan ürünü güncelleyebilir,
-        silebilir veya ürün sıralaması yapabilirsiniz.
-      </p>
       <Table
         tableProps={{
           isLoading: isLoading,

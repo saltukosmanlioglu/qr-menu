@@ -47,7 +47,6 @@ const Form = ({
           value={form.values.title}
         />
         <TextField
-          autoFocus
           errorMessage="You must enter a price"
           label="Price"
           name="price"
@@ -83,7 +82,6 @@ const Form = ({
           }}
         />
         <TextField
-          autoFocus
           label="Image"
           name="image"
           onChange={form.handleChange}

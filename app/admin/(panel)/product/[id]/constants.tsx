@@ -7,8 +7,9 @@ import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import { Category, CategoryResponse } from "@/services/admin/category";
+import { ProductResponse } from "@/services/admin/product";
 
-export const productsData = [
+export const productsData: ProductResponse = [
   {
     id: 1,
     categoryId: 28,

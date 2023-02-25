@@ -76,7 +76,6 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
             component: <LanguageSupport />,
           },
         ]}
-        storageName="activeTabIndex"
         tabs={[
           {
             icon: <RetryIcon label="" size="medium" />,
