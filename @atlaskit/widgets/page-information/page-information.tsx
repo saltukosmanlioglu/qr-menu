@@ -14,7 +14,7 @@ const PageInformation: React.FunctionComponent<PageInformationProps> = ({
   const BreadcrumbItems = () => {
     return (
       <Breadcrumbs>
-        <BreadcrumbsItem href="/admin" text="Anasayfa" />
+        <BreadcrumbsItem href="/home" text="Anasayfa" />
         {breadcrumbItems?.map((item, index) => (
           <BreadcrumbsItem key={index} href={item.href} text={item.text} />
         ))}
