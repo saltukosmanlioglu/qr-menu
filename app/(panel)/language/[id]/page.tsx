@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import TrashIcon from "@atlaskit/icon/glyph/trash";
+
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import service, { Language, LanguageRequest } from "@/services/language";
@@ -17,16 +19,16 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
 
   const onRemove = () => {
     service
-      .remove(Number(params.id))
+      .remove(params.id)
       .then(() => router.back())
-      .catch((err) => console.log(err))
-      .finally(() => {});
+      .catch((err) => console.log(err));
   };
 
   const onUpdate = (values: LanguageRequest) => {
     setIsLoading(true);
+
     service
-      .update(Number(params.id), values)
+      .update(params.id, values)
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -34,10 +36,9 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     service
-      .getById(Number(params.id))
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err))
-      .finally(() => {});
+      .getById(params.id)
+      .then((res) => setData(res.data.data))
+      .catch((err) => console.log(err));
   }, [params.id]);
 
   return data ? (
@@ -46,10 +47,11 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
         actions={
           <ModalDialog
             appearance="danger"
-            buttonText="Delete language"
-            body="If you delete a language, all dependencies related to the language are destroyed. Are you sure you want to delete ?"
+            buttonText="Sil"
+            icon={<TrashIcon label="" size="small" />}
+            body="Eğer bir dili silmek istiyorsanız, dil ile ilişkili tüm veriyi kaybedersiniz. Silmek istediğinizden emin misiniz ?"
             onClick={onRemove}
-            title="Language is going to delete !"
+            title="Dil silinmek üzere !"
             width="medium"
           />
         }
@@ -61,13 +63,13 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
           initialValues={data}
           operation="update"
           props={{
-            buttonText: "Update language",
+            buttonText: "Güncelle",
             description:
-              "You can update this language by filling in the fields below",
+              "Aşağıdaki formu doldurarak geçerli dili güncelleyebilirsiniz.",
             isLoading,
             onSubmit: onUpdate,
             operation: "update",
-            title: `Update language: ${data?.code}`,
+            title: `Dil: ${data?.code}`,
           }}
         />
       </div>

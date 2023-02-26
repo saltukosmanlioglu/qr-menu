@@ -30,13 +30,13 @@ export default function CreateLanguage() {
         <Form
           operation="create"
           props={{
-            buttonText: "Create language",
+            buttonText: "Kaydet",
             description:
-              "You can create a language by filling in the fields below",
+              "Aşağıdaki formu doldurarak bir dil oluşturabilirsiniz.",
             isLoading,
             onSubmit: onCreate,
             operation: "create",
-            title: "Create a language",
+            title: "Dil oluştur",
           }}
         />
       </div>

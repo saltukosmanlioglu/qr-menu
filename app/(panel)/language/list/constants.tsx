@@ -32,7 +32,7 @@ export const head = {
 };
 
 export const rows = (
-  data: LanguageResponse,
+  data: LanguageResponse["data"],
   moveDown: () => void,
   moveUp: () => void
 ) =>
@@ -45,7 +45,7 @@ export const rows = (
       },
       {
         key: language.id,
-        content: new Date(language.createdDate).toLocaleString(),
+        content: new Date(language.audit.createdAt).toLocaleString(),
       },
       {
         key: language.id,

@@ -48,7 +48,11 @@ export default function LanguageList() {
           tableProps={{
             isLoading: isLoading,
             head: head,
-            rows: rows(data as LanguageResponse, moveDown, moveUp),
+            rows: rows(
+              data?.data as LanguageResponse["data"],
+              moveDown,
+              moveUp
+            ),
           }}
         />
       </div>

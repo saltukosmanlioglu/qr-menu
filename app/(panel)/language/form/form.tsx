@@ -18,11 +18,11 @@ const Form = ({ props, initialValues }: FormProps<LanguageRequest>) => {
       <Gutter>
         <TextField
           autoFocus
-          errorMessage="You must enter a language code"
-          label="Language code"
+          errorMessage="Dil kodu girmelisiniz"
+          label="Dil kodu"
           name="code"
           onChange={form.handleChange}
-          placeholder="Enter a language code"
+          placeholder="Dil kodu gir"
           required
           value={form.values.code}
         />

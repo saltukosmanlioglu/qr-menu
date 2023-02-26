@@ -1,5 +1,6 @@
 import service from "@/services/instance";
 
+import { BaseApiResponse } from "../types";
 import { Language, LanguageRequest, LanguageResponse } from "./types";
 
 export const create = (data: LanguageRequest) =>
@@ -7,11 +8,10 @@ export const create = (data: LanguageRequest) =>
 
 export const get = () => service.get<LanguageResponse>("languages");
 
-export const getById = (id: string | number) =>
-  service.get<Language>(`languages/${id}`);
+export const getById = (id: string) =>
+  service.get<BaseApiResponse<Language>>(`languages/${id}`);
 
-export const remove = (id: string | number) =>
-  service.delete(`languages/${id}`);
+export const remove = (id: string) => service.delete(`languages/${id}`);
 
-export const update = (id: string | number, data: LanguageRequest) =>
-  service.put(`languages/${id}`, data);
+export const update = (id: string, data: LanguageRequest) =>
+  service.patch(`languages/${id}`, data);
