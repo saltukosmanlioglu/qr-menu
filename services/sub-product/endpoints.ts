@@ -1,9 +1,17 @@
 import service from "@/services/instance";
 
-import { SubProduct, SubProductRequest, SubProductResponse } from "./types";
+import {
+  SubProduct,
+  SubProductLanguageSupportRequest,
+  SubProductRequest,
+  SubProductResponse,
+} from "./types";
 
 export const create = (data: SubProductRequest) =>
   service.post("sub-products", data);
+
+export const createLanguage = (data: SubProductLanguageSupportRequest) =>
+  service.post("sub-products/language", data);
 
 export const get = () => service.get<SubProductResponse>("sub-products");
 

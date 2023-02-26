@@ -10,7 +10,7 @@ export interface ModalDialogProps {
   actions?: Array<ButtonProps>;
   appearance: Appearance;
   buttonText: string | React.ReactNode;
-  body: any;
+  body: JSX.Element | string;
   icon?: any;
   onClick: () => void;
   title: string;

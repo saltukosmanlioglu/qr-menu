@@ -8,15 +8,13 @@ import AddIcon from "@atlaskit/icon/glyph/add";
 import BacklogIcon from "@atlaskit/icon/glyph/backlog";
 import RetryIcon from "@atlaskit/icon/glyph/retry";
 import TrashIcon from "@atlaskit/icon/glyph/trash";
-import WorldIcon from "@atlaskit/icon/glyph/world";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Tabs from "@/atlaskit/widgets/tabs";
 import service, { Category } from "@/services/category";
 
-import { LanguageSupport, Products, Update } from "./tabs";
-
+import { Products, Update } from "./tabs";
 import { breadcrumbItemList } from "./constants";
 
 export default function UpdateLanguage({ params }: { params: { id: string } }) {
@@ -72,9 +70,6 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
           {
             component: <Products />,
           },
-          {
-            component: <LanguageSupport />,
-          },
         ]}
         tabs={[
           {
@@ -82,10 +77,6 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
             title: "Update category",
           },
           { icon: <BacklogIcon label="" size="medium" />, title: "Products" },
-          {
-            icon: <WorldIcon label="" size="medium" />,
-            title: "Language support",
-          },
         ]}
       />
     </main>

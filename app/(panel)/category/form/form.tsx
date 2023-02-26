@@ -39,7 +39,7 @@ const Form = ({ props, initialValues }: FormProps<CategoryRequest>) => {
           label="Category name"
           name="title"
           onChange={form.handleChange}
-          placeholder="Enter a language code"
+          placeholder="Enter a category name"
           required
           value={form.values.title}
         />

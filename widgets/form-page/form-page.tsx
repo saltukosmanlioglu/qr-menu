@@ -24,9 +24,7 @@ const FormPage = <T extends Record<string, any>>({
       <Form<T> onSubmit={onSubmit}>
         {({ formProps }) => (
           <form {...formProps}>
-            {(description || title) && (
-              <FormHeader description={description} title={title} />
-            )}
+            <FormHeader description={description} title={title} />
             <FormSection>{children}</FormSection>
             <Actions
               actions={actions}

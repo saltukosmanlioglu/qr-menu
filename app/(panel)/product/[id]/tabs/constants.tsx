@@ -11,6 +11,7 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import { LanguageResponse } from "@/services/language";
 import { SubProduct, SubProductResponse } from "@/services/sub-product";
+import LanguageSupport from "@/widgets/language-support";
 
 export const head = {
   cells: [
@@ -34,7 +35,7 @@ export const rows = (
   onRemove: (id: number) => void,
   moveDown: () => void,
   moveUp: () => void,
-  languages: LanguageResponse
+  languageSupport: React.ReactNode
 ) =>
   data?.map((product: SubProduct, index: number) => ({
     key: `row-${index}-${product.id}`,
@@ -67,11 +68,7 @@ export const rows = (
               title="Product is going to delete !"
               width="medium"
             />
-            <DropdownMenu trigger="Dil desteği">
-              {languages?.map((langauge, index) => (
-                <DropdownItem key={index}>{langauge.code}</DropdownItem>
-              ))}
-            </DropdownMenu>
+            {languageSupport}
             <Button
               appearance="subtle"
               isDisabled={data.length === 0}

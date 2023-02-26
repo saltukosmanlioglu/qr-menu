@@ -111,8 +111,7 @@ const Products: React.FunctionComponent = () => {
             data as ProductResponse,
             (id) => onRemove(id),
             moveDown,
-            moveUp,
-            languages as LanguageResponse
+            moveUp
           ),
         }}
       />

@@ -1,4 +1,4 @@
-import { BaseProps } from "@/utils/types";
+import { BaseProps } from "../types";
 
 export interface SubProduct {
   title: string;

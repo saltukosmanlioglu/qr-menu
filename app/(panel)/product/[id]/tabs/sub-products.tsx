@@ -5,11 +5,13 @@ import Gutter from "@/components/gutter";
 import TextField from "@/components/text-field";
 import languageService, { LanguageResponse } from "@/services/language";
 import subProductService, {
+  SubProductLanguageSupportRequest,
   SubProductRequest,
   SubProductResponse,
 } from "@/services/sub-product";
-import useForm from "@/utils/hooks/form";
 import FormPage from "@/widgets/form-page";
+import LanguageSupport from "@/widgets/language-support";
+import useForm from "@/utils/hooks/form";
 
 import { head, rows } from "./constants";
 
@@ -36,9 +38,26 @@ const SubProducts: React.FunctionComponent = () => {
       });
   };
 
+  const onLanguageSubmit = (values: SubProductLanguageSupportRequest) => {
+    setIsLoading(true);
+
+    subProductService
+      .createLanguage(values)
+      .then(() => {
+        setData(data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  };
+
   const form = useForm<SubProductRequest>({
     initialValues: { price: "", title: "" } as SubProductRequest,
     onSubmit: onSubmit,
+  });
+
+  const languageForm = useForm<SubProductLanguageSupportRequest>({
+    initialValues: { title: "" } as SubProductLanguageSupportRequest,
+    onSubmit: onLanguageSubmit,
   });
 
   const onRemove = (id: number) => {
@@ -47,6 +66,9 @@ const SubProducts: React.FunctionComponent = () => {
       .then(() => {})
       .catch((err) => console.log(err));
   };
+
+  const moveDown = () => {};
+  const moveUp = () => {};
 
   useEffect(() => {
     setIsLoading(true);
@@ -116,8 +138,21 @@ const SubProducts: React.FunctionComponent = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const moveDown = () => {};
-  const moveUp = () => {};
+  const renderLanguageForm = () => {
+    return (
+      languageForm && (
+        <TextField
+          autoFocus
+          errorMessage="You must enter a title"
+          label="Title"
+          name="title"
+          onChange={languageForm.handleChange}
+          placeholder="Enter a title"
+          value={languageForm.values.title}
+        />
+      )
+    );
+  };
 
   return (
     <div>
@@ -162,7 +197,10 @@ const SubProducts: React.FunctionComponent = () => {
             (id) => onRemove(id),
             moveDown,
             moveUp,
-            languages as LanguageResponse
+            <LanguageSupport
+              children={renderLanguageForm}
+              onSubmit={onLanguageSubmit}
+            />
           ),
         }}
       />

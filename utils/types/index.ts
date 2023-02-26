@@ -1,1 +1,3 @@
-export type { BaseProps, FormProps, OperationType } from "./types";
+export type { OperationType } from "./types";
+
+export type { FormProps } from "./interfaces";

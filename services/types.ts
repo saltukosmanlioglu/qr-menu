@@ -4,3 +4,7 @@ export interface BaseProps {
   order: number;
   updatedDate: string;
 }
+
+export interface LanguageSupportBaseProps {
+  code: string;
+}

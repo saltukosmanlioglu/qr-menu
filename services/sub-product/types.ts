@@ -1,4 +1,4 @@
-import { BaseProps } from "@/utils/types";
+import { BaseProps, LanguageSupportBaseProps } from "../types";
 
 export interface SubProduct extends BaseProps {
   title: string;
@@ -7,6 +7,11 @@ export interface SubProduct extends BaseProps {
 
 export interface SubProductRequest {
   price: string;
+  title: string;
+}
+
+export interface SubProductLanguageSupportRequest
+  extends LanguageSupportBaseProps {
   title: string;
 }
 

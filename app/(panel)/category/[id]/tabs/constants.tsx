@@ -1,7 +1,7 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import Button, { ButtonGroup } from "@atlaskit/button";
-import DropdownMenu, { DropdownItem } from "@atlaskit/dropdown-menu";
 
 import ArrowUpIcon from "@atlaskit/icon/glyph/arrow-up";
 import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
@@ -10,7 +10,6 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import { Product, ProductResponse } from "@/services/product";
-import { LanguageResponse } from "@/services/language";
 
 export const head = {
   cells: [
@@ -33,8 +32,7 @@ export const rows = (
   data: ProductResponse,
   onRemove: (id: number) => void,
   moveDown: () => void,
-  moveUp: () => void,
-  languages: LanguageResponse
+  moveUp: () => void
 ) =>
   data?.map((product: Product, index: number) => ({
     key: `row-${index}-${product.id}`,
@@ -67,11 +65,6 @@ export const rows = (
               title="Product is going to delete !"
               width="medium"
             />
-            <DropdownMenu trigger="Dil desteği">
-              {languages?.map((langauge, index) => (
-                <DropdownItem key={index}>{langauge.code}</DropdownItem>
-              ))}
-            </DropdownMenu>
             <Button
               appearance="subtle"
               isDisabled={data.length === 0}

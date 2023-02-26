@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 
 import { UseFormProps } from "./types";
 
-const useForm = <T extends Record<string, any>>({
+const useForm = <T extends object>({
   initialValues,
 }: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues as T);
