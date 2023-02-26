@@ -22,7 +22,7 @@ const Form = ({ props, initialValues }: FormProps<LanguageRequest>) => {
           label="Dil kodu"
           name="code"
           onChange={form.handleChange}
-          placeholder="Dil kodu gir"
+          placeholder="Dil kodu girin"
           required
           value={form.values.code}
         />

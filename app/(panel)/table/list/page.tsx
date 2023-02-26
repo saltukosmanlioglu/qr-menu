@@ -48,7 +48,7 @@ export default function TableList() {
           tableProps={{
             isLoading: isLoading,
             head: head,
-            rows: rows(data as TableResponse, moveDown, moveUp),
+            rows: rows(data?.data as TableResponse["data"], moveDown, moveUp),
           }}
         />
       </div>

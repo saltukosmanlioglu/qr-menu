@@ -24,7 +24,7 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
 
   const onRemove = () => {
     service
-      .remove(Number(params.id))
+      .remove(params.id)
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => {});
@@ -42,7 +42,7 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
     setIsLoading(true);
 
     service
-      .update(Number(params.id), values)
+      .update(params.id, values)
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -50,18 +50,18 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     service
-      .getById(Number(params.id))
+      .getById(params.id)
       .then((res) => {
-        setData(res.data);
+        setData(res.data.data);
 
         QRCode.toCanvas(
           canvasRef.current,
-          `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.id}`,
+          `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.data.id}`,
           { width: 200 }
         );
         QRCode.toCanvas(
           canvasHiddenRef.current,
-          `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.id}`,
+          `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.data.id}`,
           { width: 200 }
         );
       })

@@ -32,7 +32,7 @@ export const head = {
 };
 
 export const rows = (
-  data: TableResponse,
+  data: TableResponse["data"],
   moveDown: () => void,
   moveUp: () => void
 ) =>
@@ -45,7 +45,7 @@ export const rows = (
       },
       {
         key: table.id,
-        content: new Date(table.createdDate).toLocaleString(),
+        content: new Date(table.audit.createdAt).toLocaleString(),
       },
       {
         key: table.id,

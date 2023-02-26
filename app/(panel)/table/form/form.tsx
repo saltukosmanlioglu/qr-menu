@@ -20,11 +20,11 @@ const Form = ({ initialValues, props }: FormProps<TableRequest>) => {
         <Gutter>
           <TextField
             autoFocus
-            errorMessage="You must enter a table name"
-            label="Table name"
+            errorMessage="Masa adı girmelisiniz"
+            label="Masa adı"
             name="title"
             onChange={form.handleChange}
-            placeholder="Enter a table name"
+            placeholder="Masa adı girin"
             required
             value={form.values.title}
           />

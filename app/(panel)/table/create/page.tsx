@@ -30,13 +30,13 @@ export default function CreateTable() {
         <Form
           operation="create"
           props={{
-            buttonText: "Create table",
+            buttonText: "Kaydet",
             description:
-              "You can create a table by filling in the fields below",
+              "Aşağıdaki formu doldurarak bir masa oluşturabilirsiniz.",
             isLoading,
             onSubmit: onCreate,
             operation: "create",
-            title: "Create a table",
+            title: "Masa oluştur",
           }}
         />
       </div>

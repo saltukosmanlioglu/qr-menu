@@ -1,13 +1,11 @@
-import { BaseProps } from "../types";
+import { BaseApiResponse, BaseProps } from "../types";
 
 export interface Table extends Omit<BaseProps, "order"> {
-  qrId: string;
   title: string;
 }
 
 export interface TableRequest {
-  qrId: string;
   title: string;
 }
 
-export interface TableResponse extends Array<Table> {}
+export interface TableResponse extends BaseApiResponse<Array<Table>> {}
