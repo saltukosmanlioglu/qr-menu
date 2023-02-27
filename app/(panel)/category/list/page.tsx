@@ -49,7 +49,11 @@ export default function CategoryList() {
           tableProps={{
             isLoading: isLoading,
             head: head,
-            rows: rows(data as CategoryResponse, moveDown, moveUp),
+            rows: rows(
+              data?.data as CategoryResponse["data"],
+              moveDown,
+              moveUp
+            ),
           }}
         />
       </div>

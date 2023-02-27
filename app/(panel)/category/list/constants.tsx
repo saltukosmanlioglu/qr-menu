@@ -36,7 +36,7 @@ export const head = {
 };
 
 export const rows = (
-  data: CategoryResponse,
+  data: CategoryResponse["data"],
   moveDown: () => void,
   moveUp: () => void
 ) =>
@@ -46,7 +46,10 @@ export const rows = (
       {
         key: category.id,
         content: (
-          <span style={{ color: category.color }}>{category.title}</span>
+          <span style={{ color: category.color }}>
+            {/* {category.localizations[0].title} */}
+            {category.color}
+          </span>
         ),
       },
       {
@@ -57,7 +60,7 @@ export const rows = (
       },
       {
         key: category.id,
-        content: new Date(category.createdDate).toLocaleString(),
+        content: new Date(category.audit.createdAt).toLocaleString(),
       },
       {
         key: category.id,

@@ -24,15 +24,15 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
 
   const onRemove = () => {
     service
-      .remove(Number(params.id))
+      .remove(params.id)
       .then(() => router.back())
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     service
-      .getById(Number(params.id))
-      .then((res) => setData(res.data))
+      .getById(params.id)
+      .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
   }, [params.id]);
 

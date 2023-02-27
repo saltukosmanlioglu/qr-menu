@@ -58,17 +58,17 @@ const Form = ({ props, initialValues }: FormProps<CategoryRequest>) => {
           name="parentId"
           onChange={(e) => form.handleFieldChange("parentId", { ...e })}
           options={
-            data?.map((category) => ({
-              label: category.title,
+            data?.data.map((category) => ({
+              label: category.color,
               value: category.id,
             })) || []
           }
           placeholder="Choose a top category"
           value={{
-            label: data?.find(
+            label: data?.data?.find(
               (category) => category.id === form.values.parentId
-            )?.title,
-            value: data?.find(
+            )?.color,
+            value: data?.data?.find(
               (category) => category.id === form.values.parentId
             )?.id,
           }}
