@@ -50,7 +50,7 @@ const LanguageSupport = <T extends object>({
           />
         )}
       >
-        {languages?.map((language, index) => (
+        {languages?.data.map((language, index) => (
           <DropdownItem
             key={index}
             children={language.code}

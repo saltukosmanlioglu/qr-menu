@@ -10,14 +10,14 @@ export interface CategoryLocalization {
 export interface Category extends BaseProps {
   color: string;
   localizations: Array<CategoryLocalization>;
-  parentId?: number;
+  parentId?: string;
 }
 
 export interface CategoryRequest {
   color: string;
   parentId?: string;
   status?: StatusEnum;
-  title: string;
+  localizations: Array<CategoryLocalization>;
 }
 
 export interface CategoryResponse extends BaseApiResponse<Array<Category>> {}

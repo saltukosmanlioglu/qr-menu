@@ -6,7 +6,7 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
-import service, { Language, LanguageRequest } from "@/services/language";
+import service, { Language } from "@/services/language";
 
 import { breadcrumbItemList } from "./constants";
 import Form from "../form";
@@ -24,11 +24,11 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
       .catch((err) => console.log(err));
   };
 
-  const onUpdate = (values: LanguageRequest) => {
+  const onUpdate = (values: any) => {
     setIsLoading(true);
 
     service
-      .update(params.id, values)
+      .update(params.id, { ...values, isDefault: values.isDefault.value })
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -60,7 +60,7 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
       />
       <div style={{ padding: "0 12.5%" }}>
         <Form
-          initialValues={data}
+          initialValues={{ ...data, status: data.audit.status }}
           operation="update"
           props={{
             buttonText: "Güncelle",

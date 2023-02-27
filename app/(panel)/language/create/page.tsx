@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
-import service, { LanguageRequest } from "@/services/language";
+import service from "@/services/language";
 
 import { breadcrumbItemList } from "./constants";
 import Form from "../form";
@@ -13,11 +13,11 @@ export default function CreateLanguage() {
 
   const router = useRouter();
 
-  const onCreate = (values: LanguageRequest) => {
+  const onCreate = (values: any) => {
     setIsLoading(true);
 
     service
-      .create(values)
+      .create({ ...values, isDefault: values.isDefault.value })
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));

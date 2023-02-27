@@ -2,7 +2,7 @@ import { SingleValue } from "react-select";
 
 export interface Option {
   label: string;
-  value: string | number;
+  value: string | number | boolean;
 }
 
 export interface SelectProps {

@@ -6,7 +6,7 @@ export interface SubProduct {
 }
 
 export interface Product extends BaseProps {
-  categoryId: number;
+  categoryId: string;
   description?: string;
   image: string;
   price: string;
@@ -18,7 +18,7 @@ export interface Product extends BaseProps {
 }
 
 export interface ProductRequest {
-  categoryId: number;
+  categoryId: string;
   description?: string;
   image?: string;
   price: string;
