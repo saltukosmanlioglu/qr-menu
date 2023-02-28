@@ -52,18 +52,13 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
     service
       .getById(params.id)
       .then((res) => {
-        setData(res.data.data);
-
         QRCode.toCanvas(
           canvasRef.current,
           `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.data.id}`,
           { width: 200 }
         );
-        QRCode.toCanvas(
-          canvasHiddenRef.current,
-          `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.data.id}`,
-          { width: 200 }
-        );
+
+        setData(res.data.data);
       })
       .catch((err) => console.log(err));
   }, [params.id]);
@@ -74,44 +69,41 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
         actions={
           <ModalDialog
             appearance="danger"
-            buttonText="Delete table"
-            body="If you delete a table, all dependencies related to the table are destroyed. Are you sure you want to delete ?"
+            buttonText="Sil"
+            body="Eğer bir masayı silmek istiyorsanız, Masa ile ilişkili tüm veriyi kaybedersiniz. Silmek istediğinizden emin misiniz?"
             icon={<TrashIcon label="" size="small" />}
             onClick={onRemove}
-            title="Table is going to delete !"
+            title="Masa silinmek üzere!"
             width="medium"
           />
         }
         breadcrumbItems={breadcrumbItemList}
-        title="Dil desteğini Güncelle"
+        title="Masa bilgisini güncelle"
       />
-      {data && (
-        <div style={{ padding: "0 12.5%" }}>
-          <Form
-            initialValues={data}
-            operation="update"
-            props={{
-              actions: [
-                {
-                  appearance: "warning",
-                  iconAfter: <DownloadIcon label="" size="small" />,
-                  children: "Download the QR Code",
-                  onClick: handleDownloadQr,
-                },
-              ],
-              buttonText: "Update table",
-              description:
-                "You can update this table by filling in the fields below",
-              isLoading,
-              onSubmit: onUpdate,
-              operation: "update",
-              title: `Update language: ${data.title}`,
-            }}
-          />
-          <canvas ref={canvasRef} width={200} height={200} />
-        </div>
-      )}
-      {data?.id && <canvas ref={canvasHiddenRef} style={{ display: "none" }} />}
+      <div style={{ padding: "0 12.5%" }}>
+        <Form
+          initialValues={data}
+          operation="update"
+          props={{
+            actions: [
+              {
+                appearance: "warning",
+                iconAfter: <DownloadIcon label="" size="small" />,
+                children: "QR kodu indir",
+                onClick: handleDownloadQr,
+              },
+            ],
+            buttonText: "Güncelle",
+            description:
+              "Aşağıdaki formu doldurarak geçerli masa bilgisini güncelleyebilirsiniz.",
+            isLoading,
+            onSubmit: onUpdate,
+            operation: "update",
+            title: `Masa: ${data?.title}`,
+          }}
+        />
+        <canvas ref={canvasRef} width={200} height={200} />
+      </div>
     </main>
   );
 }

@@ -6,7 +6,7 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
-import service, { Language } from "@/services/language";
+import service, { Language, LanguageRequest } from "@/services/language";
 
 import { breadcrumbItemList } from "./constants";
 import Form from "../form";
@@ -24,11 +24,14 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
       .catch((err) => console.log(err));
   };
 
-  const onUpdate = (values: any) => {
+  const onUpdate = (values: LanguageRequest) => {
     setIsLoading(true);
 
+    const isDefault = Object.values(values.isDefault)[1];
+    const status = Object.values(values.status)[1];
+
     service
-      .update(params.id, { ...values, isDefault: values.isDefault.value })
+      .update(params.id, { ...values, isDefault, status })
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -49,9 +52,9 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
             appearance="danger"
             buttonText="Sil"
             icon={<TrashIcon label="" size="small" />}
-            body="Eğer bir dili silmek istiyorsanız, dil ile ilişkili tüm veriyi kaybedersiniz. Silmek istediğinizden emin misiniz ?"
+            body="Eğer bir dili silmek istiyorsanız, dil ile ilişkili tüm veriyi kaybedersiniz. Silmek istediğinizden emin misiniz?"
             onClick={onRemove}
-            title="Dil silinmek üzere !"
+            title="Dil silinmek üzere!"
             width="medium"
           />
         }
