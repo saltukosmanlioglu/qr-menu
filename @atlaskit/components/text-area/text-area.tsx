@@ -11,11 +11,10 @@ const TextArea: React.FunctionComponent<TextAreaProps> = ({
   name,
   placeholder,
   required,
-  style,
   value,
 }) => {
   return (
-    <div style={style}>
+    <div>
       <Field
         defaultValue={value}
         isRequired={required}
@@ -24,7 +23,11 @@ const TextArea: React.FunctionComponent<TextAreaProps> = ({
       >
         {({ fieldProps, error }: any) => (
           <React.Fragment>
-            <AtlaskitTextArea placeholder={placeholder} {...fieldProps} />
+            <AtlaskitTextArea
+              rows={3}
+              placeholder={placeholder}
+              {...fieldProps}
+            />
             {error && <HelperMessage>{errorMessage}</HelperMessage>}
           </React.Fragment>
         )}

@@ -6,18 +6,18 @@ import AddIcon from "@atlaskit/icon/glyph/add";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Table from "@/atlaskit/widgets/table";
-import tableService, { TableResponse } from "@/services/table";
+import categoryService, { CategoryResponse } from "@/services/category";
 
 import { breadcrumbItemList, head, rows } from "./constants";
 
-export default function TableList() {
-  const [data, setData] = useState<TableResponse>();
+export default function CategoryList() {
+  const [data, setData] = useState<CategoryResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
 
-    tableService
+    categoryService
       .get()
       .then((res) => setData(res.data))
       .catch((err) => console.log(err))
@@ -31,24 +31,28 @@ export default function TableList() {
     <main>
       <PageInformation
         actions={
-          <Link href="/table/create">
+          <Link href="/category/create">
             <Button
               appearance="primary"
-              children="Masa oluştur"
+              children="Kategori oluştur"
               iconAfter={<AddIcon label="" size="small" />}
             />
           </Link>
         }
         breadcrumbItems={breadcrumbItemList}
-        description="Masaları görüntüleyebilir, yeni bir masa oluşturabilir veya silebilirsiniz."
-        title="Masa Listesi"
+        description="Kategorileri görüntüleyebilir, sırasını değiştirebilir, yeni bir kategori oluşturabilir veya silebilirsiniz"
+        title="Kategori listesi"
       />
       <div className="mt-20">
         <Table
           tableProps={{
             isLoading: isLoading,
             head: head,
-            rows: rows(data?.data as TableResponse["data"], moveDown, moveUp),
+            rows: rows(
+              data?.data as CategoryResponse["data"],
+              moveDown,
+              moveUp
+            ),
           }}
         />
       </div>

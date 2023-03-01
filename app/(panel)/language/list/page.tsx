@@ -40,7 +40,7 @@ export default function LanguageList() {
           </Link>
         }
         breadcrumbItems={breadcrumbItemList}
-        description="Dilleri görüntüleyebilir, sırasını değiştirebilir ve yeni bir dil oluşturabilirsiniz."
+        description="Dilleri görüntüleyebilir, sırasını değiştirebilir, yeni bir dil oluşturabilir veya silebilirsiniz."
         title="Dil Listesi"
       />
       <div className="mt-20">

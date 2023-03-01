@@ -2,7 +2,7 @@ import React from "react";
 
 import Select from "@/atlaskit/components/select";
 import Gutter from "@/components/gutter";
-import TextField from "@/components/text-field";
+import TextField from "@/atlaskit/components/text-field";
 import { LanguageRequest } from "@/services/language";
 import { confirmations } from "@/utils/constants";
 import useForm from "@/utils/hooks/form";
@@ -28,12 +28,15 @@ const Form = ({
           errorMessage="Dil kodu girmelisiniz"
           label="Dil kodu"
           name="code"
-          onChange={form.handleChange}
+          onChange={(e) =>
+            form.handleFieldChange("code", e.currentTarget.value)
+          }
           placeholder="Dil kodu girin"
           required
           value={form.values.code}
         />
         <Select
+          isRequired
           label="Varsayılan dil mi?"
           name="isDefault"
           onChange={(e) => form.handleFieldChange("isDefault", { ...e })}
@@ -48,6 +51,7 @@ const Form = ({
         />
         {operation === "update" && (
           <Select
+            isRequired
             label="Durumu"
             name="status"
             onChange={(e) => form.handleFieldChange("status", { ...e })}

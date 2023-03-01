@@ -6,38 +6,39 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
-import languageService, {
-  Language,
-  LanguageRequest,
-} from "@/services/language";
-
-import Form from "../form";
+import categoryService, {
+  Category,
+  CategoryRequest,
+} from "@/services/category";
 
 import { breadcrumbItemList } from "./constants";
+import Form from "../form";
 
-export default function UpdateLanguage({ params }: { params: { id: string } }) {
-  const [data, setData] = useState<Language>();
+export default function UpdateCategory({ params }: { params: { id: string } }) {
+  const [data, setData] = useState<Category>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
   const onRemove = () => {
-    languageService
+    categoryService
       .remove(params.id)
       .then(() => router.back())
       .catch((err) => console.log(err));
   };
 
-  const onUpdate = (values: LanguageRequest) => {
+  const onUpdate = (values: CategoryRequest) => {
     setIsLoading(true);
 
-    const isDefault = Object.values(values.isDefault)[1];
+    const languageCode = Object.values(values.languageCode)[1];
+    const parentId = Object.values(values.parentId)[1];
     const status = Object.values(values.status)[1];
 
-    languageService
+    categoryService
       .update(params.id, {
         ...values,
-        isDefault,
+        languageCode,
+        parentId,
         status,
       })
       .then(() => router.back())
@@ -46,7 +47,7 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    languageService
+    categoryService
       .getById(params.id)
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
@@ -60,14 +61,14 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
             appearance="danger"
             buttonText="Sil"
             icon={<TrashIcon label="" size="small" />}
-            body="Eğer bir dili silmek istiyorsanız, dil ile ilişkili tüm veriyi kaybedersiniz. Silmek istediğinizden emin misiniz?"
+            body="Eğer bir kategoriyi silmek istiyorsanız, kategori ile ilişkili tüm veriyi kaybedersiniz. Silmek istediğinizden emin misiniz?"
             onClick={onRemove}
-            title="Dil silinmek üzere!"
+            title="Kategori silinmek üzere!"
             width="medium"
           />
         }
         breadcrumbItems={breadcrumbItemList}
-        title="Dil desteğini Güncelle"
+        title="Kategoriyi güncelle"
       />
       <div style={{ padding: "0 12.5%" }}>
         <Form
@@ -76,11 +77,11 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
           props={{
             buttonText: "Güncelle",
             description:
-              "Aşağıdaki formu doldurarak geçerli dili güncelleyebilirsiniz.",
+              "Aşağıdaki formu doldurarak geçerli kategoriyi güncelleyebilirsiniz.",
             isLoading,
             onSubmit: onUpdate,
             operation: "update",
-            title: `Dil: ${data?.code}`,
+            title: `Kategori: ${data?.title}`,
           }}
         />
       </div>

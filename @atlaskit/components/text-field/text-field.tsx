@@ -1,34 +1,44 @@
 import React from "react";
 
-import AtlassianTextField from "@atlaskit/textfield";
-import { Field } from "@atlaskit/form";
+import { Field, HelperMessage } from "@atlaskit/form";
+import AtlaskitTextField from "@atlaskit/textfield";
 
 import { TextFieldProps } from "./types";
 
 const TextField: React.FunctionComponent<TextFieldProps> = ({
-  isRequired,
+  autoFocus,
+  errorMessage,
   label,
   name,
   onChange,
+  placeholder,
+  required,
+  type,
   value,
 }) => {
   return (
-    <Field
-      aria-required={true}
-      name={name}
-      defaultValue={value}
-      label={label}
-      isRequired
-    >
-      {() => (
-        <AtlassianTextField
-          name={name}
-          isRequired={isRequired}
-          onChange={onChange}
-          value={value}
-        />
-      )}
-    </Field>
+    <div>
+      <Field
+        aria-required={required}
+        defaultValue={value}
+        label={label}
+        name={name}
+        isRequired={required}
+      >
+        {({ fieldProps, error }) => (
+          <React.Fragment>
+            <AtlaskitTextField
+              autoFocus={autoFocus}
+              placeholder={placeholder}
+              type={type}
+              {...fieldProps}
+              onChange={(e) => onChange(e)}
+            />
+            {!error && <HelperMessage>{errorMessage}</HelperMessage>}
+          </React.Fragment>
+        )}
+      </Field>
+    </div>
   );
 };
 

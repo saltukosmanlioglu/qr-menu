@@ -8,10 +8,11 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
-import service, { Table, TableRequest } from "@/services/table";
+import tableService, { Table, TableRequest } from "@/services/table";
+
+import Form from "../form";
 
 import { breadcrumbItemList } from "./constants";
-import Form from "../form";
 
 export default function UpdateTable({ params }: { params: { id: string } }) {
   const [data, setData] = useState<Table>();
@@ -23,7 +24,7 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
   const router = useRouter();
 
   const onRemove = () => {
-    service
+    tableService
       .remove(params.id)
       .then(() => router.back())
       .catch((err) => console.log(err))
@@ -41,7 +42,7 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
   const onUpdate = (values: TableRequest) => {
     setIsLoading(true);
 
-    service
+    tableService
       .update(params.id, values)
       .then(() => router.back())
       .catch((err) => console.log(err))
@@ -49,7 +50,7 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    service
+    tableService
       .getById(params.id)
       .then((res) => {
         QRCode.toCanvas(

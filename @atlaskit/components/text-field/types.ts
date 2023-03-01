@@ -1,7 +1,33 @@
+import React from "react";
+
+type HTMLInputTypeAttribute =
+  | "button"
+  | "checkbox"
+  | "color"
+  | "date"
+  | "datetime-local"
+  | "email"
+  | "file"
+  | "hidden"
+  | "image"
+  | "month"
+  | "number"
+  | "password"
+  | "radio"
+  | "range"
+  | "search"
+  | "tel"
+  | "text"
+  | "time";
+
 export interface TextFieldProps {
-  isRequired: boolean;
+  autoFocus?: boolean;
+  errorMessage?: string;
   label: string;
   name: string;
-  onChange: (value: React.FormEvent<Element>) => void;
-  value: string | number;
+  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  required?: boolean;
+  type?: HTMLInputTypeAttribute;
+  value: string | number | undefined;
 }

@@ -3,21 +3,32 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
-import tableService, { TableRequest } from "@/services/table";
+import categoryService, { CategoryRequest } from "@/services/category";
 
-import { breadcrumbItemList } from "./constants";
 import Form from "../form";
 
-export default function CreateTable() {
+import { breadcrumbItemList } from "./constants";
+
+export default function CreateCategory() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
-  const onCreate = (values: TableRequest) => {
+  const onCreate = (values: CategoryRequest) => {
+    return console.log(values);
+
     setIsLoading(true);
 
-    tableService
-      .create(values)
+    const languageCode =
+      values.languageCode && Object.values(values.languageCode)[1];
+    const parentId = values.parentId && Object.values(values.parentId)[1];
+
+    categoryService
+      .create({
+        ...values,
+        languageCode,
+        parentId,
+      })
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -32,11 +43,11 @@ export default function CreateTable() {
           props={{
             buttonText: "Kaydet",
             description:
-              "Aşağıdaki formu doldurarak bir masa oluşturabilirsiniz.",
+              "Aşağıdaki formu doldurarak bir kategori oluşturabilirsiniz.",
             isLoading,
             onSubmit: onCreate,
             operation: "create",
-            title: "Masa oluştur",
+            title: "Kategori oluştur",
           }}
         />
       </div>
