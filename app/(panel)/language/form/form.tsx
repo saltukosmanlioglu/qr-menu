@@ -28,9 +28,7 @@ const Form = ({
           errorMessage="Dil kodu girmelisiniz"
           label="Dil kodu"
           name="code"
-          onChange={(e) =>
-            form.handleFieldChange("code", e.currentTarget.value)
-          }
+          onChange={form.handleChange}
           placeholder="Dil kodu girin"
           required
           value={form.values.code}

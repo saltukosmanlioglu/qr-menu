@@ -23,9 +23,7 @@ const Form = ({ initialValues, props }: FormProps<TableRequest>) => {
             errorMessage="Masa adı girmelisiniz"
             label="Masa adı"
             name="title"
-            onChange={(e) =>
-              form.handleFieldChange("title", e.currentTarget.value)
-            }
+            onChange={form.handleChange}
             placeholder="Masa adı girin"
             required
             value={form.values.title}

@@ -15,8 +15,6 @@ export default function CreateCategory() {
   const router = useRouter();
 
   const onCreate = (values: CategoryRequest) => {
-    return console.log(values);
-
     setIsLoading(true);
 
     const languageCode =

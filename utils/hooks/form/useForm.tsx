@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import { UseFormProps } from "./types";
 
-const useForm = <T extends object>({ initialValues }: UseFormProps<T>) => {
+const useForm = <T extends Record<string, any>>({
+  initialValues,
+}: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues as T);
 
   const handleChange = (
@@ -14,13 +16,15 @@ const useForm = <T extends object>({ initialValues }: UseFormProps<T>) => {
     }));
   };
 
-  const handleFieldChange = (key: string, value: any) => {
-    setValues((_values) => ({ ..._values, [key]: value }));
+  const handleFieldChange = (
+    key: string,
+    value: {
+      label?: string | number | boolean;
+      value?: string | number | boolean;
+    }
+  ) => {
+    setValues((_values) => ({ ..._values, [key]: value.value || value.label }));
   };
-
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
 
   return { handleChange, handleFieldChange, values };
 };

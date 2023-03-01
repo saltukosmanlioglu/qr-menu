@@ -32,14 +32,12 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
 
     const languageCode = Object.values(values.languageCode)[1];
     const parentId = Object.values(values.parentId)[1];
-    const status = Object.values(values.status)[1];
 
     categoryService
       .update(params.id, {
         ...values,
         languageCode,
         parentId,
-        status,
       })
       .then(() => router.back())
       .catch((err) => console.log(err))

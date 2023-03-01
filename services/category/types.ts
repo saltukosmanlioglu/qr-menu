@@ -18,7 +18,7 @@ export interface CategoryRequest {
   color: string;
   languageCode: string;
   parentId: string;
-  status?: StatusEnum;
+  status: StatusEnum;
   title: string;
 }
 

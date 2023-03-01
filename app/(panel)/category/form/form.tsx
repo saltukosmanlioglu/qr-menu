@@ -50,9 +50,7 @@ const Form = ({
           errorMessage="Kategori adı girmelisiniz"
           label="Kategori adı"
           name="title"
-          onChange={(e) =>
-            form.handleFieldChange("title", e.currentTarget.value)
-          }
+          onChange={form.handleChange}
           placeholder="Kategori adı girin"
           required
           value={form.values.title}
@@ -61,9 +59,7 @@ const Form = ({
           errorMessage="Kategori rengi girmelisiniz"
           label="Kategori rengi"
           name="color"
-          onChange={(e) =>
-            form.handleFieldChange("color", e.currentTarget.value)
-          }
+          onChange={form.handleChange}
           placeholder="Kategori rengi girin"
           required
           value={form.values.color}
@@ -84,7 +80,7 @@ const Form = ({
             language.code === form.values.languageCode
               ? {
                   label: language.code,
-                  value: language.id,
+                  value: language.code,
                 }
               : null
           )}

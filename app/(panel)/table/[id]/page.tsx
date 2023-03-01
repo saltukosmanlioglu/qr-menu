@@ -58,6 +58,11 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
           `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.data.id}`,
           { width: 200 }
         );
+        QRCode.toCanvas(
+          canvasHiddenRef.current,
+          `${process.env.NEXT_PUBLIC_MAIN_DOMAIN}?t=${res.data.data.id}`,
+          { width: 200 }
+        );
 
         setData(res.data.data);
       })
@@ -104,6 +109,12 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
           }}
         />
         <canvas ref={canvasRef} width={200} height={200} />
+        <canvas
+          className="hidden"
+          ref={canvasHiddenRef}
+          width={200}
+          height={200}
+        />
       </div>
     </main>
   );
