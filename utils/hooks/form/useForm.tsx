@@ -14,17 +14,7 @@ const useForm = <T extends Record<string, any>>({
     }));
   };
 
-  const handleFieldChange = (
-    key: string,
-    value: {
-      label?: string | number | boolean;
-      value?: string | number | boolean;
-    }
-  ) => {
-    setValues((_values) => ({ ..._values, [key]: value.value }));
-  };
-
-  return { handleChange, handleFieldChange, values };
+  return { handleChange, values };
 };
 
 export default useForm;

@@ -6,6 +6,6 @@ export const breadcrumbItemList: Array<BreadcrumbsItemProps> = [
     text: "Kategori listesi",
   },
   {
-    text: "Kategori Güncelle",
+    text: "Kategori güncelle",
   },
 ];

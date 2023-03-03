@@ -17,14 +17,12 @@ export default function CreateCategory() {
   const onCreate = (values: CategoryRequest) => {
     setIsLoading(true);
 
-    const languageCode =
-      values.languageCode && Object.values(values.languageCode)[1];
     const parentId = values.parentId && Object.values(values.parentId)[1];
 
     categoryService
       .create({
         ...values,
-        languageCode,
+        languageCode: "TR",
         parentId,
       })
       .then(() => router.back())

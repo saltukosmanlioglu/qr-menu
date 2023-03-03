@@ -7,7 +7,6 @@ import categoryService, {
   CategoryRequest,
   CategoryResponse,
 } from "@/services/category";
-import languageService, { LanguageResponse } from "@/services/language";
 import useForm from "@/utils/hooks/form";
 import { FormProps } from "@/utils/types";
 import { status } from "@/utils/constants";
@@ -19,7 +18,6 @@ const Form = ({
   props,
 }: FormProps<CategoryRequest>) => {
   const [categories, setCategories] = useState<CategoryResponse["data"]>();
-  const [languages, setLanguages] = useState<LanguageResponse["data"]>();
 
   const form = useForm<CategoryRequest>({
     initialValues: { ...initialValues } as CategoryRequest,
@@ -30,11 +28,6 @@ const Form = ({
     categoryService
       .get({ onlyParent: true })
       .then((res) => setCategories(res.data.data))
-      .catch((err) => console.log(err));
-
-    languageService
-      .get()
-      .then((res) => setLanguages(res.data.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -61,30 +54,9 @@ const Form = ({
           value={form.values.color}
         />
         <Select
-          label="Dil kodu"
-          name="languageCode"
-          onChange={(e) => form.handleFieldChange("languageCode", { ...e })}
-          options={
-            languages?.map((language) => ({
-              label: language.code,
-              value: language.code,
-            })) || []
-          }
-          placeholder="Dil kodu seçiniz"
-          isRequired
-          value={languages?.find((language) =>
-            language.code === form.values.languageCode
-              ? {
-                  label: language.code,
-                  value: language.code,
-                }
-              : null
-          )}
-        />
-        <Select
           label="Üst kategori"
           name="parentId"
-          onChange={(e) => form.handleFieldChange("parentId", { ...e })}
+          onChange={(e) => form.handleChange("parentId", e?.value as any)}
           options={
             categories?.map((category) => ({
               label: category.title,
@@ -105,7 +77,7 @@ const Form = ({
           <Select
             label="Durumu"
             name="status"
-            onChange={(e) => form.handleFieldChange("status", { ...e })}
+            onChange={(e) => form.handleChange("status", e?.value as any)}
             options={status.map((statu) => ({ ...statu })) || []}
             placeholder="Durum seçiniz"
             value={status.find((statu) =>

@@ -62,7 +62,7 @@ const Form = ({
         <Select
           label="Üst kategori"
           name="parentId"
-          onChange={(e) => form.handleFieldChange("parentId", { ...e })}
+          onChange={(e) => form.handleChange("parentId", e?.value as any)}
           options={
             categories?.map((category) => ({
               label: category.title,
@@ -101,7 +101,7 @@ const Form = ({
           <Select
             label="Durumu"
             name="status"
-            onChange={(e) => form.handleFieldChange("status", { ...e })}
+            onChange={(e) => form.handleChange("status", e?.value as any)}
             options={status.map((statu) => ({ ...statu })) || []}
             placeholder="Durum seçiniz"
             value={status.find((statu) =>

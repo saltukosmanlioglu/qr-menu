@@ -104,7 +104,7 @@ export const subCategoryRows = (
   moveUp: () => void
 ) =>
   data?.map((subCategory, index) => ({
-    key: `row-${index}-${subCategory}`,
+    key: `row-${index}-${subCategory.id}`,
     cells: [
       {
         key: subCategory.id,
