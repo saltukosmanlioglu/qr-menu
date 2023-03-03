@@ -6,6 +6,15 @@ export interface Category extends BaseProps {
   color: string;
   languageCode: string;
   parentId: string;
+  products: Array<{
+    id: string;
+    title: string;
+    desription: string;
+    price: string;
+    audit: {
+      createdAt: string;
+    };
+  }>;
   subCategories: Array<Omit<Category, "parentId">>;
   title: string;
 }

@@ -187,6 +187,15 @@
     react-uid "^2.2.0"
     tiny-invariant "^1.2.0"
 
+"@atlaskit/heading@^1.1.0":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@atlaskit/heading/-/heading-1.1.2.tgz#dd8d6383de4121a670dfee9e13553977a814fa7c"
+  integrity sha512-lZurIZUbQfEeB515SZLi3jUARtWx6VtothBW0vO0SMMgVWCUM3OayMmXor7c5ISgGbi3IYvBu17zROpULrJDbA==
+  dependencies:
+    "@atlaskit/tokens" "^1.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/react" "^11.7.1"
+
 "@atlaskit/icon@^21.11.0":
   version "21.11.5"
   resolved "https://registry.yarnpkg.com/@atlaskit/icon/-/icon-21.11.5.tgz#c2a52238bad5eb3cc9483aaff498372aed9043e0"
@@ -338,6 +347,20 @@
   integrity sha512-wWwiTOZPZa0IidB3QAZmNbi75seTc4vTXplKqnJWe49yRTcwWaTz5tEnw15iIi1iPSfM97KND3GIREjyH7CrvA==
   dependencies:
     "@atlaskit/theme" "^12.2.0"
+    "@babel/runtime" "^7.0.0"
+
+"@atlaskit/section-message@^6.3.10":
+  version "6.3.10"
+  resolved "https://registry.yarnpkg.com/@atlaskit/section-message/-/section-message-6.3.10.tgz#2ad0fea422aadebf8a5e63b19b7d9611f67fd720"
+  integrity sha512-Zh2dMc+LzoIaqN9xGvVEP+pXLc+1aOE4NFZCd3Z91n3M/SeJwVoauuvHG7GHIzZFFFgx1l8ko0WrCpmSSsvD3Q==
+  dependencies:
+    "@atlaskit/button" "^16.5.0"
+    "@atlaskit/codemod-utils" "^4.1.0"
+    "@atlaskit/ds-explorations" "^2.0.0"
+    "@atlaskit/heading" "^1.1.0"
+    "@atlaskit/icon" "^21.11.0"
+    "@atlaskit/theme" "^12.2.0"
+    "@atlaskit/tokens" "^1.0.0"
     "@babel/runtime" "^7.0.0"
 
 "@atlaskit/select@^16.1.3":
