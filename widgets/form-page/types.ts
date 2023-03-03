@@ -8,7 +8,7 @@ export interface FormPageProps<T> {
   buttonText: string;
   children: React.ReactNode;
   description?: string;
-  isLoading: boolean;
+  isLoading?: boolean;
   onSubmit: (values: T) => void;
   operation: OperationType;
   title?: string;

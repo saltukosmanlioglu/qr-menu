@@ -4,7 +4,7 @@ import { OperationType } from "@/utils/types";
 
 export interface ActionsProps {
   actions?: Array<ButtonProps>;
-  isLoading: boolean;
+  isLoading?: boolean;
   onCancel: () => void;
   operation: OperationType;
   text: string;
