@@ -29,7 +29,13 @@ const Update: React.FunctionComponent<UpdateProps> = ({
     <div>
       <Form
         initialValues={
-          data ? { ...data, status: data.audit.status } : undefined
+          data
+            ? {
+                ...data,
+                status: data.audit.status,
+                allergens: data.specifications.allergens,
+              }
+            : undefined
         }
         operation="update"
         props={{

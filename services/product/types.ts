@@ -9,8 +9,9 @@ export interface Product extends BaseProps {
   categoryId: string;
   image: string;
   parentId: string;
+  languageCode: string;
   specifications: {
-    additionalProp1: string;
+    allergens: string;
   };
   subProducts: Array<Product>;
 }
