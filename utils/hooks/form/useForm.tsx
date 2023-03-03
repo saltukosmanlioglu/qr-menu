@@ -7,12 +7,10 @@ const useForm = <T extends Record<string, any>>({
 }: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues as T);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (key: string, value: string) => {
     setValues((_values) => ({
       ..._values,
-      [e.target.name]: e.target.value,
+      [key]: value,
     }));
   };
 
@@ -23,7 +21,7 @@ const useForm = <T extends Record<string, any>>({
       value?: string | number | boolean;
     }
   ) => {
-    setValues((_values) => ({ ..._values, [key]: value.value || value.label }));
+    setValues((_values) => ({ ..._values, [key]: value.value }));
   };
 
   return { handleChange, handleFieldChange, values };

@@ -87,27 +87,29 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
         title="Masa bilgisini güncelle"
       />
       <div style={{ padding: "0 12.5%" }}>
-        <Form
-          initialValues={data}
-          operation="update"
-          props={{
-            actions: [
-              {
-                appearance: "warning",
-                iconAfter: <DownloadIcon label="" size="small" />,
-                children: "QR kodu indir",
-                onClick: handleDownloadQr,
-              },
-            ],
-            buttonText: "Güncelle",
-            description:
-              "Aşağıdaki formu doldurarak geçerli masa bilgisini güncelleyebilirsiniz.",
-            isLoading,
-            onSubmit: onUpdate,
-            operation: "update",
-            title: `Masa: ${data?.title}`,
-          }}
-        />
+        {data ? (
+          <Form
+            initialValues={data}
+            operation="update"
+            props={{
+              actions: [
+                {
+                  appearance: "warning",
+                  iconAfter: <DownloadIcon label="" size="small" />,
+                  children: "QR kodu indir",
+                  onClick: handleDownloadQr,
+                },
+              ],
+              buttonText: "Güncelle",
+              description:
+                "Aşağıdaki formu doldurarak geçerli masa bilgisini güncelleyebilirsiniz.",
+              isLoading,
+              onSubmit: onUpdate,
+              operation: "update",
+              title: `Masa: ${data?.title}`,
+            }}
+          />
+        ) : null}
         <canvas ref={canvasRef} width={200} height={200} />
         <canvas
           className="hidden"

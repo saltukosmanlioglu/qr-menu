@@ -31,8 +31,8 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
   const onUpdate = (values: LanguageRequest) => {
     setIsLoading(true);
 
-    const isDefault = Object.values(values.isDefault)[1];
-    const status = Object.values(values.status)[1];
+    const isDefault = values.isDefault && Object.values(values.isDefault)[1];
+    const status = values.status && Object.values(values.status)[1];
 
     languageService
       .update(params.id, {

@@ -32,6 +32,8 @@ const TextField: React.FunctionComponent<TextFieldProps> = ({
               placeholder={placeholder}
               type={type}
               {...fieldProps}
+              onChange={onChange}
+              value={value}
             />
             {!error && <HelperMessage>{errorMessage}</HelperMessage>}
           </React.Fragment>

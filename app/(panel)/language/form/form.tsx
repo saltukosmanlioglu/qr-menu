@@ -28,7 +28,7 @@ const Form = ({
           errorMessage="Dil kodu girmelisiniz"
           label="Dil kodu"
           name="code"
-          onChange={form.handleChange}
+          onChange={(e) => form.handleChange("code", e.currentTarget.value)}
           placeholder="Dil kodu girin"
           required
           value={form.values.code}
@@ -37,7 +37,7 @@ const Form = ({
           isRequired
           label="Varsayılan dil mi?"
           name="isDefault"
-          onChange={(e) => form.handleFieldChange("isDefault", { ...e })}
+          onChange={(e) => form.handleChange("isDefault", e?.value as any)}
           options={confirmations.map((confirmation) => ({ ...confirmation }))}
           placeholder="Varsayılan dil durumunu belirtin"
           value={confirmations.find(
@@ -52,7 +52,7 @@ const Form = ({
             isRequired
             label="Durumu"
             name="status"
-            onChange={(e) => form.handleFieldChange("status", { ...e })}
+            onChange={(e) => form.handleChange("status", e?.value as any)}
             options={status.map((statu) => ({ ...statu })) || []}
             placeholder="Durum seçiniz"
             value={status.find((statu) =>

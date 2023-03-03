@@ -38,7 +38,7 @@ const Form = ({
           errorMessage="Ürün adı girmelisiniz"
           label="Ürün adı"
           name="title"
-          onChange={form.handleChange}
+          onChange={(e) => form.handleChange("title", e.currentTarget.value)}
           placeholder="Ürün adı girin"
           required
           value={form.values.title}
@@ -47,7 +47,7 @@ const Form = ({
           errorMessage="Ürün fiyatı girmelisiniz"
           label="Ürün fiyatı"
           name="price"
-          onChange={form.handleChange}
+          onChange={(e) => form.handleChange("price", e.currentTarget.value)}
           placeholder="Ürün fiyatı girin"
           required
           value={form.values.price}
@@ -55,7 +55,7 @@ const Form = ({
         <TextField
           label="Ürün görseli"
           name="image"
-          onChange={form.handleChange}
+          onChange={(e) => form.handleChange("image", e.currentTarget.value)}
           placeholder="Ürün görseli seçin"
           value={form.values.image}
         />
@@ -82,14 +82,18 @@ const Form = ({
         <TextArea
           label="Ürün açıklaması"
           name="description"
-          onChange={form.handleChange}
-          placeholder="Ürün fiyatı girin"
+          onChange={(e) =>
+            form.handleChange("description", e.currentTarget.value)
+          }
+          placeholder="Ürün açıklaması girin"
           value={form.values.description}
         />
         <TextArea
           label="Ürün alerjeni"
           name="specifications.allergens"
-          onChange={form.handleChange}
+          onChange={(e) =>
+            form.handleChange("specifications.allergens", e.currentTarget.value)
+          }
           placeholder="Ürün alerjeni girin"
           value={form.values.allergens}
         />

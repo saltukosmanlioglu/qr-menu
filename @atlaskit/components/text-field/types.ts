@@ -25,7 +25,7 @@ export interface TextFieldProps {
   errorMessage?: string;
   label: string;
   name: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
   placeholder: string;
   required?: boolean;
   type?: HTMLInputTypeAttribute;

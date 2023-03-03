@@ -9,6 +9,7 @@ const TextArea: React.FunctionComponent<TextAreaProps> = ({
   errorMessage,
   label,
   name,
+  onChange,
   placeholder,
   required,
   value,
@@ -27,6 +28,7 @@ const TextArea: React.FunctionComponent<TextAreaProps> = ({
               rows={3}
               placeholder={placeholder}
               {...fieldProps}
+              onChange={onChange}
             />
             {error && <HelperMessage>{errorMessage}</HelperMessage>}
           </React.Fragment>

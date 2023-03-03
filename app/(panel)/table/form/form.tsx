@@ -15,22 +15,20 @@ const Form = ({ initialValues, props }: FormProps<TableRequest>) => {
   });
 
   return (
-    <React.Fragment>
-      <FormPage<TableRequest> {...props}>
-        <Gutter>
-          <TextField
-            autoFocus
-            errorMessage="Masa adı girmelisiniz"
-            label="Masa adı"
-            name="title"
-            onChange={form.handleChange}
-            placeholder="Masa adı girin"
-            required
-            value={form.values.title}
-          />
-        </Gutter>
-      </FormPage>
-    </React.Fragment>
+    <FormPage<TableRequest> {...props}>
+      <Gutter>
+        <TextField
+          autoFocus
+          errorMessage="Masa adı girmelisiniz"
+          label="Masa adı"
+          name="title"
+          onChange={(e) => form.handleChange("title", e.currentTarget.value)}
+          placeholder="Masa adı girin"
+          required
+          value={form.values.title}
+        />
+      </Gutter>
+    </FormPage>
   );
 };
 
