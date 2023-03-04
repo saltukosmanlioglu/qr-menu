@@ -29,16 +29,15 @@ import {
 
 import "@/styles/globals.css";
 
-import { menuItems } from "./constants";
+import { menuItems } from "./home/constants";
 
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html>
-      <head />
       <body>
         <PageLayout>
           <TopNavigation

@@ -4,7 +4,15 @@ const nextConfig = {
     appDir: true,
   },
   reactStrictMode: true,
-  swcMinify: true,
+  async redirects() {
+    return [
+      {
+        permanent: true,
+        source: "/",
+        destination: "/home",
+      },
+    ];
+  },
   devIndicators: {
     buildActivity: false,
   },
