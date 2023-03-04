@@ -15,6 +15,7 @@
     "@atlaskit/button": "^16.5.5",
     "@atlaskit/dropdown-menu": "^11.5.12",
     "@atlaskit/dynamic-table": "^14.8.11",
+    "@atlaskit/flag": "^15.0.7",
     "@atlaskit/form": "^8.8.4",
     "@atlaskit/menu": "^1.4.8",
     "@atlaskit/modal-dialog": "^12.4.8",

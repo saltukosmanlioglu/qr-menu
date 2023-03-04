@@ -162,6 +162,25 @@
     "@emotion/react" "^11.7.1"
     react-beautiful-dnd "^12.1.1"
 
+"@atlaskit/flag@^15.0.7":
+  version "15.0.7"
+  resolved "https://registry.yarnpkg.com/@atlaskit/flag/-/flag-15.0.7.tgz#afab0639da907c39020c1b3e0837e966eca6d745"
+  integrity sha512-140ROHwog4n/9/MIldDpBqvB4R4UqMRLNFCOd5w3HE+aX0NlnxEphX6jRWTGW0Pi+XU71qjVCrZVVilsvtr+ig==
+  dependencies:
+    "@atlaskit/analytics-next" "^9.0.0"
+    "@atlaskit/button" "^16.5.0"
+    "@atlaskit/ds-explorations" "^2.0.0"
+    "@atlaskit/ds-lib" "^2.1.0"
+    "@atlaskit/focus-ring" "^1.2.0"
+    "@atlaskit/icon" "^21.11.0"
+    "@atlaskit/motion" "^1.3.0"
+    "@atlaskit/portal" "^4.0.0"
+    "@atlaskit/theme" "^12.2.0"
+    "@atlaskit/tokens" "^1.2.0"
+    "@atlaskit/visually-hidden" "^1.1.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/react" "^11.7.1"
+
 "@atlaskit/focus-ring@^1.2.0":
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/@atlaskit/focus-ring/-/focus-ring-1.2.5.tgz#ec1acfa42af130c2f94c8e3389b58d9dbd9b799b"

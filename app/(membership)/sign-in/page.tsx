@@ -1,24 +1,41 @@
 "use client";
 import Button from "@atlaskit/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import TextField from "@/atlaskit/components/text-field";
 import useForm from "@/utils/hooks/form";
 import authService, { SignInRequest } from "@/services/auth";
 
 export default function SignIn() {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    authService.signIn({ username: "", password: "" });
+  const router = useRouter();
+
+  const onSubmit = (values: SignInRequest) => {
+    authService
+      .signIn(values)
+      .then((res) => {
+        localStorage.setItem("access_token", res.data.access_token);
+        router.push("/home");
+      })
+      .catch((err) => console.log(err))
+      .finally(() => router.push("/home"));
   };
 
   const form = useForm<SignInRequest>({
-    initialValues: {} as SignInRequest,
-    onSubmit: () => onSubmit,
+    initialValues: {
+      password: "",
+      username: "",
+    } as SignInRequest,
+    onSubmit: onSubmit,
   });
 
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit(form.values);
+      }}
+    >
       <div className="flex flex-wrap gap-2 [&>div]:w-full">
         <TextField
           autoFocus
