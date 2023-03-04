@@ -33,20 +33,6 @@ const Form = ({
           required
           value={form.values.code}
         />
-        <Select
-          isRequired
-          label="Varsayılan dil mi?"
-          name="isDefault"
-          onChange={(e) => form.handleChange("isDefault", e?.value as any)}
-          options={confirmations.map((confirmation) => ({ ...confirmation }))}
-          placeholder="Varsayılan dil durumunu belirtin"
-          value={confirmations.find(
-            (confirmation) =>
-              confirmation.value === form.values.isDefault && {
-                ...confirmation,
-              }
-          )}
-        />
         {operation === "update" && (
           <Select
             isRequired

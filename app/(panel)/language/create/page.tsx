@@ -17,13 +17,8 @@ export default function CreateLanguage() {
   const onCreate = (values: LanguageRequest) => {
     setIsLoading(true);
 
-    const isDefault = values.isDefault && Object.values(values.isDefault)[1];
-
     languageService
-      .create({
-        ...values,
-        isDefault,
-      })
+      .create(values)
       .then(() => router.back())
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
