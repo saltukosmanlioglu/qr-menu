@@ -5,11 +5,7 @@ import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import Button, { ButtonGroup } from "@atlaskit/button";
-import { Category, CategoryLanguageSupportProps } from "@/services/category";
-import { LanguageResponse } from "@/services/language";
-import LanguageSupport from "@/widgets/language-support";
-import Gutter from "@/components/gutter";
-import TextField from "@/components/text-field";
+import { Category } from "@/services/category";
 
 export const subCategoryHead = {
   cells: [
@@ -151,69 +147,6 @@ export const productRows = (
               iconBefore={<ArrowDownIcon label="" size="medium" />}
               onClick={() => moveUp()}
             />
-          </ButtonGroup>
-        ),
-      },
-    ],
-  }));
-
-export const languageHead = {
-  cells: [
-    {
-      key: "title",
-      content: "Dil kodu",
-    },
-    {
-      key: "categoryTitle",
-      content: "Kategori adı",
-    },
-    {
-      key: "operation",
-      content: "İşlemler",
-    },
-  ],
-};
-
-export const languageRows = (
-  data: LanguageResponse["data"],
-  onSubmit: (values: CategoryLanguageSupportProps) => void
-) =>
-  data?.map((language, index) => ({
-    key: `row-${index}-${language.id}`,
-    cells: [
-      {
-        key: language.id,
-        content: language.code,
-      },
-      {
-        key: language.id,
-        content: language.code,
-      },
-      {
-        key: language.id,
-        content: (
-          <ButtonGroup>
-            <LanguageSupport<CategoryLanguageSupportProps>
-              buttonText={language.code}
-              onSubmit={onSubmit}
-            >
-              {(form) => (
-                <Gutter width="w-full">
-                  <TextField
-                    autoFocus
-                    errorMessage="Kategori adı girmelisiniz"
-                    label="Kategori adı"
-                    name="title"
-                    onChange={(e) =>
-                      form.handleChange("title", e.currentTarget.value)
-                    }
-                    placeholder="Kategori adı girin"
-                    required
-                    value={form.values.title}
-                  />
-                </Gutter>
-              )}
-            </LanguageSupport>
           </ButtonGroup>
         ),
       },
