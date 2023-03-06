@@ -31,6 +31,10 @@ const Form = ({
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    console.log(form.values.parentId);
+  }, [form.values.parentId]);
+
   return (
     <FormPage<CategoryRequest> {...props}>
       <Gutter>
@@ -56,10 +60,10 @@ const Form = ({
         <Select
           label="Üst kategori"
           name="parentId"
-          onChange={(e) => form.handleChange("parentId", e?.value as any)}
+          onChange={(e) => form.handleFieldChange("parentId", { ...e })}
           options={
             categories?.map((category) => ({
-              label: category.title,
+              label: category.localizations[0].title,
               value: category.id,
             })) || []
           }
@@ -67,7 +71,7 @@ const Form = ({
           value={categories?.find((category) =>
             category.id === form.values.parentId
               ? {
-                  label: category.title,
+                  label: category.localizations[0].title,
                   value: category.id,
                 }
               : null
@@ -77,7 +81,7 @@ const Form = ({
           <Select
             label="Durumu"
             name="status"
-            onChange={(e) => form.handleChange("status", e?.value as any)}
+            onChange={(e) => form.handleFieldChange("status", { ...e })}
             options={status.map((statu) => ({ ...statu })) || []}
             placeholder="Durum seçiniz"
             value={status.find((statu) =>

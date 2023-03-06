@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { UseFormProps } from "./types";
 
@@ -14,7 +14,14 @@ const useForm = <T extends Record<string, any>>({
     }));
   };
 
-  return { handleChange, values };
+  const handleFieldChange = (
+    key: string,
+    value: { label?: string; value?: string | number | boolean }
+  ) => {
+    setValues((_values) => ({ ..._values, [key]: value }));
+  };
+
+  return { handleChange, handleFieldChange, values };
 };
 
 export default useForm;

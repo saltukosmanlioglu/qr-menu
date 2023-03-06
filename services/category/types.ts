@@ -1,22 +1,19 @@
+import { Product } from "@/services/product";
 import { StatusEnum } from "@/utils/types";
 
 import { BaseApiResponse, BaseProps } from "../types";
 
+export interface Localization {
+  languageCode: string | null;
+  title: string;
+}
+
 export interface Category extends BaseProps {
   color: string;
-  languageCode: string;
   parentId: string;
-  products: Array<{
-    id: string;
-    title: string;
-    desription: string;
-    price: string;
-    audit: {
-      createdAt: string;
-    };
-  }>;
+  products: Array<Product>;
+  localizations: Array<Localization>;
   subCategories: Array<Omit<Category, "parentId">>;
-  title: string;
 }
 
 export interface CategoryParams {
@@ -25,9 +22,14 @@ export interface CategoryParams {
 
 export interface CategoryRequest {
   color: string;
-  languageCode: string;
+  localizations: Array<Localization>;
   parentId: string;
   status: StatusEnum;
+  title: string;
+}
+
+export interface CategoryLanguageSupportProps {
+  languageCode: string;
   title: string;
 }
 

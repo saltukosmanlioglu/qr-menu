@@ -5,7 +5,87 @@ import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import Button, { ButtonGroup } from "@atlaskit/button";
-import { Category } from "@/services/category";
+import { Category, CategoryLanguageSupportProps } from "@/services/category";
+import { LanguageResponse } from "@/services/language";
+import LanguageSupport from "@/widgets/language-support";
+import Gutter from "@/components/gutter";
+import TextField from "@/components/text-field";
+
+export const subCategoryHead = {
+  cells: [
+    {
+      key: "title",
+      content: "Kategori adı",
+    },
+    {
+      key: "color",
+      content: "Kategori rengi",
+    },
+    {
+      key: "createdDate",
+      content: "Oluşturulma tarihi",
+    },
+    {
+      key: "operation",
+      content: "İşlemler",
+    },
+  ],
+};
+
+export const subCategoryRows = (
+  data: Category["subCategories"],
+  moveDown: () => void,
+  moveUp: () => void
+) =>
+  data?.map((subCategory, index) => ({
+    key: `row-${index}-${subCategory.id}`,
+    cells: [
+      {
+        key: subCategory.id,
+        content: (
+          <span style={{ color: subCategory.color }}>
+            {subCategory.localizations[0].title}
+          </span>
+        ),
+      },
+      {
+        key: subCategory.id,
+        content: (
+          <span style={{ color: subCategory.color }}>{subCategory.color}</span>
+        ),
+      },
+      {
+        key: subCategory.id,
+        content: new Date(subCategory.audit.createdAt).toLocaleString(),
+      },
+      {
+        key: subCategory.id,
+        content: (
+          <ButtonGroup>
+            <Link href={`/category/${subCategory.id}`}>
+              <Button
+                appearance="default"
+                children="Düzenle"
+                iconAfter={<EditFilledIcon label="" size="small" />}
+              />
+            </Link>
+            <Button
+              appearance="default"
+              isDisabled={data.length === 0}
+              iconBefore={<ArrowUpIcon label="" size="medium" />}
+              onClick={() => moveDown()}
+            />
+            <Button
+              appearance="default"
+              isDisabled={data.length === data.length - 1}
+              iconBefore={<ArrowDownIcon label="" size="medium" />}
+              onClick={() => moveUp()}
+            />
+          </ButtonGroup>
+        ),
+      },
+    ],
+  }));
 
 export const productHead = {
   cells: [
@@ -77,19 +157,15 @@ export const productRows = (
     ],
   }));
 
-export const subCategoryHead = {
+export const languageHead = {
   cells: [
     {
       key: "title",
+      content: "Dil kodu",
+    },
+    {
+      key: "categoryTitle",
       content: "Kategori adı",
-    },
-    {
-      key: "color",
-      content: "Kategori rengi",
-    },
-    {
-      key: "createdDate",
-      content: "Oluşturulma tarihi",
     },
     {
       key: "operation",
@@ -98,53 +174,46 @@ export const subCategoryHead = {
   ],
 };
 
-export const subCategoryRows = (
-  data: Category["subCategories"],
-  moveDown: () => void,
-  moveUp: () => void
+export const languageRows = (
+  data: LanguageResponse["data"],
+  onSubmit: (values: CategoryLanguageSupportProps) => void
 ) =>
-  data?.map((subCategory, index) => ({
-    key: `row-${index}-${subCategory.id}`,
+  data?.map((language, index) => ({
+    key: `row-${index}-${language.id}`,
     cells: [
       {
-        key: subCategory.id,
-        content: (
-          <span style={{ color: subCategory.color }}>{subCategory.title}</span>
-        ),
+        key: language.id,
+        content: language.code,
       },
       {
-        key: subCategory.id,
-        content: (
-          <span style={{ color: subCategory.color }}>{subCategory.color}</span>
-        ),
+        key: language.id,
+        content: language.code,
       },
       {
-        key: subCategory.id,
-        content: new Date(subCategory.audit.createdAt).toLocaleString(),
-      },
-      {
-        key: subCategory.id,
+        key: language.id,
         content: (
           <ButtonGroup>
-            <Link href={`/category/${subCategory.id}`}>
-              <Button
-                appearance="default"
-                children="Düzenle"
-                iconAfter={<EditFilledIcon label="" size="small" />}
-              />
-            </Link>
-            <Button
-              appearance="default"
-              isDisabled={data.length === 0}
-              iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => moveDown()}
-            />
-            <Button
-              appearance="default"
-              isDisabled={data.length === data.length - 1}
-              iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => moveUp()}
-            />
+            <LanguageSupport<CategoryLanguageSupportProps>
+              buttonText={language.code}
+              onSubmit={onSubmit}
+            >
+              {(form) => (
+                <Gutter width="w-full">
+                  <TextField
+                    autoFocus
+                    errorMessage="Kategori adı girmelisiniz"
+                    label="Kategori adı"
+                    name="title"
+                    onChange={(e) =>
+                      form.handleChange("title", e.currentTarget.value)
+                    }
+                    placeholder="Kategori adı girin"
+                    required
+                    value={form.values.title}
+                  />
+                </Gutter>
+              )}
+            </LanguageSupport>
           </ButtonGroup>
         ),
       },

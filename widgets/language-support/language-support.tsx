@@ -1,7 +1,5 @@
-"use client";
-import React, { useCallback, useEffect, useState } from "react";
-import Button from "@atlaskit/button";
-import DropdownMenu, { DropdownItem } from "@atlaskit/dropdown-menu";
+import React, { useCallback, useState } from "react";
+import Button, { ButtonGroup } from "@atlaskit/button";
 import Form from "@atlaskit/form";
 import AtlaskitModalDialog, {
   ModalBody,
@@ -10,66 +8,82 @@ import AtlaskitModalDialog, {
   ModalTitle,
   ModalTransition,
 } from "@atlaskit/modal-dialog";
-import WorldIcon from "@atlaskit/icon/glyph/world";
+import AddIcon from "@atlaskit/icon/glyph/add";
 
-import Gutter from "@/components/gutter";
-import languageService, { LanguageResponse } from "@/services/language";
+import Table from "@/atlaskit/widgets/table";
+import useForm from "@/utils/hooks/form";
+
+import { languageHead } from "./constants";
 
 import { LanguageSupportProps } from "./types";
 
 const LanguageSupport = <T extends object>({
   children,
+  data,
+  isLoading,
   onSubmit,
 }: LanguageSupportProps<T>) => {
-  const [languages, setLanguages] = useState<LanguageResponse>();
+  const [activeLanguage, setActiveLanguage] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const openModal = useCallback(() => setIsOpen(true), []);
-
   const closeModal = useCallback(() => setIsOpen(false), []);
 
-  useEffect(() => {
-    languageService
-      .get()
-      .then((res) => setLanguages(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const form = useForm<T>({
+    initialValues: {} as T,
+    onSubmit: onSubmit,
+  });
+
+  const handleClick = (code: string) => {
+    openModal();
+    setActiveLanguage(code);
+    form.handleChange("languageCode", activeLanguage);
+  };
 
   return (
-    <div>
-      <DropdownMenu
-        appearance="default"
-        placement="bottom-end"
-        trigger={({ triggerRef, ...props }) => (
-          <Button
-            {...props}
-            appearance="primary"
-            children="Dil desteği ekle"
-            iconAfter={<WorldIcon label="more" />}
-            ref={triggerRef}
-          />
-        )}
-      >
-        {languages?.data.map((language, index) => (
-          <DropdownItem
-            key={index}
-            children={language.code}
-            onClick={openModal}
-          />
-        ))}
-      </DropdownMenu>
+    <React.Fragment>
+      <Table
+        tableProps={{
+          isLoading,
+          head: languageHead,
+          rows: data?.map((language, index) => ({
+            key: `row-${index}-${language.id}`,
+            cells: [
+              {
+                key: language.id,
+                content: language.code,
+              },
+              {
+                key: language.id,
+                content: language.code,
+              },
+              {
+                key: language.id,
+                content: (
+                  <ButtonGroup>
+                    <Button
+                      appearance="primary"
+                      children={`${language.code} Dil desteği ekle`}
+                      iconAfter={<AddIcon label="" size="small" />}
+                      onClick={() => handleClick(language.code)}
+                    />
+                  </ButtonGroup>
+                ),
+              },
+            ],
+          })),
+        }}
+      />
       <ModalTransition>
         {isOpen && (
-          <AtlaskitModalDialog onClose={closeModal}>
+          <AtlaskitModalDialog onClose={closeModal} width="small">
             <Form<T> onSubmit={onSubmit}>
               {({ formProps }) => (
                 <form {...formProps}>
                   <ModalHeader>
                     <ModalTitle>Dil desteği ekle</ModalTitle>
                   </ModalHeader>
-                  <ModalBody>
-                    <Gutter width="w-full">{children()}</Gutter>
-                  </ModalBody>
+                  <ModalBody>{children(form as any)}</ModalBody>
                   <ModalFooter>
                     <Button
                       appearance="subtle"
@@ -89,7 +103,7 @@ const LanguageSupport = <T extends object>({
           </AtlaskitModalDialog>
         )}
       </ModalTransition>
-    </div>
+    </React.Fragment>
   );
 };
 

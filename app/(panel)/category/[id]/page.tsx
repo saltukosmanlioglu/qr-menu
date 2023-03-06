@@ -13,14 +13,23 @@ import WorldIcon from "@atlaskit/icon/glyph/world";
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Tabs from "@/atlaskit/widgets/tabs";
-import categoryService, { Category } from "@/services/category";
+import Gutter from "@/components/gutter";
+import TextField from "@/components/text-field";
+import categoryService, {
+  Category,
+  CategoryLanguageSupportProps,
+  Localization,
+} from "@/services/category";
+import languageService, { LanguageResponse } from "@/services/language";
+import LanguageSupport from "@/widgets/language-support";
 
-import { LanguageSupport, Products, SubCategories, Update } from "./tabs";
+import { Products, SubCategories, Update } from "./tabs";
 
 import { breadcrumbItemList } from "./constants";
 
 export default function UpdateCategory({ params }: { params: { id: string } }) {
   const [data, setData] = useState<Category>();
+  const [languages, setLanguages] = useState<LanguageResponse["data"]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
@@ -32,12 +41,41 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
       .catch((err) => console.log(err));
   };
 
+  const addLanguageSupport = (values: CategoryLanguageSupportProps) => {
+    let localizations: Array<Localization> = [];
+
+    if (data) {
+      localizations.push(...data?.localizations, {
+        languageCode: values.languageCode,
+        title: values.title,
+      });
+
+      categoryService
+        .update(params.id, {
+          color: data.color,
+          localizations,
+          parentId: data.parentId,
+          status: data.audit.status,
+          title: data.localizations[0].title,
+        })
+        .then(() => router.back())
+        .catch((err) => console.log(err));
+    }
+  };
+
   useEffect(() => {
     categoryService
       .getById(params.id)
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
   }, [params.id]);
+
+  useEffect(() => {
+    languageService
+      .get()
+      .then((res) => setLanguages(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <main>
@@ -103,7 +141,30 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
             component: <Products data={data?.products} isLoading={isLoading} />,
           },
           {
-            component: <LanguageSupport />,
+            component: (
+              <LanguageSupport<CategoryLanguageSupportProps>
+                data={languages}
+                isLoading={false}
+                onSubmit={addLanguageSupport}
+              >
+                {(form) => (
+                  <Gutter width="w-full">
+                    <TextField
+                      autoFocus
+                      errorMessage="Kategori adı girmelisiniz"
+                      label="Kategori adı"
+                      name="title"
+                      onChange={(e) =>
+                        form.handleChange("title", e.currentTarget.value)
+                      }
+                      placeholder="Kategori adı girin"
+                      required
+                      value={form.values.title}
+                    />
+                  </Gutter>
+                )}
+              </LanguageSupport>
+            ),
           },
         ]}
       />

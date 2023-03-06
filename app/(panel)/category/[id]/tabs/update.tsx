@@ -1,6 +1,9 @@
 import React from "react";
 
-import categoryService, { CategoryRequest } from "@/services/category";
+import categoryService, {
+  CategoryRequest,
+  Localization,
+} from "@/services/category";
 
 import Form from "../../form";
 
@@ -13,38 +16,46 @@ const Update: React.FunctionComponent<UpdateProps> = ({
   router,
 }) => {
   const onUpdate = (values: CategoryRequest) => {
-    const languageCode = Object.values(values.languageCode)[1];
     const parentId = Object.values(values.parentId)[1];
+    const status = Object.values(values.status)[1];
+
+    let localizations: Array<Localization> = [];
+
+    localizations.push({
+      languageCode: null,
+      title: values.title,
+    });
 
     categoryService
       .update(params.id, {
         ...values,
-        languageCode,
+        localizations,
         parentId,
+        status,
       })
       .then(() => router.back())
       .catch((err) => console.log(err));
   };
 
-  return (
-    <div>
-      <Form
-        initialValues={
-          data ? { ...data, status: data.audit.status } : undefined
-        }
-        operation="update"
-        props={{
-          buttonText: "Güncelle",
-          description:
-            "Aşağıdaki formu doldurarak geçerli kategoriyi güncelleyebilirsiniz.",
-          isLoading,
-          onSubmit: onUpdate,
-          operation: "update",
-          title: `Kategori: ${data?.title}`,
-        }}
-      />
-    </div>
-  );
+  return data ? (
+    <Form
+      initialValues={{
+        ...data,
+        status: data.audit.status,
+        title: data.localizations[0].title,
+      }}
+      operation="update"
+      props={{
+        buttonText: "Güncelle",
+        description:
+          "Aşağıdaki formu doldurarak geçerli kategoriyi güncelleyebilirsiniz.",
+        isLoading,
+        onSubmit: onUpdate,
+        operation: "update",
+        title: `Kategori: ${data?.localizations[0].title}`,
+      }}
+    />
+  ) : null;
 };
 
 export default Update;

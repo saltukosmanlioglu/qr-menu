@@ -46,7 +46,9 @@ export const rows = (
       {
         key: category.id,
         content: (
-          <span style={{ color: category.color }}>{category.title}</span>
+          <span style={{ color: category.color }}>
+            {category.localizations?.[0]?.title}
+          </span>
         ),
       },
       {

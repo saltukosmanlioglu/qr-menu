@@ -3,7 +3,10 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
-import categoryService, { CategoryRequest } from "@/services/category";
+import categoryService, {
+  CategoryRequest,
+  Localization,
+} from "@/services/category";
 
 import Form from "../form";
 
@@ -17,12 +20,19 @@ export default function CreateCategory() {
   const onCreate = (values: CategoryRequest) => {
     setIsLoading(true);
 
-    const parentId = values.parentId && Object.values(values.parentId)[1];
+    const parentId = values?.parentId && Object.values(values.parentId)[1];
+
+    let localizations: Array<Localization> = [];
+
+    localizations.push({
+      languageCode: null,
+      title: values.title,
+    });
 
     categoryService
       .create({
         ...values,
-        languageCode: "TR",
+        localizations,
         parentId,
       })
       .then(() => router.back())

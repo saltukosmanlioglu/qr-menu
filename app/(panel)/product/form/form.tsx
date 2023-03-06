@@ -65,7 +65,7 @@ const Form = ({
           onChange={(e) => form.handleChange("parentId", e?.value as any)}
           options={
             categories?.map((category) => ({
-              label: category.title,
+              label: category.localizations[0].title,
               value: category.id,
             })) || []
           }
@@ -73,7 +73,7 @@ const Form = ({
           value={categories?.find((category) =>
             category.id === form.values.parentId
               ? {
-                  label: category.title,
+                  label: category.localizations[0].title,
                   value: category.id,
                 }
               : null

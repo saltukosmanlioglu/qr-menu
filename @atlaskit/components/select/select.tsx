@@ -28,7 +28,6 @@ const Select: React.FunctionComponent<SelectProps> = ({
             {...rest}
             isClearable
             isLoading={isLoading}
-            onChange={onChange}
             options={options}
             placeholder={placeholder}
             value={value}
