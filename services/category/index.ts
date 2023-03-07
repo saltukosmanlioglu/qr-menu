@@ -3,8 +3,8 @@ export * as default from "./endpoints";
 export type {
   Category,
   CategoryLanguageSupportProps,
+  CategoryLocalization,
   CategoryParams,
   CategoryRequest,
   CategoryResponse,
-  Localization,
 } from "./types";

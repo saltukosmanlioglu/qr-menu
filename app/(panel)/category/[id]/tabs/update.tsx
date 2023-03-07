@@ -1,8 +1,8 @@
 import React from "react";
 
 import categoryService, {
+  CategoryLocalization,
   CategoryRequest,
-  Localization,
 } from "@/services/category";
 
 import Form from "../../form";
@@ -19,7 +19,7 @@ const Update: React.FunctionComponent<UpdateProps> = ({
     const parentId = Object.values(values.parentId)[1];
     const status = Object.values(values.status)[1];
 
-    let localizations: Array<Localization> = [];
+    let localizations: Array<CategoryLocalization> = [];
 
     localizations.push({
       languageCode: null,

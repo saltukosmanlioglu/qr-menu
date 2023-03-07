@@ -31,10 +31,6 @@ const Form = ({
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    console.log(form.values.parentId);
-  }, [form.values.parentId]);
-
   return (
     <FormPage<CategoryRequest> {...props}>
       <Gutter>

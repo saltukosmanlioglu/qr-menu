@@ -3,7 +3,7 @@ import { StatusEnum } from "@/utils/types";
 
 import { BaseApiResponse, BaseProps } from "../types";
 
-export interface Localization {
+export interface CategoryLocalization {
   languageCode: string | null;
   title: string;
 }
@@ -12,7 +12,7 @@ export interface Category extends BaseProps {
   color: string;
   parentId: string;
   products: Array<Product>;
-  localizations: Array<Localization>;
+  localizations: Array<CategoryLocalization>;
   subCategories: Array<Omit<Category, "parentId">>;
 }
 
@@ -22,7 +22,7 @@ export interface CategoryParams {
 
 export interface CategoryRequest {
   color: string;
-  localizations: Array<Localization>;
+  localizations: Array<CategoryLocalization>;
   parentId: string;
   status: StatusEnum;
   title: string;

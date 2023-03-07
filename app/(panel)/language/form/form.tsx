@@ -4,7 +4,6 @@ import Select from "@/atlaskit/components/select";
 import Gutter from "@/components/gutter";
 import TextField from "@/atlaskit/components/text-field";
 import { LanguageRequest } from "@/services/language";
-import { confirmations } from "@/utils/constants";
 import useForm from "@/utils/hooks/form";
 import { FormProps } from "@/utils/types";
 import { status } from "@/utils/constants";
@@ -17,7 +16,6 @@ const Form = ({
 }: FormProps<LanguageRequest>) => {
   const form = useForm<LanguageRequest>({
     initialValues: { ...initialValues } as LanguageRequest,
-    onSubmit: props.onSubmit,
   });
 
   return (

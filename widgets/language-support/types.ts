@@ -1,11 +1,11 @@
+import { Category } from "@/services/category";
 import { LanguageResponse } from "@/services/language";
-import { UseFormProps } from "@/utils/hooks/form";
 
 export interface LanguageSupportProps<T> {
+  category?: Category;
+  children: () => JSX.Element;
   data?: LanguageResponse["data"];
   isLoading: boolean;
-  children: (
-    form: UseFormProps<T> & { values: T; handleChange: any }
-  ) => JSX.Element;
-  onSubmit: (values: T) => void;
+  onCreate: (values: T, langaugeCode: string) => void;
+  removeLanguageSupport: (languageCode: string) => void;
 }

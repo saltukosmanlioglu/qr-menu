@@ -1,6 +1,8 @@
+import React from "react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
-import { Category } from "@/services/category";
+import { Category, CategoryLocalization } from "@/services/category";
+import { LanguageResponse } from "@/services/language";
 
 export interface UpdateProps {
   data?: Category;
@@ -17,4 +19,12 @@ export interface SubCategoriesProps {
 export interface ProductProps {
   data?: Category["products"];
   isLoading: boolean;
+}
+
+export interface LanguageProps {
+  data: Category;
+  initialValues: CategoryLocalization;
+  languages?: LanguageResponse["data"];
+  params: { id: string };
+  setData: React.Dispatch<React.SetStateAction<Category | undefined>>;
 }

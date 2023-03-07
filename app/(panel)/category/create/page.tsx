@@ -4,8 +4,8 @@ import React, { useState } from "react";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
 import categoryService, {
+  CategoryLocalization,
   CategoryRequest,
-  Localization,
 } from "@/services/category";
 
 import Form from "../form";
@@ -22,7 +22,7 @@ export default function CreateCategory() {
 
     const parentId = values?.parentId && Object.values(values.parentId)[1];
 
-    let localizations: Array<Localization> = [];
+    let localizations: Array<CategoryLocalization> = [];
 
     localizations.push({
       languageCode: null,

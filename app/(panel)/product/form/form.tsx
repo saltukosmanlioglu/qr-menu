@@ -20,7 +20,6 @@ const Form = ({
 
   const form = useForm<ProductRequest>({
     initialValues: { ...initialValues } as ProductRequest,
-    onSubmit: props.onSubmit,
   });
 
   useEffect(() => {

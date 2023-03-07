@@ -11,7 +11,6 @@ import FormPage from "@/widgets/form-page";
 const Form = ({ initialValues, props }: FormProps<TableRequest>) => {
   const form = useForm<TableRequest>({
     initialValues: { ...initialValues } as TableRequest,
-    onSubmit: props.onSubmit,
   });
 
   return (
