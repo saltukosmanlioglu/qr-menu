@@ -27,7 +27,7 @@ export default function CreateProduct() {
         languageCode,
         parentId,
       })
-      .then(() => router.back())
+      .then(() => router.push("/product/list"))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };

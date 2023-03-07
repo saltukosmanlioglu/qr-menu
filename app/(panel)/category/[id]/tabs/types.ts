@@ -23,7 +23,6 @@ export interface ProductProps {
 
 export interface LanguageProps {
   data: Category;
-  initialValues: CategoryLocalization;
   languages?: LanguageResponse["data"];
   params: { id: string };
   setData: React.Dispatch<React.SetStateAction<Category | undefined>>;

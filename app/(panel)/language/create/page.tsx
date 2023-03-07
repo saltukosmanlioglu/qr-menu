@@ -19,7 +19,7 @@ export default function CreateLanguage() {
 
     languageService
       .create(values)
-      .then(() => router.back())
+      .then(() => router.push("/language/list"))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };

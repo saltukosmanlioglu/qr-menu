@@ -29,7 +29,7 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
   const onRemove = () => {
     categoryService
       .remove(params.id)
-      .then(() => router.back())
+      .then(() => router.push("/category/list"))
       .catch((err) => console.log(err));
   };
 
@@ -114,7 +114,6 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
             component: data && (
               <Language
                 data={data}
-                initialValues={{ languageCode: "", title: "" }}
                 languages={languages}
                 params={params}
                 setData={setData}

@@ -24,7 +24,7 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
   const onRemove = () => {
     languageService
       .remove(params.id)
-      .then(() => router.back())
+      .then(() => router.push("/language/list"))
       .catch((err) => console.log(err));
   };
 
@@ -38,7 +38,7 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
         ...values,
         status,
       })
-      .then(() => router.back())
+      .then(() => router.push("/language/list"))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };

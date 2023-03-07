@@ -26,7 +26,7 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
   const onRemove = () => {
     productService
       .remove(params.id)
-      .then(() => router.back())
+      .then(() => router.push("/product/list"))
       .catch((err) => console.log(err));
   };
 

@@ -8,4 +8,5 @@ export interface LanguageSupportProps<T> {
   isLoading: boolean;
   onCreate: (values: T, langaugeCode: string) => void;
   removeLanguageSupport: (languageCode: string) => void;
+  onUpdate: (values: T, langaugeCode: string) => void;
 }

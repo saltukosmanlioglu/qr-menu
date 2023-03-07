@@ -35,7 +35,7 @@ export default function CreateCategory() {
         localizations,
         parentId,
       })
-      .then(() => router.back())
+      .then(() => router.push("/category/list"))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TextField from "@/atlaskit/components/text-field";
 import Gutter from "@/components/gutter";
@@ -10,15 +10,15 @@ import { LanguageProps } from "./types";
 
 const Language: React.FunctionComponent<LanguageProps> = ({
   data,
-  initialValues,
   languages,
   params,
   setData,
 }) => {
   const form = useForm<CategoryLocalization>({
     initialValues: {
-      ...initialValues,
-    } as CategoryLocalization,
+      languageCode: "",
+      title: "",
+    },
   });
 
   const addLanguageSupport = (
@@ -51,12 +51,14 @@ const Language: React.FunctionComponent<LanguageProps> = ({
     languageCode: string
   ) => {
     if (data) {
-      let localizations: Array<CategoryLocalization> = [];
+      let localizations: Array<CategoryLocalization> =
+        data.localizations.slice();
 
-      localizations.push(...data.localizations, {
-        languageCode,
-        title: values.title,
-      });
+      const languageIndex = localizations.findIndex(
+        (localization) => localization.languageCode === languageCode
+      );
+
+      localizations[languageIndex].title = values.title;
 
       categoryService
         .update(params.id, {
@@ -101,26 +103,23 @@ const Language: React.FunctionComponent<LanguageProps> = ({
       data={languages}
       isLoading={false}
       onCreate={addLanguageSupport}
+      onUpdate={updateLanguageSupport}
       removeLanguageSupport={removeLanguageSupport}
     >
-      {() =>
-        initialValues && (
-          <Gutter width="w-full">
-            <TextField
-              autoFocus
-              errorMessage="Kategori adı girmelisiniz"
-              label="Kategori adı"
-              name="title"
-              onChange={(e) =>
-                form.handleChange("title", e.currentTarget.value)
-              }
-              placeholder="Kategori adı girin"
-              required
-              value={form.values.title}
-            />
-          </Gutter>
-        )
-      }
+      {() => (
+        <Gutter width="w-full">
+          <TextField
+            autoFocus
+            errorMessage="Kategori adı girmelisiniz"
+            label="Kategori adı"
+            name="title"
+            onChange={(e) => form.handleChange("title", e.currentTarget.value)}
+            placeholder="Kategori adı girin"
+            required
+            value={form.values.title}
+          />
+        </Gutter>
+      )}
     </LanguageSupport>
   );
 };

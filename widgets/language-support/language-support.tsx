@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import ReactDOM from "react-dom";
 import Button, { ButtonGroup } from "@atlaskit/button";
 import Form from "@atlaskit/form";
 import AtlaskitModalDialog, {
@@ -14,6 +15,7 @@ import TrashIcon from "@atlaskit/icon/glyph/trash";
 
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import Table from "@/atlaskit/widgets/table";
+import { OperationType } from "@/utils/types";
 
 import { languageHead } from "./constants";
 
@@ -25,26 +27,37 @@ const LanguageSupport = <T extends object>({
   data,
   isLoading,
   onCreate,
+  onUpdate,
   removeLanguageSupport,
 }: LanguageSupportProps<T>) => {
   const [activeLanguage, setActiveLanguage] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const [activeOperation, setActiveOperation] = useState<OperationType>();
+
   const openModal = useCallback(() => setIsOpen(true), []);
   const closeModal = useCallback(() => setIsOpen(false), []);
 
-  const handleClick = (code: string) => {
-    openModal();
+  const handleClick = (code: string, operation: OperationType) => {
     setActiveLanguage(code);
+    setActiveOperation(operation);
+    openModal();
   };
 
+  const handleSubmit = (values: T) => {
+    activeOperation === "create"
+      ? onCreate(values, activeLanguage)
+      : onUpdate(values, activeLanguage);
+
+    closeModal();
+  };
   return (
     <React.Fragment>
       <Table
         tableProps={{
           isLoading,
           head: languageHead,
-          rows: data?.slice(1).map((language, index) => ({
+          rows: data?.slice(1)?.map((language, index) => ({
             key: `row-${index}-${language.id}`,
             cells: [
               {
@@ -72,7 +85,7 @@ const LanguageSupport = <T extends object>({
                           appearance="default"
                           children={`${language.code} Dil desteğini güncelle`}
                           iconAfter={<EditIcon label="" size="small" />}
-                          onClick={() => handleClick(language.code)}
+                          onClick={() => handleClick(language.code, "update")}
                         />
                         <ModalDialog
                           appearance="danger"
@@ -89,7 +102,7 @@ const LanguageSupport = <T extends object>({
                         appearance="primary"
                         children={`${language.code} Dil desteği ekle`}
                         iconAfter={<AddIcon label="" size="small" />}
-                        onClick={() => handleClick(language.code)}
+                        onClick={() => handleClick(language.code, "create")}
                       />
                     )}
                   </ButtonGroup>
@@ -102,16 +115,15 @@ const LanguageSupport = <T extends object>({
       <ModalTransition>
         {isOpen && (
           <AtlaskitModalDialog onClose={closeModal} width="small">
-            <Form<T>
-              onSubmit={(values) => {
-                onCreate(values, activeLanguage);
-                closeModal();
-              }}
-            >
+            <Form<T> onSubmit={handleSubmit}>
               {({ formProps }) => (
                 <form {...formProps}>
                   <ModalHeader>
-                    <ModalTitle>{activeLanguage} Dil desteği ekle</ModalTitle>
+                    <ModalTitle>
+                      {activeOperation === "create"
+                        ? `${activeLanguage} Dil desteği ekle`
+                        : `${activeLanguage} Dil desteğini güncelle`}
+                    </ModalTitle>
                   </ModalHeader>
                   <ModalBody>{children()}</ModalBody>
                   <ModalFooter>
@@ -122,7 +134,9 @@ const LanguageSupport = <T extends object>({
                     />
                     <Button
                       appearance="primary"
-                      children="Oluştur"
+                      children={
+                        activeOperation === "create" ? "Oluştur" : "Güncelle"
+                      }
                       type="submit"
                     />
                   </ModalFooter>

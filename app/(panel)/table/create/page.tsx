@@ -18,7 +18,7 @@ export default function CreateTable() {
 
     tableService
       .create(values)
-      .then(() => router.back())
+      .then(() => router.push("/table/list"))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };

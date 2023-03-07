@@ -33,7 +33,7 @@ const Update: React.FunctionComponent<UpdateProps> = ({
         parentId,
         status,
       })
-      .then(() => router.back())
+      .then(() => router.push("/category/list"))
       .catch((err) => console.log(err));
   };
 

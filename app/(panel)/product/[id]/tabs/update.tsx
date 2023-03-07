@@ -21,7 +21,7 @@ const Update: React.FunctionComponent<UpdateProps> = ({
         languageCode,
         parentId,
       })
-      .then(() => router.back())
+      .then(() => router.push("/product/list"))
       .catch((err) => console.log(err));
   };
 

@@ -26,7 +26,7 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
   const onRemove = () => {
     tableService
       .remove(params.id)
-      .then(() => router.back())
+      .then(() => router.push("/table/list"))
       .catch((err) => console.log(err))
       .finally(() => {});
   };
@@ -44,7 +44,7 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
 
     tableService
       .update(params.id, values)
-      .then(() => router.back())
+      .then(() => router.push("/table/list"))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };
