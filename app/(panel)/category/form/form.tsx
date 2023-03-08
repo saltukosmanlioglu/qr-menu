@@ -21,7 +21,6 @@ const Form = ({
 
   const form = useForm<CategoryRequest>({
     initialValues: { ...initialValues } as CategoryRequest,
-    onSubmit: props.onSubmit,
   });
 
   useEffect(() => {

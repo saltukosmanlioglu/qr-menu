@@ -2,18 +2,27 @@ import { StatusEnum } from "@/utils/types";
 
 import { BaseApiResponse, BaseProps } from "../types";
 
-export interface Product extends BaseProps {
-  title: string;
+export interface ProductLocalization {
   description: string;
-  price: number;
-  categoryId: string;
-  image: string;
-  parentId: string;
   languageCode: string;
-  specifications: {
-    allergens: string;
-  };
-  subProducts: Array<Product>;
+  specifications: ProductSpecifications;
+  title: string;
+}
+
+export interface ProductSpecifications {
+  allergens: string;
+}
+
+export interface Product extends BaseProps {
+  categoryId: string;
+  description: string;
+  image: string;
+  localizations: Array<ProductLocalization>;
+  parentId: string;
+  price: number;
+  specifications: ProductSpecifications;
+  subProducts: Array<Omit<Product, "subProducts">>;
+  title: string;
 }
 
 export interface ProductParams {
@@ -21,15 +30,12 @@ export interface ProductParams {
 }
 
 export interface ProductRequest {
-  allergens: string;
-  categoryId: string;
-  description: string;
-  image: string;
-  languageCode: string;
-  parentId: string;
-  price: number;
   status: StatusEnum;
-  title: string;
+  price: number;
+  categoryId: string;
+  image: string;
+  parentId: string;
+  localizations: Array<ProductLocalization>;
 }
 
 export interface ProductResponse extends BaseApiResponse<Array<Product>> {}

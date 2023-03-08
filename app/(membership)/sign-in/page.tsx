@@ -26,7 +26,6 @@ export default function SignIn() {
       password: "",
       username: "",
     } as SignInRequest,
-    onSubmit: onSubmit,
   });
 
   return (

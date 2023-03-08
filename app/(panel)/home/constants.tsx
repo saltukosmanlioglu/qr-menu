@@ -22,20 +22,6 @@ export const menuItems = [
     title: "Kategoriler",
   },
   {
-    icon: <BacklogIcon label="" size="medium" />,
-    subItems: [
-      {
-        href: "/product/create",
-        text: "Ürün oluştur",
-      },
-      {
-        href: "/product/list",
-        text: "Ürünler",
-      },
-    ],
-    title: "Ürünler",
-  },
-  {
     icon: <ImageIcon label="" size="medium" />,
     subItems: [
       {
