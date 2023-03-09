@@ -99,7 +99,7 @@ const Language: React.FunctionComponent<LanguageProps> = ({
 
   return (
     <LanguageSupport<CategoryLocalization>
-      category={data}
+      relatedData={data}
       data={languages}
       isLoading={false}
       onCreate={addLanguageSupport}

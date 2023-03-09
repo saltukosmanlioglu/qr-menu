@@ -1,8 +1,7 @@
-import { Category } from "@/services/category";
 import { LanguageResponse } from "@/services/language";
 
 export interface LanguageSupportProps<T> {
-  category?: Category;
+  relatedData: any;
   children: () => JSX.Element;
   data?: LanguageResponse["data"];
   isLoading: boolean;

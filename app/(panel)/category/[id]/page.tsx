@@ -55,7 +55,7 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
             <Link href="/category/create">
               <Button appearance="primary" children="Alt kategori ekle" />
             </Link>
-            <Link href="/product/create">
+            <Link href={`/product/create?categoryId=${params.id}`}>
               <Button appearance="primary" children="Ürün ekle" />
             </Link>
             <ModalDialog

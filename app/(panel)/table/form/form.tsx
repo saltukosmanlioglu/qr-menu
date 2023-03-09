@@ -15,7 +15,7 @@ const Form = ({ initialValues, props }: FormProps<TableRequest>) => {
 
   return (
     <FormPage<TableRequest> {...props}>
-      <Gutter>
+      <Gutter width="w-[calc(100%/2-1rem)]">
         <TextField
           autoFocus
           errorMessage="Masa adı girmelisiniz"

@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import ReactDOM from "react-dom";
 import Button, { ButtonGroup } from "@atlaskit/button";
 import Form from "@atlaskit/form";
 import AtlaskitModalDialog, {
@@ -22,7 +21,7 @@ import { languageHead } from "./constants";
 import { LanguageSupportProps } from "./types";
 
 const LanguageSupport = <T extends object>({
-  category,
+  relatedData,
   children,
   data,
   isLoading,
@@ -67,8 +66,8 @@ const LanguageSupport = <T extends object>({
               {
                 key: language.id,
                 content:
-                  category?.localizations.find(
-                    (localization) =>
+                  relatedData?.localizations?.find(
+                    (localization: any) =>
                       localization.languageCode === language.code
                   )?.title || "-",
               },
@@ -76,8 +75,8 @@ const LanguageSupport = <T extends object>({
                 key: language.id,
                 content: (
                   <ButtonGroup>
-                    {category?.localizations.find(
-                      (localization) =>
+                    {relatedData?.localizations.find(
+                      (localization: any) =>
                         localization.languageCode === language.code
                     ) ? (
                       <React.Fragment>

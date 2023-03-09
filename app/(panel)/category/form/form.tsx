@@ -32,7 +32,7 @@ const Form = ({
 
   return (
     <FormPage<CategoryRequest> {...props}>
-      <Gutter>
+      <Gutter width="w-[calc(100%/2-1rem)]">
         <TextField
           autoFocus
           errorMessage="Kategori adı girmelisiniz"

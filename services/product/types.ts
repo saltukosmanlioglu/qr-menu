@@ -2,15 +2,15 @@ import { StatusEnum } from "@/utils/types";
 
 import { BaseApiResponse, BaseProps } from "../types";
 
-export interface ProductLocalization {
-  description: string;
-  languageCode: string;
-  specifications: ProductSpecifications;
-  title: string;
-}
-
 export interface ProductSpecifications {
   allergens: string;
+}
+
+export interface ProductLocalization {
+  description: string;
+  languageCode: string | null;
+  specifications: ProductSpecifications;
+  title: string;
 }
 
 export interface Product extends BaseProps {
@@ -30,12 +30,15 @@ export interface ProductParams {
 }
 
 export interface ProductRequest {
-  status: StatusEnum;
-  price: number;
   categoryId: string;
+  description: string;
   image: string;
-  parentId: string;
   localizations: Array<ProductLocalization>;
+  parentId: string;
+  price: number;
+  allergens: string;
+  status: StatusEnum;
+  title: string;
 }
 
 export interface ProductResponse extends BaseApiResponse<Array<Product>> {}
