@@ -3,22 +3,25 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
-import tableService, { TableRequest } from "@/services/table";
+import galleryService, { GalleryRequest } from "@/services/gallery";
 
-import { breadcrumbItemCreate } from "./constants";
 import Form from "../form";
 
-export default function CreateTable() {
+import { breadcrumbItemCreate } from "./constants";
+
+export default function CreateGallery() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
-  const onCreate = (values: TableRequest) => {
+  const onCreate = (values: GalleryRequest) => {
     setIsLoading(true);
 
-    tableService
-      .create(values)
-      .then(() => router.push("/table/list"))
+    const productId = values?.productId && Object.values(values.productId)[1];
+
+    galleryService
+      .create({ ...values, productId })
+      .then(() => router.push("/gallery/list"))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };
@@ -32,11 +35,11 @@ export default function CreateTable() {
           props={{
             buttonText: "Kaydet",
             description:
-              "Aşağıdaki formu doldurarak yeni bir masa oluşturabilirsiniz.",
+              "Aşağıdaki formu doldurarak yeni bir öne çıkan içerik oluşturabilirsiniz.",
             isLoading,
             onSubmit: onCreate,
             operation: "create",
-            title: "Masa oluştur",
+            title: "Öne çıkan içerik oluştur",
           }}
         />
       </div>

@@ -72,13 +72,13 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
           </ButtonGroup>
         }
         breadcrumbItems={breadcrumbItemList}
-        title={`Kategoriyi güncelle: ${data.localizations?.[0]?.title}`}
+        title={`Kategori: ${data.localizations?.[0]?.title}`}
       />
       <Tabs
         tabs={[
           {
             icon: <RetryIcon label="" size="small" />,
-            title: "Güncelle",
+            title: "Düzenle",
             visible: true,
           },
           {

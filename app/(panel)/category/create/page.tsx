@@ -49,7 +49,7 @@ export default function CreateCategory() {
           props={{
             buttonText: "Kaydet",
             description:
-              "Aşağıdaki formu doldurarak bir kategori oluşturabilirsiniz.",
+              "Aşağıdaki formu doldurarak yeni bir kategori oluşturabilirsiniz.",
             isLoading,
             onSubmit: onCreate,
             operation: "create",

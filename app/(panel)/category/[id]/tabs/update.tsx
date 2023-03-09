@@ -46,9 +46,9 @@ const Update: React.FunctionComponent<UpdateProps> = ({
       }}
       operation="update"
       props={{
-        buttonText: "Güncelle",
+        buttonText: "Düzenle",
         description:
-          "Aşağıdaki formu doldurarak geçerli kategoriyi güncelleyebilirsiniz.",
+          "Aşağıdaki formu doldurarak geçerli kategoriyi düzenleyebilirsiniz.",
         isLoading,
         onSubmit: onUpdate,
         operation: "update",

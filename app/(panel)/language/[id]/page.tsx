@@ -13,7 +13,7 @@ import languageService, {
 
 import Form from "../form";
 
-import { breadcrumbItemList } from "./constants";
+import { breadcrumbItemUpdate } from "./constants";
 
 export default function UpdateLanguage({ params }: { params: { id: string } }) {
   const [data, setData] = useState<Language>();
@@ -64,17 +64,17 @@ export default function UpdateLanguage({ params }: { params: { id: string } }) {
             width="medium"
           />
         }
-        breadcrumbItems={breadcrumbItemList}
-        title="Dil desteğini Güncelle"
+        breadcrumbItems={breadcrumbItemUpdate}
+        title="Dil bilgisini düzenle"
       />
       <div style={{ padding: "0 12.5%" }}>
         <Form
           initialValues={{ ...data, status: data.audit.status }}
           operation="update"
           props={{
-            buttonText: "Güncelle",
+            buttonText: "Düzenle",
             description:
-              "Aşağıdaki formu doldurarak geçerli dili güncelleyebilirsiniz.",
+              "Aşağıdaki formu doldurarak geçerli dili düzenleyebilirsiniz.",
             isLoading,
             onSubmit: onUpdate,
             operation: "update",

@@ -2,10 +2,10 @@ import { BreadcrumbsItemProps } from "@atlaskit/breadcrumbs/dist/types/types";
 
 export const breadcrumbItemCreate: Array<BreadcrumbsItemProps> = [
   {
-    href: "/table/list",
-    text: "Masalar",
+    href: "/gallery/list",
+    text: "Öne çıkan içerikler",
   },
   {
-    text: "Masa oluştur",
+    text: "Öne çıkan içerik oluştur",
   },
 ];

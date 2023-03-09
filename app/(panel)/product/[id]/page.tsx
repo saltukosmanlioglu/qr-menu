@@ -18,7 +18,7 @@ import languageService, { LanguageResponse } from "@/services/language";
 
 import { Language, SubProducts, Update } from "./tabs";
 
-import { breadcrumbItemList } from "./constants";
+import { breadcrumbItemUpdate } from "./constants";
 
 export default function UpdateProduct({ params }: { params: { id: string } }) {
   const [data, setData] = useState<Product>();
@@ -68,14 +68,14 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
             />
           </ButtonGroup>
         }
-        breadcrumbItems={breadcrumbItemList}
-        title={`Ürünü güncelle: ${data.localizations?.[0]?.title}`}
+        breadcrumbItems={breadcrumbItemUpdate}
+        title={`Ürün: ${data.localizations?.[0]?.title}`}
       />
       <Tabs
         tabs={[
           {
             icon: <RetryIcon label="" size="small" />,
-            title: "Güncelle",
+            title: "Düzenle",
             visible: true,
           },
           {

@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <title>Kategori güncelle | QR Menü Yönetim Paneli</title>
+      <title>Kategori bilgisini düzenle | QR Menü Yönetim Paneli</title>
     </>
   );
 }

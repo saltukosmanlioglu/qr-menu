@@ -7,7 +7,7 @@ import languageService, { LanguageRequest } from "@/services/language";
 
 import Form from "../form";
 
-import { breadcrumbItemList } from "./constants";
+import { breadcrumbItemCreate } from "./constants";
 
 export default function CreateLanguage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -26,14 +26,14 @@ export default function CreateLanguage() {
 
   return (
     <main>
-      <PageInformation breadcrumbItems={breadcrumbItemList} />
+      <PageInformation breadcrumbItems={breadcrumbItemCreate} />
       <div style={{ padding: "0 12.5%" }}>
         <Form
           operation="create"
           props={{
             buttonText: "Kaydet",
             description:
-              "Aşağıdaki formu doldurarak bir dil oluşturabilirsiniz.",
+              "Aşağıdaki formu doldurarak yeni bir dil oluşturabilirsiniz.",
             isLoading,
             onSubmit: onCreate,
             operation: "create",

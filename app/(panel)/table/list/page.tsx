@@ -11,7 +11,7 @@ import tableService, { TableResponse } from "@/services/table";
 import { breadcrumbItemList, head, rows } from "./constants";
 
 export default function TableList() {
-  const [data, setData] = useState<TableResponse>();
+  const [data, setData] = useState<TableResponse["data"]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,13 +19,10 @@ export default function TableList() {
 
     tableService
       .get()
-      .then((res) => setData(res.data))
+      .then((res) => setData(res.data.data))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, []);
-
-  const moveDown = () => {};
-  const moveUp = () => {};
 
   return (
     <main>
@@ -48,7 +45,7 @@ export default function TableList() {
           tableProps={{
             isLoading: isLoading,
             head: head,
-            rows: rows(data?.data as TableResponse["data"], moveDown, moveUp),
+            rows: rows(data as TableResponse["data"]),
           }}
         />
       </div>

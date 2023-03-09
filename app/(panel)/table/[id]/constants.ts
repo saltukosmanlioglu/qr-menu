@@ -1,11 +1,11 @@
 import { BreadcrumbsItemProps } from "@atlaskit/breadcrumbs/dist/types/types";
 
-export const breadcrumbItemList: Array<BreadcrumbsItemProps> = [
+export const breadcrumbItemUpdate: Array<BreadcrumbsItemProps> = [
   {
     href: "/table/list",
     text: "Masalar",
   },
   {
-    text: "Masa Güncelle",
+    text: "Masa bilgisini düzenle",
   },
 ];

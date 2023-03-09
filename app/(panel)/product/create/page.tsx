@@ -17,6 +17,7 @@ export default function CreateProduct() {
 
   const router = useRouter();
   const params = useSearchParams();
+
   const categoryId = params.get("categoryId");
 
   const onCreate = (values: ProductRequest) => {
@@ -56,7 +57,7 @@ export default function CreateProduct() {
           props={{
             buttonText: "Kaydet",
             description:
-              "Aşağıdaki formu doldurarak bir ürün oluşturabilirsiniz.",
+              "Aşağıdaki formu doldurarak yeni bir ürün oluşturabilirsiniz.",
             isLoading,
             onSubmit: onCreate,
             operation: "create",

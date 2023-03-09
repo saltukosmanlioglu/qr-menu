@@ -1,16 +1,14 @@
 import Link from "next/link";
 import { BreadcrumbsItemProps } from "@atlaskit/breadcrumbs/dist/types/types";
-import Button, { ButtonGroup } from "@atlaskit/button";
+import Button from "@atlaskit/button";
 
-import ArrowUpIcon from "@atlaskit/icon/glyph/arrow-up";
-import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import { Table, TableResponse } from "@/services/table";
 
 export const breadcrumbItemList: Array<BreadcrumbsItemProps> = [
   {
-    text: "Masa Listesi",
+    text: "Masa listesi",
   },
 ];
 
@@ -31,11 +29,7 @@ export const head = {
   ],
 };
 
-export const rows = (
-  data: TableResponse["data"],
-  moveDown: () => void,
-  moveUp: () => void
-) =>
+export const rows = (data: TableResponse["data"]) =>
   data?.map((table: Table, index: number) => ({
     key: `row-${index}-${table.id}`,
     cells: [
@@ -50,27 +44,13 @@ export const rows = (
       {
         key: table.id,
         content: (
-          <ButtonGroup>
-            <Link href={`/table/${table.id}`}>
-              <Button
-                appearance="default"
-                children="Düzenle"
-                iconAfter={<EditFilledIcon label="" size="small" />}
-              />
-            </Link>
+          <Link href={`/table/${table.id}`}>
             <Button
               appearance="default"
-              isDisabled={data.length === 0}
-              iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => moveDown()}
+              children="Düzenle"
+              iconAfter={<EditFilledIcon label="" size="small" />}
             />
-            <Button
-              appearance="default"
-              isDisabled={data.length === data.length - 1}
-              iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => moveUp()}
-            />
-          </ButtonGroup>
+          </Link>
         ),
       },
     ],

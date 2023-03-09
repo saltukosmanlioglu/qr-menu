@@ -11,7 +11,7 @@ import languageService, { LanguageResponse } from "@/services/language";
 import { breadcrumbItemList, head, rows } from "./constants";
 
 export default function LanguageList() {
-  const [data, setData] = useState<LanguageResponse>();
+  const [data, setData] = useState<LanguageResponse["data"]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function LanguageList() {
 
     languageService
       .get()
-      .then((res) => setData(res.data))
+      .then((res) => setData(res.data.data))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, []);
@@ -48,11 +48,7 @@ export default function LanguageList() {
           tableProps={{
             isLoading: isLoading,
             head: head,
-            rows: rows(
-              data?.data as LanguageResponse["data"],
-              moveDown,
-              moveUp
-            ),
+            rows: rows(data as LanguageResponse["data"], moveDown, moveUp),
           }}
         />
       </div>

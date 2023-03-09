@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 import TextField from "@/atlaskit/components/text-field";
-import Gutter from "@/components/gutter";
 import categoryService, { CategoryLocalization } from "@/services/category";
 import useForm from "@/utils/hooks/form";
 import LanguageSupport from "@/widgets/language-support";

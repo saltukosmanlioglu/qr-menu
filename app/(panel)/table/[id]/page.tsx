@@ -12,7 +12,7 @@ import tableService, { Table, TableRequest } from "@/services/table";
 
 import Form from "../form";
 
-import { breadcrumbItemList } from "./constants";
+import { breadcrumbItemUpdate } from "./constants";
 
 export default function UpdateTable({ params }: { params: { id: string } }) {
   const [data, setData] = useState<Table>();
@@ -83,8 +83,8 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
             width="medium"
           />
         }
-        breadcrumbItems={breadcrumbItemList}
-        title="Masa bilgisini güncelle"
+        breadcrumbItems={breadcrumbItemUpdate}
+        title="Masa bilgisini düzenle"
       />
       <div style={{ padding: "0 12.5%" }}>
         {data ? (
@@ -100,9 +100,9 @@ export default function UpdateTable({ params }: { params: { id: string } }) {
                   onClick: handleDownloadQr,
                 },
               ],
-              buttonText: "Güncelle",
+              buttonText: "Düzenle",
               description:
-                "Aşağıdaki formu doldurarak geçerli masa bilgisini güncelleyebilirsiniz.",
+                "Aşağıdaki formu doldurarak geçerli masa bilgisini düzenleyebilirsiniz.",
               isLoading,
               onSubmit: onUpdate,
               operation: "update",

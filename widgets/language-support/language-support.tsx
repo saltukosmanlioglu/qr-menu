@@ -82,7 +82,7 @@ const LanguageSupport = <T extends object>({
                       <React.Fragment>
                         <Button
                           appearance="default"
-                          children={`${language.code} Dil desteğini güncelle`}
+                          children={`${language.code} Dil desteğini düzenle`}
                           iconAfter={<EditIcon label="" size="small" />}
                           onClick={() => handleClick(language.code, "update")}
                         />
@@ -121,7 +121,7 @@ const LanguageSupport = <T extends object>({
                     <ModalTitle>
                       {activeOperation === "create"
                         ? `${activeLanguage} Dil desteği ekle`
-                        : `${activeLanguage} Dil desteğini güncelle`}
+                        : `${activeLanguage} Dil desteğini düzenle`}
                     </ModalTitle>
                   </ModalHeader>
                   <ModalBody>{children()}</ModalBody>
@@ -134,7 +134,7 @@ const LanguageSupport = <T extends object>({
                     <Button
                       appearance="primary"
                       children={
-                        activeOperation === "create" ? "Oluştur" : "Güncelle"
+                        activeOperation === "create" ? "Oluştur" : "Düzenle"
                       }
                       type="submit"
                     />

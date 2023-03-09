@@ -6,18 +6,32 @@ import AddIcon from "@atlaskit/icon/glyph/add";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Table from "@/atlaskit/widgets/table";
-import categoryService, { CategoryResponse } from "@/services/category";
+import galleryService, { GalleryResponse } from "@/services/gallery";
 
 import { breadcrumbItemList, head, rows } from "./constants";
 
-export default function CategoryList() {
-  const [data, setData] = useState<CategoryResponse["data"]>();
+export default function GalleryList() {
+  const [data, setData] = useState<GalleryResponse["data"]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const onRemove = (id: string) => {
+    if (data) {
+      const newData = data.slice();
+      const itemIndex = newData.findIndex((gallery) => gallery.id === id);
+
+      newData.splice(itemIndex, 1);
+
+      galleryService
+        .remove(id)
+        .then(() => setData(newData))
+        .catch((err) => console.log(err));
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
 
-    categoryService
+    galleryService
       .get()
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err))
@@ -31,24 +45,29 @@ export default function CategoryList() {
     <main>
       <PageInformation
         actions={
-          <Link href="/category/create">
+          <Link href="/gallery/create">
             <Button
               appearance="primary"
-              children="Kategori oluştur"
+              children="Öne çıkan içerik ekle"
               iconAfter={<AddIcon label="" size="small" />}
             />
           </Link>
         }
         breadcrumbItems={breadcrumbItemList}
-        description="Kategorileri görüntüleyebilir, sırasını değiştirebilir, yeni bir kategori oluşturabilir veya silebilirsiniz"
-        title="Kategori listesi"
+        description="Öne çıkan içerikleri görüntüleyebilir, sırasını değiştirebilir, yeni bir dil oluşturabilir veya silebilirsiniz."
+        title="Öne çıkan içerik listesi"
       />
       <div className="mt-20">
         <Table
           tableProps={{
             isLoading: isLoading,
             head: head,
-            rows: rows(data as CategoryResponse["data"], moveDown, moveUp),
+            rows: rows(
+              data as GalleryResponse["data"],
+              onRemove,
+              moveDown,
+              moveUp
+            ),
           }}
         />
       </div>

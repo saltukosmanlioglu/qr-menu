@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import ArrowUpIcon from "@atlaskit/icon/glyph/arrow-up";
 import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
+import ArrowUpIcon from "@atlaskit/icon/glyph/arrow-up";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import Button, { ButtonGroup } from "@atlaskit/button";
