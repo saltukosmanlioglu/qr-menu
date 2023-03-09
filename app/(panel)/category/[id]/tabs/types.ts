@@ -1,7 +1,7 @@
 import React from "react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
-import { Category, CategoryLocalization } from "@/services/category";
+import { Category, CategoryResponse } from "@/services/category";
 import { LanguageResponse } from "@/services/language";
 
 export interface UpdateProps {
@@ -12,7 +12,7 @@ export interface UpdateProps {
 }
 
 export interface SubCategoriesProps {
-  data?: Category["subCategories"];
+  data?: CategoryResponse["data"];
   isLoading: boolean;
 }
 

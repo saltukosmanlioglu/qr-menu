@@ -13,7 +13,10 @@ import WorldIcon from "@atlaskit/icon/glyph/world";
 import ModalDialog from "@/atlaskit/widgets/modal-dialog";
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Tabs from "@/atlaskit/widgets/tabs";
-import categoryService, { Category } from "@/services/category";
+import categoryService, {
+  Category,
+  CategoryResponse,
+} from "@/services/category";
 import languageService, { LanguageResponse } from "@/services/language";
 
 import { Language, Products, SubCategories, Update } from "./tabs";
@@ -21,6 +24,7 @@ import { Language, Products, SubCategories, Update } from "./tabs";
 import { breadcrumbItemList } from "./constants";
 
 export default function UpdateCategory({ params }: { params: { id: string } }) {
+  const [categories, setCategories] = useState<CategoryResponse["data"]>();
   const [data, setData] = useState<Category>();
   const [languages, setLanguages] = useState<LanguageResponse["data"]>();
 
@@ -45,6 +49,11 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
       .get()
       .then((res) => setLanguages(res.data.data))
       .catch((err) => console.log(err));
+
+    categoryService
+      .get({ onlyParent: false })
+      .then((res) => setCategories(res.data.data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -52,9 +61,11 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
       <PageInformation
         actions={
           <ButtonGroup>
-            <Link href="/category/create">
-              <Button appearance="primary" children="Alt kategori ekle" />
-            </Link>
+            {!data?.parentId && (
+              <Link href="/category/create">
+                <Button appearance="primary" children="Alt kategori ekle" />
+              </Link>
+            )}
             <Link href={`/product/create?categoryId=${params.id}`}>
               <Button appearance="primary" children="Ürün ekle" />
             </Link>
@@ -103,9 +114,7 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
             ),
           },
           {
-            component: (
-              <SubCategories data={data?.subCategories} isLoading={false} />
-            ),
+            component: <SubCategories data={categories} isLoading={false} />,
           },
           {
             component: <Products data={data?.products} isLoading={false} />,

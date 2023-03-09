@@ -107,7 +107,7 @@ const Language: React.FunctionComponent<LanguageProps> = ({
       removeLanguageSupport={removeLanguageSupport}
     >
       {() => (
-        <Gutter width="w-full">
+        <div className="w-full flex flex-wrap gap-4">
           <TextField
             autoFocus
             errorMessage="Kategori adı girmelisiniz"
@@ -118,7 +118,7 @@ const Language: React.FunctionComponent<LanguageProps> = ({
             required
             value={form.values.title}
           />
-        </Gutter>
+        </div>
       )}
     </LanguageSupport>
   );

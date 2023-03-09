@@ -20,7 +20,7 @@ const Form = ({
 
   return (
     <FormPage<LanguageRequest> {...props}>
-      <Gutter width="w-[calc(100%/2-1rem)]">
+      <Gutter>
         <TextField
           autoFocus
           errorMessage="Dil kodu girmelisiniz"
