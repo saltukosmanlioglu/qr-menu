@@ -114,7 +114,7 @@ export const productRows = (
     cells: [
       {
         key: product.id,
-        content: product.title,
+        content: product.localizations[0].title,
       },
       {
         key: product.id,
