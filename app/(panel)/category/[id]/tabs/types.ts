@@ -1,23 +1,23 @@
 import React from "react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
-import { Category, CategoryResponse } from "@/services/category";
+import { Category } from "@/services/category";
 import { LanguageResponse } from "@/services/language";
 
 export interface UpdateProps {
-  data?: Category;
+  data: Category;
   isLoading: boolean;
   params: { id: string };
   router: AppRouterInstance;
 }
 
 export interface SubCategoriesProps {
-  data?: CategoryResponse["data"];
+  data: Category["subCategories"];
   isLoading: boolean;
 }
 
 export interface ProductProps {
-  data?: Category["products"];
+  data: Category["products"];
   isLoading: boolean;
 }
 

@@ -5,7 +5,7 @@ import ArrowDownIcon from "@atlaskit/icon/glyph/arrow-down";
 import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import Button, { ButtonGroup } from "@atlaskit/button";
-import { Category, CategoryResponse } from "@/services/category";
+import { Category } from "@/services/category";
 
 export const subCategoryHead = {
   cells: [
@@ -29,7 +29,7 @@ export const subCategoryHead = {
 };
 
 export const subCategoryRows = (
-  data: CategoryResponse["data"],
+  data: Category["subCategories"],
   moveDown: () => void,
   moveUp: () => void
 ) =>

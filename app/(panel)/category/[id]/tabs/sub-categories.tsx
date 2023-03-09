@@ -2,7 +2,7 @@ import React from "react";
 
 import SectionMessage from "@/atlaskit/widgets/section-message";
 import Table from "@/atlaskit/widgets/table";
-import { Category, CategoryResponse } from "@/services/category";
+import { Category } from "@/services/category";
 
 import { subCategoryHead, subCategoryRows } from "./constants";
 import { SubCategoriesProps } from "./types";
@@ -27,7 +27,7 @@ const SubCategories: React.FunctionComponent<SubCategoriesProps> = ({
             isLoading,
             head: subCategoryHead,
             rows: subCategoryRows(
-              data as CategoryResponse["data"],
+              data as Category["subCategories"],
               moveDown,
               moveUp
             ),
