@@ -33,8 +33,7 @@ export const head = {
 
 export const rows = (
   data: LanguageResponse["data"],
-  moveDown: () => void,
-  moveUp: () => void
+  handleMove: (item: Language, index: number, operation: "up" | "down") => void
 ) =>
   data?.map((language: Language, index: number) => ({
     key: `row-${index}-${language.code}`,
@@ -60,15 +59,15 @@ export const rows = (
             </Link>
             <Button
               appearance="default"
-              isDisabled={data.length === 0}
+              isDisabled={index === 0}
               iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => moveDown()}
+              onClick={() => handleMove(language, index, "up")}
             />
             <Button
               appearance="default"
-              isDisabled={data.length === data.length - 1}
+              isDisabled={index === data.length - 1}
               iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => moveUp()}
+              onClick={() => handleMove(language, index, "down")}
             />
           </ButtonGroup>
         ),

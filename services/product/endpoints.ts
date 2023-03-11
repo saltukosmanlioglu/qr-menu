@@ -1,4 +1,5 @@
 import service from "@/services/instance";
+import { ReOrderRequest } from "@/utils/types";
 
 import { BaseApiResponse } from "../types";
 import {
@@ -17,6 +18,9 @@ export const getById = (id: string) =>
   service.get<BaseApiResponse<Product>>(`products/${id}`);
 
 export const remove = (id: string) => service.delete(`products/${id}`);
+
+export const reorder = (data: ReOrderRequest) =>
+  service.post("products/reorder", data);
 
 export const update = (id: string, data: ProductRequest) =>
   service.patch(`products/${id}`, data);

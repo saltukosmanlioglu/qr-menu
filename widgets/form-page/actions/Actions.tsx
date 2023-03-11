@@ -18,7 +18,7 @@ const FormActions: React.FunctionComponent<ActionsProps> = ({
   return (
     <FormFooter>
       <ButtonGroup>
-        <Button appearance="subtle" children="Cancel" onClick={onCancel} />
+        <Button appearance="subtle" children="İptal" onClick={onCancel} />
         {actions?.map((action, index) => (
           <Button key={index} {...action} />
         ))}

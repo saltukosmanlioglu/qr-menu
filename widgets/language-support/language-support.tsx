@@ -128,7 +128,7 @@ const LanguageSupport = <T extends object>({
                   <ModalFooter>
                     <Button
                       appearance="subtle"
-                      children="Cancel"
+                      children="İptal"
                       onClick={closeModal}
                     />
                     <Button

@@ -7,3 +7,10 @@ export interface FormProps<T> {
   operation: OperationType;
   props: Omit<FormPageProps<T>, "children">;
 }
+
+export interface ReOrder {
+  id: string;
+  order: number;
+}
+
+export interface ReOrderRequest extends Array<ReOrder> {}

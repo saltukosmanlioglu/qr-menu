@@ -62,7 +62,7 @@ const ModalDialog: React.FunctionComponent<ModalDialogProps> = ({
             <ModalFooter>
               <Button
                 appearance="subtle"
-                children="Cancel"
+                children="İptal"
                 onClick={closeModal}
               />
               {actions?.map((action, index) => (

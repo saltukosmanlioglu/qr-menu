@@ -1,1 +1,1 @@
-export { getValue } from "./service";
+export { handleMove } from "./service";
