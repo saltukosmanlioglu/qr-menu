@@ -26,9 +26,9 @@ export default function LanguageList() {
     if (data) {
       languageService
         .reorder(
-          data.map((item) => ({
+          data.map((item, index) => ({
             id: item.id,
-            order: item.order,
+            order: index,
           }))
         )
         .then(() => {})

@@ -111,11 +111,7 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
           },
           {
             component: (
-              <SubCategories
-                data={data.subCategories}
-                isLoading={false}
-                setData={setData}
-              />
+              <SubCategories data={data.subCategories} isLoading={false} />
             ),
             visible: data.subCategories.length > 0 && !data.parentId,
           },

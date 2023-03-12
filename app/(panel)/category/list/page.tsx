@@ -25,9 +25,9 @@ export default function CategoryList() {
     if (data) {
       categoryService
         .reorder(
-          data.map((item) => ({
+          data.map((item, index) => ({
             id: item.id,
-            order: item.order,
+            order: index,
           }))
         )
         .then(() => {})
