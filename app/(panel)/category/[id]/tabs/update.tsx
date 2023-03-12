@@ -16,8 +16,8 @@ const Update: React.FunctionComponent<UpdateProps> = ({
   router,
 }) => {
   const onUpdate = (values: CategoryRequest) => {
-    const parentId = Object.values(values.parentId)[1];
-    const status = Object.values(values.status)[1];
+    const parentId = values.parentId && Object.values(values.parentId)[1];
+    const status = values.status && Object.values(values.status)[1];
 
     let localizations: Array<CategoryLocalization> = [];
 

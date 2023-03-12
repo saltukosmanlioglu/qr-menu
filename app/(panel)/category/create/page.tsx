@@ -1,6 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
 import categoryService, {
@@ -20,7 +20,9 @@ export default function CreateCategory() {
   const onCreate = (values: CategoryRequest) => {
     setIsLoading(true);
 
-    const parentId = values?.parentId && Object.values(values.parentId)[1];
+    const parentId = values.parentId
+      ? Object.values(values?.parentId)[1]
+      : undefined;
 
     let localizations: Array<CategoryLocalization> = [];
 
@@ -28,6 +30,8 @@ export default function CreateCategory() {
       languageCode: null,
       title: values.title,
     });
+
+    return console.log({ ...values, parentId, localizations });
 
     categoryService
       .create({

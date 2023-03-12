@@ -25,11 +25,12 @@ const Select: React.FunctionComponent<SelectProps> = ({
         <React.Fragment>
           <AtlaskitSelect<Option>
             inputId={id}
-            {...rest}
             isClearable
             isLoading={isLoading}
             options={options}
             placeholder={placeholder}
+            {...rest}
+            onChange={onChange}
             value={value}
           />
           {error && <ErrorMessage>{error}</ErrorMessage>}

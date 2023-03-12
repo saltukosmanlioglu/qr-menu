@@ -27,7 +27,6 @@ import {
   TopNavigation,
 } from "@atlaskit/page-layout";
 
-import FlagCard from "@/atlaskit/components/flag-card";
 import "@/styles/globals.css";
 
 import { menuItems } from "./home/constants";
@@ -70,7 +69,6 @@ export default function AdminLayout({
             </Main>
           </Content>
         </PageLayout>
-        <FlagCard appearance="success" title="Dil başarıyla oluşturuldu." />
       </body>
     </html>
   );
