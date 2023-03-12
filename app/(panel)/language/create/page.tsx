@@ -1,6 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
 import languageService, { LanguageRequest } from "@/services/language";
@@ -11,6 +11,7 @@ import { breadcrumbItemCreate } from "./constants";
 
 export default function CreateLanguage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isFlagcard, setIsFlagcard] = useState<boolean>(false);
 
   const router = useRouter();
 
