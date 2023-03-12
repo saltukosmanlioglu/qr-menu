@@ -6,13 +6,37 @@ import AddIcon from "@atlaskit/icon/glyph/add";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
 import Table from "@/atlaskit/widgets/table";
-import galleryService, { GalleryResponse } from "@/services/gallery";
+import galleryService, { Gallery, GalleryResponse } from "@/services/gallery";
+import { handleMove } from "@/utils/funcs";
+import Reorder from "@/widgets/reorder";
 
 import { breadcrumbItemList, head, rows } from "./constants";
 
 export default function GalleryList() {
-  const [data, setData] = useState<GalleryResponse["data"]>();
+  const [data, setData] = useState<GalleryResponse["data"]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [isOrderActive, setIsOrderActive] = useState<boolean>(false);
+
+  const reorder = () => {
+    if (data) {
+      galleryService
+        .reorder(
+          data.map((item) => ({
+            id: item.id,
+            order: item.order,
+          }))
+        )
+        .then(() => {})
+        .catch((err) => console.log(err))
+        .finally(() => setIsOrderActive(false));
+    }
+  };
+
+  const onReorderCancel = () => {
+    setIsOrderActive(false);
+    window.location.reload();
+  };
 
   const onRemove = (id: string) => {
     if (data) {
@@ -38,9 +62,6 @@ export default function GalleryList() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const moveDown = () => {};
-  const moveUp = () => {};
-
   return (
     <main>
       <PageInformation
@@ -57,7 +78,10 @@ export default function GalleryList() {
         description="Öne çıkan içerikleri görüntüleyebilir, sırasını değiştirebilir, yeni bir dil oluşturabilir veya silebilirsiniz."
         title="Öne çıkan içerik listesi"
       />
-      <div className="mt-20">
+      <div className="mt-20 relative">
+        {isOrderActive && (
+          <Reorder onCancel={onReorderCancel} onClick={reorder} />
+        )}
         <Table
           tableProps={{
             isLoading: isLoading,
@@ -65,8 +89,10 @@ export default function GalleryList() {
             rows: rows(
               data as GalleryResponse["data"],
               onRemove,
-              moveDown,
-              moveUp
+              (item, index, operation) => {
+                setIsOrderActive(true);
+                handleMove<Gallery>(item, index, operation, data, setData);
+              }
             ),
           }}
         />

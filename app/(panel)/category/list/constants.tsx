@@ -37,8 +37,7 @@ export const head = {
 
 export const rows = (
   data: CategoryResponse["data"],
-  moveDown: () => void,
-  moveUp: () => void
+  handleMove: (item: Category, index: number, operation: "up" | "down") => void
 ) =>
   data?.map((category: Category, index: number) => ({
     key: `row-${index}-${category.id}`,
@@ -74,15 +73,15 @@ export const rows = (
             </Link>
             <Button
               appearance="default"
-              isDisabled={data.length === 0}
+              isDisabled={index === 0}
               iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => moveDown()}
+              onClick={() => handleMove(category, index, "up")}
             />
             <Button
               appearance="default"
-              isDisabled={data.length === data.length - 1}
+              isDisabled={index === data.length - 1}
               iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => moveUp()}
+              onClick={() => handleMove(category, index, "down")}
             />
           </ButtonGroup>
         ),

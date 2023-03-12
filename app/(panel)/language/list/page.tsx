@@ -39,6 +39,7 @@ export default function LanguageList() {
 
   const onReorderCancel = () => {
     setIsOrderActive(false);
+    window.location.reload();
   };
 
   useEffect(() => {

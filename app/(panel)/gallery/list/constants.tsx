@@ -34,8 +34,7 @@ export const head = {
 export const rows = (
   data: GalleryResponse["data"],
   onRemove: (id: string) => void,
-  moveDown: () => void,
-  moveUp: () => void
+  handleMove: (item: Gallery, index: number, operation: "up" | "down") => void
 ) =>
   data?.map((gallery: Gallery, index: number) => ({
     key: `row-${index}-${gallery.id}`,
@@ -63,15 +62,15 @@ export const rows = (
             />
             <Button
               appearance="default"
-              isDisabled={data.length === 0}
+              isDisabled={index === 0}
               iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => moveDown()}
+              onClick={() => handleMove(gallery, index, "up")}
             />
             <Button
               appearance="default"
-              isDisabled={data.length === data.length - 1}
+              isDisabled={index === data.length - 1}
               iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => moveUp()}
+              onClick={() => handleMove(gallery, index, "down")}
             />
           </ButtonGroup>
         ),
