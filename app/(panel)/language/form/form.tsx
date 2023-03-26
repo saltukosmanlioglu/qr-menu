@@ -13,13 +13,15 @@ const Form = ({
   initialValues,
   operation,
   props,
-}: FormProps<LanguageRequest>) => {
-  const form = useForm<LanguageRequest>({
-    initialValues: { ...initialValues } as LanguageRequest,
+}: FormProps<LanguageRequest & { order: number }>) => {
+  const form = useForm<LanguageRequest & { order: number }>({
+    initialValues: { ...initialValues } as LanguageRequest & {
+      order: number;
+    },
   });
 
   return (
-    <FormPage<LanguageRequest> {...props}>
+    <FormPage<LanguageRequest & { order: number }> {...props}>
       <Gutter>
         <TextField
           autoFocus
@@ -31,7 +33,7 @@ const Form = ({
           required
           value={form.values.code}
         />
-        {operation === "update" && (
+        {operation === "update" && initialValues?.order !== 0 && (
           <Select
             isRequired
             label="Durumu"

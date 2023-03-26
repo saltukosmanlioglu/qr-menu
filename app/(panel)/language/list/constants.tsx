@@ -57,18 +57,22 @@ export const rows = (
                 iconAfter={<EditFilledIcon label="" size="small" />}
               />
             </Link>
-            <Button
-              appearance="default"
-              isDisabled={index === 0}
-              iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => handleMove(language, index, "up")}
-            />
-            <Button
-              appearance="default"
-              isDisabled={index === data.length - 1}
-              iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => handleMove(language, index, "down")}
-            />
+            {index !== 0 && (
+              <Button
+                appearance="default"
+                isDisabled={index === 1}
+                iconBefore={<ArrowUpIcon label="" size="medium" />}
+                onClick={() => handleMove(language, index, "up")}
+              />
+            )}
+            {index !== 0 && (
+              <Button
+                appearance="default"
+                isDisabled={index === data.length - 1}
+                iconBefore={<ArrowDownIcon label="" size="medium" />}
+                onClick={() => handleMove(language, index, "down")}
+              />
+            )}
           </ButtonGroup>
         ),
       },

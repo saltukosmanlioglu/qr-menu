@@ -9,6 +9,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
   isRequired,
   label,
   name,
+  onChange,
   options,
   placeholder,
   value,

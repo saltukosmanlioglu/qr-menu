@@ -6,6 +6,7 @@ import Button from "@atlaskit/button";
 import AddIcon from "@atlaskit/icon/glyph/add";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
+import SectionMessage from "@/atlaskit/widgets/section-message";
 import Table from "@/atlaskit/widgets/table";
 import languageService, {
   Language,
@@ -68,7 +69,14 @@ export default function LanguageList() {
         description="Dilleri görüntüleyebilir, sırasını değiştirebilir, yeni bir dil oluşturabilir veya silebilirsiniz."
         title="Dil Listesi"
       />
-      <div className="mt-20 relative">
+      <div className="relative">
+        <div className="m-8">
+          <SectionMessage
+            appearance="warning"
+            description="İlk eklenen dil varsayılan dildir. Varsayılan dil değiştirilemez."
+            title="Uyarı"
+          />
+        </div>
         {isOrderActive && (
           <Reorder onCancel={onReorderCancel} onClick={reorder} />
         )}

@@ -55,6 +55,7 @@ const Form = ({
         <Select
           label="Üst kategori"
           name="parentId"
+          onChange={(e) => form.handleFieldChange("status", { ...e })}
           options={
             categories?.map((category) => ({
               label: category.localizations[0].title,
@@ -75,6 +76,7 @@ const Form = ({
           <Select
             label="Durumu"
             name="status"
+            onChange={(e) => form.handleFieldChange("status", { ...e })}
             options={status.map((statu) => ({ ...statu })) || []}
             placeholder="Durum seçiniz"
             value={status.find((statu) =>

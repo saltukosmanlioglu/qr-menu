@@ -6,6 +6,7 @@ import EditFilledIcon from "@atlaskit/icon/glyph/edit-filled";
 
 import Button, { ButtonGroup } from "@atlaskit/button";
 import { Category } from "@/services/category";
+import { Product } from "@/services/product";
 
 export const subCategoryHead = {
   cells: [
@@ -40,7 +41,7 @@ export const subCategoryRows = (
         key: subCategory.id,
         content: (
           <span style={{ color: subCategory.color }}>
-            {subCategory.localizations[0].title}
+            {subCategory.localizations?.[0]?.title}
           </span>
         ),
       },
@@ -106,15 +107,14 @@ export const productHead = {
 
 export const productRows = (
   data: Category["products"],
-  moveDown: () => void,
-  moveUp: () => void
+  handleMove: (item: Product, index: number, operation: "up" | "down") => void
 ) =>
   data?.map((product, index) => ({
     key: `row-${index}-${product.id}`,
     cells: [
       {
         key: product.id,
-        content: product.localizations[0].title,
+        content: product.localizations?.[0].title,
       },
       {
         key: product.id,
@@ -137,15 +137,15 @@ export const productRows = (
             </Link>
             <Button
               appearance="default"
-              isDisabled={data.length === 0}
+              isDisabled={index === 0}
               iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => moveDown()}
+              onClick={() => handleMove(product, index, "up")}
             />
             <Button
               appearance="default"
-              isDisabled={data.length === data.length - 1}
+              isDisabled={index === data.length - 1}
               iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => moveUp()}
+              onClick={() => handleMove(product, index, "down")}
             />
           </ButtonGroup>
         ),
