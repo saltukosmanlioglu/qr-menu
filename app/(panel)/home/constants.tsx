@@ -1,5 +1,6 @@
 import BacklogIcon from "@atlaskit/icon/glyph/backlog";
 import BulletListIcon from "@atlaskit/icon/glyph/bullet-list";
+import CommentIcon from "@atlaskit/icon/glyph/comment";
 import ImageIcon from "@atlaskit/icon/glyph/image";
 import TableIcon from "@atlaskit/icon/glyph/table";
 import WorldIcon from "@atlaskit/icon/glyph/world";
@@ -48,6 +49,16 @@ export const menuItems = [
       },
     ],
     title: "Dil",
+  },
+  {
+    icon: <CommentIcon label="" size="medium" />,
+    subItems: [
+      {
+        href: "suggestions-and-complaints/list",
+        text: "Öneri ve Şikayetler",
+      },
+    ],
+    title: "Öneri ve Şikayetler",
   },
   {
     icon: <TableIcon label="" size="medium" />,

@@ -22,11 +22,12 @@ type HTMLInputTypeAttribute =
 
 export interface TextFieldProps {
   autoFocus?: boolean;
+  disabled?: boolean;
   errorMessage?: string;
   label: string;
   name: string;
   onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  placeholder?: string;
   required?: boolean;
   type?: HTMLInputTypeAttribute;
   value: string | number | undefined;

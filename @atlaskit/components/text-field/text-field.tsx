@@ -7,6 +7,7 @@ import { TextFieldProps } from "./types";
 
 const TextField: React.FunctionComponent<TextFieldProps> = ({
   autoFocus,
+  disabled,
   errorMessage,
   label,
   name,
@@ -34,6 +35,7 @@ const TextField: React.FunctionComponent<TextFieldProps> = ({
               {...fieldProps}
               onChange={onChange}
               value={value}
+              isDisabled={disabled}
             />
             {!error && <HelperMessage>{errorMessage}</HelperMessage>}
           </React.Fragment>

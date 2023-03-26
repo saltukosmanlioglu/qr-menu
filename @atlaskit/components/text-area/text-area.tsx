@@ -6,10 +6,10 @@ import AtlaskitTextArea from "@atlaskit/textarea";
 import { TextAreaProps } from "./types";
 
 const TextArea: React.FunctionComponent<TextAreaProps> = ({
+  disabled,
   errorMessage,
   label,
   name,
-  onChange,
   placeholder,
   required,
   value,
@@ -28,7 +28,7 @@ const TextArea: React.FunctionComponent<TextAreaProps> = ({
               rows={3}
               placeholder={placeholder}
               {...fieldProps}
-              onChange={onChange}
+              isDisabled={disabled}
             />
             {error && <HelperMessage>{errorMessage}</HelperMessage>}
           </React.Fragment>
