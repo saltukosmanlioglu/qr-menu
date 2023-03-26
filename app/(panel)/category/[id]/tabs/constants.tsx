@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 
 import ArrowUpIcon from "@atlaskit/icon/glyph/arrow-up";
@@ -119,7 +120,7 @@ export const productRows = (
       },
       {
         key: product.id,
-        content: product.price,
+        content: <React.Fragment>{product.price}₺</React.Fragment>,
       },
       {
         key: product.id,

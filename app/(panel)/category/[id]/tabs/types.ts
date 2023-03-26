@@ -18,8 +18,9 @@ export interface SubCategoriesProps {
 }
 
 export interface ProductProps {
-  data: Category["products"];
+  data: Category;
   isLoading: boolean;
+  setNewData: React.Dispatch<React.SetStateAction<Category | undefined>>;
 }
 
 export interface LanguageProps {

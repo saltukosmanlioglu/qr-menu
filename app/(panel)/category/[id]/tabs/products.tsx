@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import SectionMessage from "@/atlaskit/widgets/section-message";
 import Table from "@/atlaskit/widgets/table";
@@ -13,15 +13,16 @@ import { ProductProps } from "./types";
 const Products: React.FunctionComponent<ProductProps> = ({
   data,
   isLoading,
+  setNewData,
 }) => {
-  const [productDatas, setProductDatas] = useState(data);
+  const [products, setProducts] = useState(data.products);
   const [isOrderActive, setIsOrderActive] = useState<boolean>(false);
 
   const reorder = () => {
     if (data) {
       productService
         .reorder(
-          data.map((item, index) => ({
+          data.products.map((item, index) => ({
             id: item.id,
             order: index,
           }))
@@ -37,7 +38,11 @@ const Products: React.FunctionComponent<ProductProps> = ({
     window.location.reload();
   };
 
-  return (
+  useEffect(() => {
+    setNewData({ ...data, products });
+  }, [products]);
+
+  return data ? (
     <div>
       <SectionMessage
         appearance="warning"
@@ -53,15 +58,15 @@ const Products: React.FunctionComponent<ProductProps> = ({
             isLoading,
             head: productHead,
             rows: productRows(
-              data as Category["products"],
+              data.products as Category["products"],
               (item, index, operation) => {
                 setIsOrderActive(true);
                 handleMove<Product>(
                   item,
                   index,
                   operation,
-                  productDatas,
-                  setProductDatas
+                  products,
+                  setProducts
                 );
               }
             ),
@@ -69,7 +74,7 @@ const Products: React.FunctionComponent<ProductProps> = ({
         />
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Products;

@@ -120,7 +120,9 @@ export default function UpdateCategory({ params }: { params: { id: string } }) {
             visible: data.subCategories.length > 0 && !data.parentId,
           },
           {
-            component: <Products data={data.products} isLoading={false} />,
+            component: (
+              <Products data={data} isLoading={false} setNewData={setData} />
+            ),
             visible: data.products.length > 0,
           },
           {
