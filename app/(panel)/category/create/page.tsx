@@ -20,9 +20,7 @@ export default function CreateCategory() {
   const onCreate = (values: CategoryRequest) => {
     setIsLoading(true);
 
-    const parentId = values.parentId
-      ? Object.values(values?.parentId)[1]
-      : undefined;
+    const parentId = values?.parentId && Object.values(values.parentId)[1];
 
     let localizations: Array<CategoryLocalization> = [];
 
@@ -30,8 +28,6 @@ export default function CreateCategory() {
       languageCode: null,
       title: values.title,
     });
-
-    return console.log({ ...values, parentId, localizations });
 
     categoryService
       .create({

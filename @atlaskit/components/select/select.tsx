@@ -9,7 +9,6 @@ const Select: React.FunctionComponent<SelectProps> = ({
   isRequired,
   label,
   name,
-  onChange,
   options,
   placeholder,
   value,
@@ -25,12 +24,13 @@ const Select: React.FunctionComponent<SelectProps> = ({
         <React.Fragment>
           <AtlaskitSelect<Option>
             inputId={id}
-            isClearable
             isLoading={isLoading}
+            className="single-select"
+            classNamePrefix="react-select"
+            {...rest}
+            isClearable
             options={options}
             placeholder={placeholder}
-            {...rest}
-            onChange={onChange}
             value={value}
           />
           {error && <ErrorMessage>{error}</ErrorMessage>}

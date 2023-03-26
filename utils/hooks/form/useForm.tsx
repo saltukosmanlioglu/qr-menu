@@ -7,7 +7,7 @@ const useForm = <T extends Record<string, any>>({
 }: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues as T);
 
-  const handleChange = (key: string, value: string) => {
+  const handleChange = (key: string, value: string | object | number) => {
     setValues((_values) => ({
       ..._values,
       [key]: value,

@@ -88,7 +88,6 @@ const Form = ({
             form.handleChange("description", e.currentTarget.value)
           }
           placeholder="Ürün açıklaması girin"
-          required
           value={form.values.description}
         />
         <TextArea
@@ -98,7 +97,6 @@ const Form = ({
             form.handleChange("allergens", e.currentTarget.value)
           }
           placeholder="Ürün açıklaması girin"
-          required
           value={form.values.allergens}
         />
         {operation === "update" && (
