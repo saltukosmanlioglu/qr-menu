@@ -30,36 +30,37 @@ export const subCategoryHead = {
 };
 
 export const subCategoryRows = (
-  data: Category["subCategories"],
-  moveDown: () => void,
-  moveUp: () => void
+  data: Omit<Category, "parentId">,
+  handleMove: (
+    item: Omit<Category, "parentId">,
+    index: number,
+    operation: "up" | "down"
+  ) => void
 ) =>
-  data?.map((subCategory, index) => ({
-    key: `row-${index}-${subCategory.id}`,
+  data?.subCategories?.map((item, index) => ({
+    key: `row-${index}-${item.id}`,
     cells: [
       {
-        key: subCategory.id,
+        key: item.id,
         content: (
-          <span style={{ color: subCategory.color }}>
-            {subCategory.localizations?.[0]?.title}
+          <span style={{ color: item.color }}>
+            {item.localizations?.[0]?.title}
           </span>
         ),
       },
       {
-        key: subCategory.id,
-        content: (
-          <span style={{ color: subCategory.color }}>{subCategory.color}</span>
-        ),
+        key: item.id,
+        content: <span style={{ color: item.color }}>{item.color}</span>,
       },
       {
-        key: subCategory.id,
-        content: new Date(subCategory.audit.createdAt).toLocaleString(),
+        key: item.id,
+        content: new Date(item.audit.createdAt).toLocaleString(),
       },
       {
-        key: subCategory.id,
+        key: item.id,
         content: (
           <ButtonGroup>
-            <Link href={`/category/${subCategory.id}`}>
+            <Link href={`/category/${item.id}`}>
               <Button
                 appearance="default"
                 children="Düzenle"
@@ -68,15 +69,15 @@ export const subCategoryRows = (
             </Link>
             <Button
               appearance="default"
-              isDisabled={data.length === 0}
+              isDisabled={index === 0}
               iconBefore={<ArrowUpIcon label="" size="medium" />}
-              onClick={() => moveDown()}
+              onClick={() => handleMove(item, index, "up")}
             />
             <Button
               appearance="default"
-              isDisabled={data.length === data.length - 1}
+              isDisabled={index === data.subCategories.length - 1}
               iconBefore={<ArrowDownIcon label="" size="medium" />}
-              onClick={() => moveUp()}
+              onClick={() => handleMove(item, index, "down")}
             />
           </ButtonGroup>
         ),

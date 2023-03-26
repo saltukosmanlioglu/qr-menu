@@ -12,8 +12,9 @@ export interface UpdateProps {
 }
 
 export interface SubCategoriesProps {
-  data: Category["subCategories"];
+  data: Category;
   isLoading: boolean;
+  setNewData: React.Dispatch<React.SetStateAction<Category | undefined>>;
 }
 
 export interface ProductProps {

@@ -28,7 +28,7 @@ export default function SuggestionsAndComplaintsReview({
       .catch((err) => console.log(err));
   }, [params.id]);
 
-  return (
+  return data ? (
     <main>
       <PageInformation
         breadcrumbItems={breadcrumbItemUpdate}
@@ -50,5 +50,5 @@ export default function SuggestionsAndComplaintsReview({
         />
       </div>
     </main>
-  );
+  ) : null;
 }
