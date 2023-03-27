@@ -12,7 +12,9 @@ import {
 export const create = (data: ProductRequest) => service.post("products", data);
 
 export const get = (params?: ProductParams) =>
-  service.get<ProductResponse>("products", { params });
+  service.get<ProductResponse>("products", {
+    params: { ...params, pageIndex: 0, pageSize: 1000 },
+  });
 
 export const getById = (id: string) =>
   service.get<BaseApiResponse<Product>>(`products/${id}`);

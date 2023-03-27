@@ -1,6 +1,6 @@
 import { StatusEnum } from "@/utils/types";
 
-import { BaseApiResponse, BaseProps } from "../types";
+import { BaseApiParams, BaseApiResponse, BaseProps } from "../types";
 
 export interface Product {
   image: string;
@@ -11,6 +11,8 @@ export interface Product {
 export interface Gallery extends BaseProps {
   product: Product;
 }
+
+export interface GalleryParams extends BaseApiParams {}
 
 export interface GalleryRequest {
   productId: string;

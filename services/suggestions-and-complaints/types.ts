@@ -1,4 +1,4 @@
-import { BaseApiResponse, BaseProps } from "../types";
+import { BaseApiParams, BaseApiResponse, BaseProps } from "../types";
 
 export interface SuggestionsAndComplaints extends BaseProps {
   fullName: string;
@@ -6,6 +6,8 @@ export interface SuggestionsAndComplaints extends BaseProps {
   phoneNumber: string;
   tableId: string;
 }
+
+export interface SuggestionsAndComplaintsParams extends BaseApiParams {}
 
 export interface SuggestionsAndComplaintsResponse
   extends BaseApiResponse<Array<SuggestionsAndComplaints>> {}

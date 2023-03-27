@@ -25,6 +25,11 @@ export interface BaseApiResponse<T> {
   totalCount: number;
 }
 
+export interface BaseApiParams {
+  pageIndex: number;
+  pageSize: number;
+}
+
 export interface BaseErrorProps {
   errorCode: number;
   message: string;

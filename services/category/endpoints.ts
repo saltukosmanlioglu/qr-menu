@@ -13,7 +13,13 @@ export const create = (data: CategoryRequest) =>
   service.post("categories", data);
 
 export const get = (params?: CategoryParams) =>
-  service.get<CategoryResponse>("categories", { params });
+  service.get<CategoryResponse>("categories", {
+    params: {
+      ...params,
+      pageSize: 1000,
+      pageIndex: 0,
+    },
+  });
 
 export const getById = (id: string) =>
   service.get<BaseApiResponse<Category>>(`categories/${id}`);

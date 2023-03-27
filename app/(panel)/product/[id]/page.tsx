@@ -52,11 +52,9 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
       <PageInformation
         actions={
           <ButtonGroup>
-            {!data.parentId && (
-              <Link href="/product/create">
-                <Button appearance="primary" children="Alt ürün ekle" />
-              </Link>
-            )}
+            <Link href={`/product/create?categoryId=${data.categoryId}`}>
+              <Button appearance="primary" children="Alt ürün ekle" />
+            </Link>
             <ModalDialog
               appearance="danger"
               buttonText="Sil"

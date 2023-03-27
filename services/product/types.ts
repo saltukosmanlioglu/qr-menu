@@ -1,6 +1,6 @@
 import { StatusEnum } from "@/utils/types";
 
-import { BaseApiResponse, BaseProps } from "../types";
+import { BaseApiParams, BaseApiResponse, BaseProps } from "../types";
 
 export interface ProductSpecifications {
   allergens: string;
@@ -25,7 +25,7 @@ export interface Product extends BaseProps {
   title: string;
 }
 
-export interface ProductParams {
+export interface ProductParams extends BaseApiParams {
   onlyParent?: boolean;
 }
 

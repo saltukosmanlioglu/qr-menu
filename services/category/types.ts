@@ -1,7 +1,7 @@
 import { Product } from "@/services/product";
 import { StatusEnum } from "@/utils/types";
 
-import { BaseApiResponse, BaseProps } from "../types";
+import { BaseApiParams, BaseApiResponse, BaseProps } from "../types";
 
 export interface CategoryLocalization {
   languageCode: string | null;
@@ -16,7 +16,7 @@ export interface Category extends BaseProps {
   subCategories: Array<Omit<Category, "parentId">>;
 }
 
-export interface CategoryParams {
+export interface CategoryParams extends BaseApiParams {
   onlyParent?: boolean;
 }
 
