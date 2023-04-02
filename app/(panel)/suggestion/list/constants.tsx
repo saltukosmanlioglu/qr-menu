@@ -4,10 +4,7 @@ import Button from "@atlaskit/button";
 
 import DetailViewIcon from "@atlaskit/icon/glyph/detail-view";
 
-import {
-  SuggestionsAndComplaints,
-  SuggestionsAndComplaintsResponse,
-} from "@/services/suggestions-and-complaints";
+import { Suggestion, SuggestionResponse } from "@/services/suggestion";
 
 export const breadcrumbItemList: Array<BreadcrumbsItemProps> = [
   {
@@ -40,8 +37,8 @@ export const head = {
   ],
 };
 
-export const rows = (data: SuggestionsAndComplaintsResponse["data"]) =>
-  data?.map((item: SuggestionsAndComplaints, index: number) => ({
+export const rows = (data: SuggestionResponse["data"]) =>
+  data?.map((item: Suggestion, index: number) => ({
     key: `row-${index}-${item.id}`,
     cells: [
       {
@@ -63,7 +60,7 @@ export const rows = (data: SuggestionsAndComplaintsResponse["data"]) =>
       {
         key: item.id,
         content: (
-          <Link href={`/suggestions-and-complaints/${item.id}`}>
+          <Link href={`/suggestion/${item.id}`}>
             <Button
               appearance="default"
               children="İncele"

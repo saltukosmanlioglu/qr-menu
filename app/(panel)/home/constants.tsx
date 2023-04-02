@@ -54,7 +54,7 @@ export const menuItems = [
     icon: <CommentIcon label="" size="medium" />,
     subItems: [
       {
-        href: "suggestions-and-complaints/list",
+        href: "suggestion/list",
         text: "Öneri ve Şikayetler",
       },
     ],
@@ -110,5 +110,11 @@ export const frequentlyUsedButtons: Array<
     href: "/table/create",
     icon: <TableIcon label="" size="xlarge" />,
     title: "Masa oluştur",
+  },
+  {
+    description: "Müşterilerinizin öneri ve şikayetleri inceleyebilirsiniz.",
+    href: "/suggestion/list",
+    icon: <CommentIcon label="" size="xlarge" />,
+    title: "Öneri ve Şikayetleri İncele",
   },
 ];

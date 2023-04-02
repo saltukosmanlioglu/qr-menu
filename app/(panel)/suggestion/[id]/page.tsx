@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import PageInformation from "@/atlaskit/widgets/page-information";
-import suggestionsAndComplaintsService, {
-  SuggestionsAndComplaints,
-} from "@/services/suggestions-and-complaints";
+import suggestionService, { Suggestion } from "@/services/suggestion";
 
 import Form from "../form";
 
@@ -16,13 +14,12 @@ export default function SuggestionsAndComplaintsReview({
 }: {
   params: { id: string };
 }) {
-  const [data, setData] = useState<SuggestionsAndComplaints>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<Suggestion>();
 
   const router = useRouter();
 
   useEffect(() => {
-    suggestionsAndComplaintsService
+    suggestionService
       .getById(params.id)
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
@@ -42,8 +39,7 @@ export default function SuggestionsAndComplaintsReview({
             buttonText: "Tamam",
             description:
               "Aşağıdaki formdan müşteri yorumunu okuyabilir ve iletişime geçmek için telefon numarasını arayabilirsiniz.",
-            isLoading,
-            onSubmit: () => router.push("suggestions-and-complaints/list"),
+            onSubmit: () => router.push("suggestion/list"),
             operation: "update",
             title: `Müşteri İsim - Soyisim: ${data?.fullName}`,
           }}

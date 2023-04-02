@@ -26,8 +26,8 @@ export interface BaseApiResponse<T> {
 }
 
 export interface BaseApiParams {
-  pageIndex: number;
-  pageSize: number;
+  pageIndex?: number;
+  pageSize?: number;
 }
 
 export interface BaseErrorProps {

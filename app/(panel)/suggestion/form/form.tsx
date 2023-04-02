@@ -3,21 +3,18 @@ import React from "react";
 import TextArea from "@/atlaskit/components/text-area";
 import TextField from "@/atlaskit/components/text-field";
 import Gutter from "@/components/gutter";
-import { SuggestionsAndComplaints } from "@/services/suggestions-and-complaints";
+import { Suggestion } from "@/services/suggestion";
 import useForm from "@/utils/hooks/form";
 import { FormProps } from "@/utils/types";
 import FormPage from "@/widgets/form-page";
 
-const Form = ({
-  initialValues,
-  props,
-}: FormProps<SuggestionsAndComplaints>) => {
-  const form = useForm<SuggestionsAndComplaints>({
-    initialValues: { ...initialValues } as SuggestionsAndComplaints,
+const Form = ({ initialValues, props }: FormProps<Suggestion>) => {
+  const form = useForm<Suggestion>({
+    initialValues: { ...initialValues } as Suggestion,
   });
 
   return (
-    <FormPage<SuggestionsAndComplaints> {...props}>
+    <FormPage<Suggestion> {...props}>
       <Gutter>
         <TextField
           disabled
